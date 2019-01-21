@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+<link rel="stylesheet" href="pm_css.css">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="pm_javaScript.js"></script>
-
 <script>
 	$(document).ready(function(){
 		$('.alarm_button').popover({
@@ -48,18 +48,15 @@
 		<div class="popover_content_wrapper" style="display: none">
 			<div id="alarm_content">
 				<ul>
-					<li>1</li>
-					<li>2</li>
-					<li>3</li>
+					<li>알람</li>
+					<li>알람</li>
+					<li>알람</li>
 				</ul>
 			</div>
 			<div id="profile_content">
 				<ul>
-					<li>1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-					<li>5</li>
+					<li>프로필</li>
+					<li>Log out</li>
 				</ul>
 			</div>
 		</div>
