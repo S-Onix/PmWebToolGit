@@ -10,4 +10,8 @@
 	<mvc:view-controller path="/main" view-name="main"/>
 	
 	
+	<bean >
+		
+	</bean>
+	
 </beans>
