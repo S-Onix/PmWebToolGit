@@ -15,7 +15,20 @@
 
 <script type="text/javascript" src="pm_javaScript.js"></script>
 <script>
-	$(document).ready(function(){
+
+$( document ).ready( function() {
+  var jbOffset = $( '.headerArticle' ).offset();
+  $( window ).scroll( function() {
+    if ( $( document ).scrollTop() > jbOffset.top ) {
+      $( '.headerArticle' ).addClass( 'jbFixed' );
+    }
+    else {
+      $( '.headerArticle' ).removeClass( 'jbFixed' );
+    }
+  });
+} );
+
+$(document).ready(function(){
 		$('.alarm_button').popover({
 			html:true,
 			content:function(){
@@ -65,25 +78,34 @@
 			<button type="button" title="알람" class="alarm_button" data-trigger="focus" data-placement="bottom">알람</button>
 			<button type="button" title="프로필" class="profile_button" data-trigger="focus" data-placement="bottom">프로필</button>
 		</div>
-		
+
 		<div class="popover_content_wrapper" style="display: none">
 			<div id="alarm_content">
 				<ul>
-					<li>알람</li>
-					<li>알람</li>
-					<li>알람</li>
+					<li>초대 알람 기능입니다.</li>
+					<li>보드 알람 기능입니다.</li>
+					<li>알람 알람 기능입니다.</li>
+					<li id= "driver"></li>
+					<li>알람 ㅂㅂㅂㅂ기능입니다.</li>
+					<li>알람 ㅁㅁㅁㅁ 기능입니다.</li>
 				</ul>
 			</div>
 			<div id="profile_content">
 				<ul>
 					<li>프로필</li>
 					<li>Log out</li>
+					<li id= "driver"></li>
+					<li>기능입니다.</li>
+					<li>기능입니다.</li>
 				</ul>
 			</div>
 			<div id="plus_content">
 				<ul>
-					<li>기능1</li>
-					<li>기능2</li>
+					<li>기능 입니다 1</li>
+					<li>기능 입니다 2</li>
+					<li id= "driver"></li>
+					<li>기능 입니다 3</li>
+					<li>기능 입니다 4</li>
 				</ul>
 			</div>
 		</div>

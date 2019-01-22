@@ -11,9 +11,17 @@ body {
 
 #contentAll {
 	width: 97%;
-	height: 97%;
+	/* height: 97%; */
+	height: 2000px;
 	display: table;
 	
+}
+
+#driver{
+	list-style: none;
+	width: 190px;
+	height: 0.5px;
+	background-color: #ececec;
 }
 
 article {
@@ -27,6 +35,7 @@ ul{
 
 li {
 	list-style: none;
+	margin: 10px;
 }
 
 .contentWrap {
@@ -39,7 +48,7 @@ li {
 .headerArticle {
 	overflow: hidden;
 	width: 100%;
-	height: 15%;
+	height: 2.4%; 
 	color: black;
 }
 
@@ -73,6 +82,9 @@ li {
   color: black;
 }
 
+.popover_content_wrapper{
+	position: fixed;
+}
 .popover {
     margin-top: -20px;
 }
@@ -81,6 +93,14 @@ li {
     margin-top: 8px;
 }
 
+.jbFixed {
+        position: fixed;
+        top: 0px;
+        height: 10%
+      }
+.popover.bottom{
+	position: fixed;
+} 
 .header-search{
 	position: absolute;
 	left: 120px;
