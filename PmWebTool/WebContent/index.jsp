@@ -5,11 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>index.jsp</title>
 </head>
-<body>
+<%@ include file="/header.jsp"%>
+<div id="contentAll" onclick="noneModal()">
+<a href="main">main 으로 이동</a>
+	
 
-
-
-</body>
+</div>
+<%@ include file="/footer.jsp"%>
 </html>

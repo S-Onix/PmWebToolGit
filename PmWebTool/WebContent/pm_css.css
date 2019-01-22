@@ -43,15 +43,17 @@ li {
 	color: black;
 }
 
-.header-right{
-  float: right;
-  padding: 12px;
-}
-
 .header {
   overflow: hidden;
   background-color: rgba(45,45,45,0.98);
   /* padding: 20px 10px; */
+}
+
+.header-right{
+  position: absolute;
+  right: 0px;
+  width: 160px;
+  padding: 12px;
 }
 
 .header a {
@@ -69,4 +71,23 @@ li {
 .header a:hover {
   background-color: #ddd;
   color: black;
+}
+
+.popover {
+    margin-top: -20px;
+}
+
+.popover.right .arrow {
+    margin-top: 8px;
+}
+
+.header-search{
+	position: absolute;
+	left: 120px;
+	padding: 12px;
+}
+
+.search-text{
+	font-color: white;
+	/* opacity: 0; */
 }
