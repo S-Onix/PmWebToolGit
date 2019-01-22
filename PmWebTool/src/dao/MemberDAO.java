@@ -11,8 +11,9 @@ import javax.sql.DataSource;
 import vo.MemberVO;
 
 public class MemberDAO {
-	DataSource dataSource;
 	
+	
+	DataSource dataSource;
 	
 	//객체 주입 필요함
 	public MemberDAO(DataSource dataSource) {
@@ -53,14 +54,42 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		try {
+			String sql = "SELECT * from project_detail where tseq = ?";
 			conn = dataSource.getConnection();
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, tseq);
+			rs = pstmt.executeQuery();
 			
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				
+				members.add(member);
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
 		return members;
+	}
+	
+	public int updateMemImage(String img, MemberVO member) {
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "update member set ming = ? where mseq = ?";
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, img);
+			pstmt.setInt(2, member.getMseq());
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	
