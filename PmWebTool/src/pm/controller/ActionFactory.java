@@ -1,7 +1,39 @@
 package pm.controller;
 
 import pm.controller.action.Action;
+import pm.controller.action.BoardDeleteAction;
+import pm.controller.action.BoardFormAction;
+import pm.controller.action.BoardUpdateAction;
+import pm.controller.action.BoardUpdateFormAction;
+import pm.controller.action.BoardViewFormAction;
+import pm.controller.action.BoardWriteAction;
+import pm.controller.action.BoardWriteFormAction;
+import pm.controller.action.CardAddAction;
+import pm.controller.action.CardAddFormAction;
+import pm.controller.action.CardDeleteAction;
+import pm.controller.action.CardMoveAction;
+import pm.controller.action.CardUpdateAction;
+import pm.controller.action.CardUpdateFormAction;
+import pm.controller.action.ChangePwAction;
+import pm.controller.action.ChangePwFormAction;
+import pm.controller.action.IdCheckFormAction;
 import pm.controller.action.IndexAction;
+import pm.controller.action.JoinAction;
+import pm.controller.action.JoinFormAction;
+import pm.controller.action.LoginAction;
+import pm.controller.action.LoginFormAction;
+import pm.controller.action.LogoutAction;
+import pm.controller.action.ProfileFormAction;
+import pm.controller.action.ProfileUpdateAction;
+import pm.controller.action.ProfileUpdateFormAction;
+import pm.controller.action.ProjectAddAction;
+import pm.controller.action.ProjectAddFormAction;
+import pm.controller.action.ProjectDeleteAction;
+import pm.controller.action.ProjectDetailFormAction;
+import pm.controller.action.ProjectFormAction;
+import pm.controller.action.ProjectUpdateAction;
+import pm.controller.action.ProjectUpdateFormAction;
+import pm.controller.action.WithdrawAction;
 
 public class ActionFactory {
 	private static ActionFactory instance = new ActionFactory();
@@ -14,7 +46,7 @@ public class ActionFactory {
 		Action action = null;
 		if (command.equals("index")) {
 			action = new IndexAction();
-		/*} else if (command.equals("join_form")) {
+		} else if (command.equals("join_form")) {
 			action = new JoinFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
@@ -60,6 +92,8 @@ public class ActionFactory {
 			action = new BoardWriteFormAction();
 		} else if (command.equals("board_write")) {
 			action = new BoardWriteAction();
+		} else if (command.equals("board_view_form")) {
+			action = new BoardViewFormAction();
 		} else if (command.equals("board_update_form")) {
 			action = new BoardUpdateFormAction();
 		} else if (command.equals("board_update")) {
@@ -75,9 +109,8 @@ public class ActionFactory {
 		} else if (command.equals("logout")) {
 			action = new LogoutAction();
 		} else if (command.equals("withdraw")) {
-			action = new WithdrawAction();*/
+			action = new WithdrawAction();
 		}
 		return action;
-
 	}
 }

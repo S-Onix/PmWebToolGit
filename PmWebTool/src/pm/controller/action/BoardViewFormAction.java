@@ -7,14 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ChangePwAction implements Action {
+public class BoardViewFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/member/login.jsp";
+		String url = "/board/board_view.jsp";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 
 		dispatcher.forward(request, response);
 	}
-
 }

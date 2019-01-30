@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/index.jsp";
+		String url = "/project/project.jsp";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 
