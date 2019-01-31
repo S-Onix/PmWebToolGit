@@ -1,44 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
-</head>
-<form action="PmServlet?command=id_check_form">
-<div>
-<h1>Id Check Form</h1>
-</div>
-ID <input type=text name="id" value="" size="20">
- <input type=submit value="검색" class="submit"><br>
-</form>
-</html>
-<%-- <script type="text/javascript">
+<title>ID 중복 확인</title>
+<style type="text/css">
+body {
+	background-color: #B96D85;
+	font-family: Verdana;
+}
+
+#wrap {
+	margin: 0 20px;
+}
+
+h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 45px;
+	color: #CCC;
+	font-weight: normal;
+}
+
+input[type=button], input[type=submit] {
+	float: right;
+}
+</style>
+<script type="text/javascript">
 	function idok() {
-		opener.formm.id.value = "${id}"
-		opener.formm.reid.value = "${id}"
+		opener.formm.mid.value = "${mid}"
+		opener.formm.reid.value = "${mid}"
 		self.close();
 	}
-	function idcheck() {
-		if (document.formm.id.value == "") {
-			alert('아이디를 입력해주세요');
-			document.formm.id.focus();
-			return;
-		}
 </script>
 </head>
-<form method=post name=formm style="margin-right:0" action="NonageServlet?command=id_check_form">
-ID <input type=text name="id" value="" size="20">
-   <input type=submit value="검색" class="submit"><br>
+<body>
+<div id="wrap">
+<h1>ID 중복확인</h1>
+<form method=post name=formm style="margin-right:0" action="PmServlet?command=id_check_form">
+User ID <input type=text name="mid" value="" size="15">
+        <input type=submit value="검색" class="submit"><br>
         <div style="margin-top: 20px">
         <c:if test="${message == 1}">
         <script type="text/javascript">
-        opener.document.formm.id.value="";
+        opener.document.formm.mid.value="";
         </script>
-        ${id}는 이미 사용중입니다
+        ${mid}는 이미 사용중입니다
         </c:if>
         <c:if test="${message==-1}">
-        ${id}는 사용 가능합니다
+        ${mid}는 사용 가능합니다
         <input type="button" value="사용" class="cancel" onclick="idok()">
         </c:if>
-</div> --%>
+</div>
+</form>
+</div>
+</body>
+</html>

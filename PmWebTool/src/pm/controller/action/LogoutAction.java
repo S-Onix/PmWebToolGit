@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LogoutAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/index.jsp";
+		String url = "PmServlet?command=index";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-
 		dispatcher.forward(request, response);
 	}
 }

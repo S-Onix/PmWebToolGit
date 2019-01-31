@@ -3,8 +3,6 @@ package pm.controller;
 import pm.controller.action.Action;
 import pm.controller.action.BoardDeleteAction;
 import pm.controller.action.BoardFormAction;
-import pm.controller.action.BoardUpdateAction;
-import pm.controller.action.BoardUpdateFormAction;
 import pm.controller.action.BoardViewFormAction;
 import pm.controller.action.BoardWriteAction;
 import pm.controller.action.BoardWriteFormAction;
@@ -94,10 +92,6 @@ public class ActionFactory {
 			action = new BoardWriteAction();
 		} else if (command.equals("board_view_form")) {
 			action = new BoardViewFormAction();
-		} else if (command.equals("board_update_form")) {
-			action = new BoardUpdateFormAction();
-		} else if (command.equals("board_update")) {
-			action = new BoardUpdateAction();
 		} else if (command.equals("board_delete")) {
 			action = new BoardDeleteAction();
 		} else if (command.equals("profile_form")) {
