@@ -13,7 +13,6 @@ public class WithdrawAction implements Action {
 		String url = "/index.jsp";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-
 		dispatcher.forward(request, response);
 	}
 }

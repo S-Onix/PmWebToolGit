@@ -21,9 +21,9 @@ public class BoardViewFormAction implements Action {
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			int qseq = Integer.parseInt(request.getParameter("qseq"));
+			int bseq = Integer.parseInt(request.getParameter("bseq"));
 			BoardDAO boardDAO = BoardDAO.getInstance();
-			BoardVO boardVO = boardDAO.getBoard(qseq);
+			BoardVO boardVO = boardDAO.getBoard(bseq);
 			request.setAttribute("boardVO", boardVO);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
