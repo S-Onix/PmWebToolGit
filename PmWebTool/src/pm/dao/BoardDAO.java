@@ -18,9 +18,10 @@ public class BoardDAO {
 	}
 
 	public void insertBoard(BoardVO boardVO, String session_id) {
-		String sql = "insert into board (subject, " + "content, mid) values(?, ?, ?)";
+		String sql = "insert into board (subject, content, mid) values(?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		System.out.println(session_id);
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -58,7 +59,7 @@ public class BoardDAO {
 				boardVO.setBseq(rs.getInt("bseq"));
 				boardVO.setSubject(rs.getString("subject"));
 				boardVO.setContent(rs.getString("content"));
-				boardVO.setId(rs.getString("mid"));
+				boardVO.setMid(rs.getString("mid"));
 				boardVO.setIndate(rs.getTimestamp("indate"));
 				boardVO.setReply(rs.getString("reply"));
 				boardVO.setRep(rs.getString("rep"));
@@ -97,7 +98,7 @@ public class BoardDAO {
 				boardVO.setBseq(seq);
 				boardVO.setSubject(rs.getString("subject"));
 				boardVO.setContent(rs.getString("content"));
-				boardVO.setId(rs.getString("mid"));
+				boardVO.setMid(rs.getString("mid"));
 				boardVO.setIndate(rs.getTimestamp("indate"));
 				boardVO.setReply(rs.getString("reply"));
 				boardVO.setRep(rs.getString("rep"));
@@ -159,7 +160,7 @@ public class BoardDAO {
 				boardVO.setSubject(rs.getString("subject"));
 				boardVO.setContent(rs.getString("content"));
 				boardVO.setReply(rs.getString("reply"));
-				boardVO.setId(rs.getString("mid"));
+				boardVO.setMid(rs.getString("mid"));
 				boardVO.setRep(rs.getString("rep"));
 				boardVO.setIndate(rs.getTimestamp("indate"));
 			}
@@ -192,7 +193,7 @@ public class BoardDAO {
 				boardVO.setBseq(rs.getInt("bseq"));
 				boardVO.setSubject(rs.getString("subject"));
 				boardVO.setContent(rs.getString("content"));
-				boardVO.setId(rs.getString("mid"));
+				boardVO.setMid(rs.getString("mid"));
 				boardVO.setIndate(rs.getTimestamp("indate"));
 				boardVO.setReply(rs.getString("reply"));
 				boardVO.setRep(rs.getString("rep"));
@@ -256,7 +257,7 @@ public class BoardDAO {
 				boardVO.setSubject(rs.getString("subject"));
 				boardVO.setContent(rs.getString("content"));
 				boardVO.setReply(rs.getString("reply"));
-				boardVO.setId(rs.getString("mid"));
+				boardVO.setMid(rs.getString("mid"));
 				boardVO.setRep(rs.getString("rep"));
 				boardVO.setIndate(rs.getTimestamp("indate"));
 				allBoard.add(boardVO);

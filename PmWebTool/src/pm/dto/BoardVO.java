@@ -7,7 +7,7 @@ public class BoardVO {
 	private String subject;
 	private String content;
 	private String reply;
-	private String id;
+	private String mid;
 	private String rep;
 	private Timestamp indate;
 
@@ -43,12 +43,12 @@ public class BoardVO {
 		this.reply = reply;
 	}
 
-	public String getId() {
-		return id;
+	public String getMid() {
+		return mid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 	public String getRep() {
