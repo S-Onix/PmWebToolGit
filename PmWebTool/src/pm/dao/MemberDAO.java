@@ -103,7 +103,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				memberVO = new MemberVO();
-				memberVO.setEmail(rs.getString("mid"));
+				memberVO.setMseq(rs.getInt("mseq"));
+				memberVO.setMid(rs.getString("mid"));
+				memberVO.setMname(rs.getString("mname"));
+				memberVO.setEmail(rs.getString("email"));
+				memberVO.setMimg(rs.getString("mimg"));
 				memberVO.setPassword(rs.getString("password"));
 			}
 		} catch (Exception e) {
