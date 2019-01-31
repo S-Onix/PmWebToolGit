@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import db.DBAction;
 import pm.dto.MemberVO;
 
@@ -13,18 +14,21 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return instance;
 	}
+	
 
 	public int insertMember(MemberVO memberVO) throws Exception {
 		int result = -1;
-		String sql = "insert into member(mname, email, password)" + " values(?,?,?)";
-		Connection conn = DBAction.getInstance().getConnection();
+		Connection conn = null;
 		PreparedStatement pstmt = null;
-		try {
+		try { 
+			String sql = "insert into member(mid, mname, email, password)" + " values(?, ?,?,?)";
+			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getMname());
-			pstmt.setString(2, memberVO.getEmail());
-			pstmt.setString(3, memberVO.getPassword());
-			result = pstmt.executeUpdate();
+			pstmt.setString(1, memberVO.getMid());
+			pstmt.setString(2, memberVO.getMname());
+			pstmt.setString(3, memberVO.getEmail());
+			pstmt.setString(4, memberVO.getPassword());
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -36,16 +40,16 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int confirmEmail(String userEmail) throws Exception {
+	public int confirmId(String userId) throws Exception {
 		int result = -1;
-		String sql = "select * from member where email=?";
+		String sql = "select * from member where mid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userEmail);
+			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = 1;

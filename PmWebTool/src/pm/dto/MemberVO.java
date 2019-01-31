@@ -2,9 +2,29 @@ package pm.dto;
 
 public class MemberVO {
 	private int mseq;
+	private String mid;
 	private String mname;
 	private String email;
 	private String password;
+	private String mimg;
+	
+	
+
+	public String getMid() {
+		return mid;
+	}
+
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+
+	public String getMimg() {
+		return mimg;
+	}
+
+	public void setMimg(String mimg) {
+		this.mimg = mimg;
+	}
 
 	public int getMseq() {
 		return mseq;
