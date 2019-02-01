@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
-function go_search(){
+function go_search(key){
 	if(document.frm.key.value == ""){
 		alert("작성자를 입력해 주세요.");
 		document.frm.key.focus();
