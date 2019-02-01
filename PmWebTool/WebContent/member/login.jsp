@@ -19,5 +19,6 @@
 		onclick="location='PmServlet?command=change_pw_form'"><br>
 	<input type="button" value="취소"
 		onclick="location='PmServlet?command=index'">
+	주나라
 </form>
 </html>
