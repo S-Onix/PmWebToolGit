@@ -8,28 +8,17 @@
 			<div>
 				<h1>Project</h1>
 			</div>
-	
+			
 			<c:forEach items="${projectList }" var="projectVO">
 				<div>
 					<input type="button" value="${projectVO.pname }" class="cancel"
-						onclick="goProjectDetail(${projectVO.pseq})"><br>
-					<input type="hidden" name="project${projectVO.pseq}" />
+						onclick="goProjectDetail(${projectVO.pseq})">
 				</div>
 			</c:forEach>
 			<div id="newProject">
-				<!-- <input type="text" name="newName"/> <input type="button" onclick="addProject()">프로젝트추가 -->
 				<input type="button" onclick="addProject()" value="프로젝트 생성" />
 			</div>
 			
-			
-	
-	
-			[Pop-up]<input type="button" value="프로젝트 생성" class="cancel"
-				onclick="location='PmServlet?command=project_add_form'"><br>
-			[Pop-up]<input type="button" value="프로젝트 수정" class="cancel"
-				onclick="location='PmServlet?command=project_update_form'"><br>
-			<input type="button" value="프로젝트 삭제" class="cancel"
-				onclick="location='PmServlet?command=project_delete&'"><br>
 		</form>
 	</section>
 	
@@ -39,10 +28,17 @@
 			document.pForm.submit();
 		}
 	
+		function initButton(){
+			var content = "";
+			content += '<input type="button" onclick="addProject()" value="프로젝트 생성" />';
+			document.getElementById('newProject').innerHTML = content;
+		}
+		
 		function addProject(){
 			var content = "";
 			content += "<input type='text' name='newName'/>";
-			content += "<input type='button' onclick='newProject()'>";
+			content += "<input type='button' onclick='newProject()' value='생성'>";
+			content += "<input type='button' onclick='initButton()' value='취소'>";
 			document.getElementById('newProject').innerHTML = content;
 		}
 		
@@ -51,10 +47,6 @@
 			document.pForm.submit();
 		}
 		
-		function modifyProject(project){
-			document.pForm.action = "PmServlet?command=project_update&pseq=" + project;
-			document.pForm.submit();
-		}
 	</script>
 </body>
 </html>

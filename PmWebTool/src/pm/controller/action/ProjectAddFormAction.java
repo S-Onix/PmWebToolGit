@@ -13,7 +13,6 @@ public class ProjectAddFormAction implements Action {
 		String url = "/project/project.jsp";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-
 		dispatcher.forward(request, response);
 	}
 }

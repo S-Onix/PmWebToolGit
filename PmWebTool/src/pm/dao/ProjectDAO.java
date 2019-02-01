@@ -5,6 +5,7 @@ package pm.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBAction;
@@ -90,6 +91,33 @@ public class ProjectDAO {
 			if(conn != null) conn.close();
 		}
 		return list;
+	}
+	
+	public ProjectVO selectProjectByPseq(int pseq)throws Exception {
+		ProjectVO project = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from project where pseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pseq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				project = new ProjectVO();
+				project.setPname(rs.getString("pname"));
+				project.setPseq(rs.getInt("pseq"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		return project;
 	}
 	
 	public void deleteProject(ProjectVO project) throws Exception {
