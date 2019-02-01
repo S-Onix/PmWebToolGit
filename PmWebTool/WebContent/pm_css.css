@@ -37,25 +37,35 @@ article {
   overflow: hidden;
   background-color: rgba(45,45,45,0.98);
   /* padding: 20px 10px; */
+  height: 41;
 }
 
 /* 로그인 전 헤더 right 부분 */
 .header-right{
   right: 0px;
-  width: 90px;
+  width: 140px;
   padding: 12px;
   float: right;
-  justify-content: center;
 }
 .header-login-right{
-   padding: 12px;
-     float: right;
+	right: 0px;
+  	width: 320px;
+  	padding: 12px;
+  	float: right;
 }
 .logo{
    padding: 12px;
    float: left;
 }
-
+.submit {
+   border: none;
+    background-color: black;
+    color: white;
+    width: 500px;
+    height: 50px;
+    font-size: 25px;
+    font-family: fantasy;
+}
 
 /* index 화면 관리 */
 /* 글 관리 */
@@ -182,6 +192,7 @@ li {
 /* 밑줄 제거 */
 a.pm-link{
    text-decoration: none;
+   margin-right: 30;
 }
 
 /* text 올라갈때 생기는 새로운 text */
@@ -225,7 +236,6 @@ a.pm-link{
 
 /* 외형 */
 .pm-link{
-   --smLinkPadding: 10px 15px;
    --smLinkLineWeight: 3.5px;   /* 선 굵기 */
    --smLinkLineColor: #fff;   /* 선 색상*/
    --smLinkTextColor: #fff;   /* 글 색상*/
