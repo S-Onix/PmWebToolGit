@@ -58,7 +58,7 @@ article {
    float: left;
 }
 .submit {
-   border: none;
+   border: none; 
     background-color: black;
     color: white;
     width: 500px;
