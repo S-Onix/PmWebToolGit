@@ -15,7 +15,6 @@ public class DBAction {
 	private Context ctx;
 
 	private DBAction() {
-
 		try {
 			InitialContext initctx = new InitialContext();
 			ctx = (Context) initctx.lookup("java:/comp/env");

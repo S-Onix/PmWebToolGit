@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="../header_login.jsp"%>
 
 
-	<section>
+
 		<form action="PmServlet?command=project_form">
 			<div>
 				<h1>Project</h1>
@@ -18,7 +17,7 @@
 			</c:forEach>
 			<div>
 				<input type="text" />
-				<button action="PmServlet?command=project_add" onclick="addProject()">프로젝트추가</button>
+				<button onclick="addProject()">프로젝트추가</button>
 			</div>
 	
 	
@@ -29,6 +28,5 @@
 			<input type="button" value="프로젝트 삭제" class="cancel"
 				onclick="location='PmServlet?command=project_form'"><br>
 		</form>
-	</section>
 </body>
 </html>
