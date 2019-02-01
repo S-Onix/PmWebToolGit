@@ -81,6 +81,45 @@ public class BoardDAO {
 		}
 		return listBoard;
 	}
+	
+	public ArrayList<BoardVO> listAllBoard() {
+		ArrayList<BoardVO> listBoard = new ArrayList<BoardVO>();
+		String sql = "select * from board order by indate asc";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardVO boardVO = new BoardVO();
+				boardVO.setBseq(rs.getInt("bseq"));
+				boardVO.setSubject(rs.getString("subject"));
+				boardVO.setContent(rs.getString("content"));
+				boardVO.setMid(rs.getString("mid"));
+				boardVO.setIndate(rs.getTimestamp("indate"));
+				boardVO.setReply(rs.getString("reply"));
+				boardVO.setRep(rs.getString("rep"));
+				listBoard.add(boardVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listBoard;
+	}
+
 
 	public BoardVO getBoard(int seq) {
 		BoardVO boardVO = null;
@@ -178,43 +217,6 @@ public class BoardDAO {
 		return boardVO;
 	}
 
-	public ArrayList<BoardVO> AllBoard() {
-		ArrayList<BoardVO> allBoard = new ArrayList<BoardVO>();
-		String sql = "select * from board order by indate asc";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = DBAction.getInstance().getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				BoardVO boardVO = new BoardVO();
-				boardVO.setBseq(rs.getInt("bseq"));
-				boardVO.setSubject(rs.getString("subject"));
-				boardVO.setContent(rs.getString("content"));
-				boardVO.setMid(rs.getString("mid"));
-				boardVO.setIndate(rs.getTimestamp("indate"));
-				boardVO.setReply(rs.getString("reply"));
-				boardVO.setRep(rs.getString("rep"));
-				allBoard.add(boardVO);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return allBoard;
-	}
 
 	public void updateBoard(BoardVO boardVO) {
 		String sql = "update board set reply=?, rep='2' where bseq=?";
