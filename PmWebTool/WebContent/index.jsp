@@ -7,11 +7,11 @@
 </head>
 <div>
 <h2>
-  <span>프로젝트 관리</span>  
-  <span class="light">안경잡이</span> 
-  <span>웹 사이트</span> 
-  <span>test</span>  
-  <span>test</span>
+  <span class="subfont">Manager</span>  
+  <span class="light">Project</span> 
+  <span class="subfont">Web Site</span> 
+  <span class="subfont">test</span>  
+  <span class="subfont">test</span>
 </h2>
 </div>
 </html>

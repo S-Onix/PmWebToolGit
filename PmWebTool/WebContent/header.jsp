@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -57,14 +55,26 @@
    <article class="headerArticle">
 
       <div class="header">
-         <a id="logo" href="PmServlet?command=index">안경잡이</a>
-
+         <div class="logo">
+            <a href="PmServlet?command=index"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="안경잡이">
+               <span class="label">안경잡이</span>
+            </a>
+         </div>
 
          <div class="header-right">
-            <input type="button" value="로그인" class="cancel"
-               onclick="location='PmServlet?command=login_form'"> <input
-               type="button" value="회원가입" class="cancel"
-               onclick="location='PmServlet?command=join_form'">
+            
+            <a href="PmServlet?command=login_form"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="LogIn">
+               <span class="label">LogIn</span>
+            </a>
+            
+             <a href="PmServlet?command=join_form"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="JoIn">
+               <span class="label">JoIn</span>
+            </a>
+            
+
          </div>
       </div>
    </article>

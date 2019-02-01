@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -57,7 +55,12 @@
    <article class="headerArticle">
 
       <div class="header">
-         <a id="logo" href="PmServlet?command=index">안경잡이</a>
+         <div class="logo">
+            <a href="PmServlet?command=index"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="안경잡이">
+               <span class="label">안경잡이</span>
+            </a>
+         </div>
          <!-- 
          <div class="header-right">
             <a class="active" href="PmServlet?command=login_form">LogIn</a> <a
@@ -65,10 +68,24 @@
          </div>
 
          <!-- 로그인 후 헤더 -->
-         <input type="button" value="프로젝트" onclick="location='PmServlet?command=project_form'">
-         <input type="button" value="게시판" onclick="location='PmServlet?command=board_form'">
-         <input type="button" value="프로필" onclick="location='PmServlet?command=profile_form'">
-         <input type="button" value="로그아웃" onclick="location='PmServlet?command=index'">
+         <div class="header-login-right">
+         <a href="PmServlet?command=project_form"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="Project">
+               <span class="label">Project</span>
+            </a>
+            <a href="PmServlet?command=board_form"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="Post">
+               <span class="label">Post</span>
+            </a>
+            <a href="PmServlet?command=profile_form"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="Profile">
+               <span class="label">Profile</span>
+            </a>
+            <a href="PmServlet?command=index"
+               class="pm-link pm-link_text pm-link" data-sm-link-text="LogOut">
+               <span class="label">LogOut</span>
+            </a>
+         </div>
       </div>
 
 <!-- 
