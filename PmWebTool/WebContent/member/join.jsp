@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <script id="text/javascript">
 function go_save() {
 	if (document.formm.mid.value == "") {
@@ -42,25 +43,35 @@ function idcheck() {
 <meta charset="UTF-8">
 </head>
   <form id="join" action="PmServlet?command=join" method="post" name="formm">
-  <article>
-    <h2>회원가입</h2>
-      <fieldset>
-        <label>ID</label>
-        <input type="text" name="mid" size="20">
-        <input type="hidden"    name="reid">
-        <input type="button" value="중복 체크"  class="dup" onclick="idcheck()"><br>
-        <label>PW</label> 
-        <input type="password" name="password"><br>
-        <label>NAME</label> 
-        <input type="text" name="mname"><br>
-        <label>E-MAIL</label>
-        <input type="text" name="email" size="32"><br>        
-      </fieldset>
-      <div id="buttons">
-<!--    <input type="button" value="가입" onclick="location='PmServlet?command=join'">  -->
-        <input type="button" value="회원가입"   class="submit" onclick="go_save()">
-        <input type="reset"  value="취소" onclick="location='PmServlet?command=index'">
-      </div>
-  </article>
-    </form>
+  	<div class="joinWrap">
+	  <article>
+	    <h1 class="joinTitle">JOIN</h1>
+	      <fieldset class="joinFiledset">
+		      <div class="joinInputBoxWrap">
+		      	<div class="joinIdWrap">
+			      <input type="text" name="mid" size="20" class="joinInputBox" placeholder="아이디 입력">
+			      <div class="duplicateCheck">
+			      	<i class="fas fa-user-check fa-2x"></i>
+			      </div>
+			    </div>
+		      </div>
+		      <div class="joinInputBoxWrap">
+		        <input type="password" name="password" class="joinInputBox" placeholder="비밀번호 입력">
+		      </div>
+		      <div class="joinInputBoxWrap">
+		        <input type="text" name="mname" class="joinInputBox" placeholder="이름 입력">
+		      </div>
+		      <div class="joinInputBoxWrap">
+		        <input type="text" name="email" size="32" class="joinInputBox" placeholder="이메일 입력">     
+		      </div>
+	      </fieldset>
+	      
+          <input type="button" value="JOIN" class="joinSubmit" onclick="go_save()">
+	        
+	      <div class="joinSubButtonWrap">
+	        <input type="reset"  value="취소" onclick="location='PmServlet?command=index'" class="joinSubButton">
+	      </div>
+	  </article>
+	 </div>
+   </form>
 </html>
