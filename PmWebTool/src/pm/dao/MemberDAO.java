@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBAction;
+import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
 public class MemberDAO {
@@ -15,29 +16,6 @@ public class MemberDAO {
 		return instance;
 	}
 
-/*	public int insertMember(MemberVO memberVO) throws Exception {
-		int result = -1;
-		String sql = "insert into member(mid, mname, email, password)" + " values(?,?,?,?)";
-		Connection conn = null;
-		conn = DBAction.getInstance().getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getMid());
-			pstmt.setString(2, memberVO.getMname());
-			pstmt.setString(3, memberVO.getEmail());
-			pstmt.setString(4, memberVO.getPassword());
-			return pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-		}
-		return result;
-	}*/
 	public int insertMember(MemberVO memberVO) throws Exception {
 		int result = -1;
 		String sql = "insert into member(mid, password, mname, email)" + " values(?,?,?,?)";
@@ -120,5 +98,29 @@ public class MemberDAO {
 				conn.close();
 		}
 		return memberVO;
+	}
+	
+	public void changePw(MemberVO member) {
+		String sql = "update member set password = ? where mseq = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getPassword());
+			pstmt.setInt(2, member.getMseq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
