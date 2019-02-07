@@ -71,25 +71,27 @@ article {
 d
 /* index 화면 관리 */
 /* 글 관리 */
-h2 {
+
+/* h2 {
   font-family: fantasy, "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
   color: #4e4e4e;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 5rem;
+  font-size: 6rem;
   line-height: 0.75;
-}
-span {
+} */
+
+.font-light {
   display: block;
   
 }
 /* 글 사라짐 시간 조정 */
-span.subfont:not(.light) {
+.font-light.subfont:not(.light) {
   opacity: 0;
   animation: flashText .5s ease-out alternate infinite;
 }
 /* 글 반짝임 옵션 */
-span.light {
+.font-light.light {
   position: relative;
   display: inline-block;
   
@@ -385,7 +387,7 @@ a.pm-link{
 .duplicateCheck {
    position: absolute;
    top: 0px;
-   left: 309px;
+   left: 465px;
    height: 38px;
    border: none;
    background-color: transparent;
@@ -396,7 +398,7 @@ a.pm-link{
 .duplicateCheck i {
    margin-top: 4px;
 }
-
+/* search div */
 .search-box{
    position: absolute;
     top: 22;
@@ -406,14 +408,17 @@ a.pm-link{
     background-color: 45,45,45,0.98;
 }
 
+/* search 마우스 hover */
 .search-box:hover > .search-text{
 width: 240px;
 paddig: 0 6px;
 }
+/* search hover 후 */
 .search-box:hover > .search-btn{
    background: 45,45,45,0.98;
 }
 
+/* search text */
 .search-text{
    border:none;
    background: none;
@@ -427,6 +432,7 @@ paddig: 0 6px;
    width: 0px;
 }
 
+/* search button */
 .search-btn{
    color: #fff;
     float: right;
@@ -438,4 +444,80 @@ paddig: 0 6px;
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+}
+
+/* project div */
+.project-box{
+   position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: 45,45,45,0.98;
+    padding-left: 20%;
+}
+
+/* project 마우스 hover */
+.project-box:hover > .project-text{
+width: 240px;
+paddig: 0 6px;
+}
+/* project hover 후 */
+.project-box:hover > .project-btn{
+   background: 45,45,45,0.98;
+}
+
+/* project text */
+.project-text{
+   border:none;
+   background: none;
+   outline: none;
+   float: left;
+   padding: 0;
+   color: black;
+   font-size: 15px;
+   transition: 0.4s;
+   line-height: 40px;
+   width: 0px;
+}
+
+/* project button */
+.project-btn{
+   color: black;
+    float: right;
+    width: 40;
+    height: 30;
+    border-radius: 50%;
+    background: #795548;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    border: none;
+   background-color: transparent;
+   cursor: pointer;
+}
+
+.fa-folder-plus{
+	font-size: 30px;
+}
+
+.project-center{
+	margin: auto;
+    width: 250px;
+    padding-bottom: 50;
+}
+
+.projectList{
+	padding: 0;
+	display: flex;
+    flex-wrap: wrap;
+}
+
+.project-card{
+	padding-left: 20px;
+}
+.cancel{
+	width: 140;
+	height: 120;
+	border: none;
+	background: #9e9e9e;
+	color: #fff;
 }

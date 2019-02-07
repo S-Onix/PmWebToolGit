@@ -9,15 +9,37 @@
 				<h1>Project</h1>
 			</div>
 			
+			<div class="project-center">
+			<div class="project-box">
+						<input class="project-text" type="text" name='newName' placeholder="addProject">
+						
+						<button class="project-btn" onclick='newProject()' value="프로젝트생성">
+						<i class="fas fa-folder-plus"></i>
+						</button>
+					</div>
+			</div>
+			
+			<ul class="projectList">
 			<c:forEach items="${projectList }" var="projectVO">
-				<div>
+				<li class="project-card">
 					<input type="button" value="${projectVO.pname }" class="cancel"
 						onclick="goProjectDetail(${projectVO.pseq})">
-				</div>
+				</li>
 			</c:forEach>
-			<div id="newProject">
+			</ul>
+			
+			<%-- <div class="projectList">
+			<c:forEach items="${projectList }" var="projectVO">
+				<span class="project-card">
+					<input type="button" value="${projectVO.pname }" class="cancel"
+						onclick="goProjectDetail(${projectVO.pseq})">
+				</span>
+			</c:forEach>
+			</div> --%>
+			
+			<!-- <div id="newProject">
 				<input type="button" onclick="addProject()" value="프로젝트 생성" />
-			</div>
+			</div> -->
 			
 		</form>
 	</section>
@@ -36,8 +58,9 @@
 		
 		function addProject(){
 			var content = "";
-			content += "<input type='text' name='newName'/>";
-			content += "<input type='button' onclick='newProject()' value='생성'>";
+			
+			/* content += "<input type='text' name='newName'/>";
+			content += "<input type='button' onclick='newProject()' value='생성'>"; */
 			content += "<input type='button' onclick='initButton()' value='취소'>";
 			document.getElementById('newProject').innerHTML = content;
 		}
