@@ -48,10 +48,10 @@ article {
   float: right;
 }
 .header-login-right{
-	right: 0px;
-  	width: 320px;
-  	padding: 12px;
-  	float: right;
+   right: 0px;
+     width: 320px;
+     padding: 12px;
+     float: right;
 }
 .logo{
    padding: 12px;
@@ -246,53 +246,53 @@ a.pm-link{
 
 /* 로그인 div */
 .loginWrap {
-	width: 40%;
-	margin: auto;
-	margin-top: 80px;
+   width: 40%;
+   margin: auto;
+   margin-top: 80px;
 }
 
 /* 로그인 title */
 .longinTitle {
-	width: 100px;
-	margin: auto;
+   width: 100px;
+   margin: auto;
 }
 
 /* 로그인 id, pw input box div */
 .loginInputBoxWrap {
-	width: 100%;
-	margin-top: 10px;
+   width: 100%;
+   margin-top: 10px;
 }
 
 /* 로그인 id, pw input box */
 .loginInputBox {
-	width: 100%;
-	height: 38px;
-	padding-left: 10px;
+   width: 100%;
+   height: 38px;
+   padding-left: 10px;
 }
 
 /* 로그인 save id div */
 .saveId {
-	margin: 10px 0px 10px 0px;
+   margin: 10px 0px 10px 0px;
 }
 
 /* 로그인 비밀번호 변경/취소 */
 .loginSubButtonWrap {
-	width: 80%;
-	margin: auto;
-	margin-top: 40px;
-	color: #5d5d5d;
+   width: 80%;
+   margin: auto;
+   margin-top: 40px;
+   color: #5d5d5d;
 }
 
 /* 로그인 change, cancle button */
 .loginSubButton {
-	background-color: transparent;
-	border: none;
-	font-size: 14px;
-	color: #5d5d5d;
-	width: 47%;
-	height: 30px;
-	padding: 0px;
-	cursor: pointer;
+   background-color: transparent;
+   border: none;
+   font-size: 14px;
+   color: #5d5d5d;
+   width: 47%;
+   height: 30px;
+   padding: 0px;
+   cursor: pointer;
 }
 
 /* 로그인 submit 버튼 */
@@ -309,58 +309,58 @@ a.pm-link{
 
 /* 회원가입 div */
 .joinWrap {
-	width: 40%;
-	margin: auto;
-	margin-top: 80px;
+   width: 40%;
+   margin: auto;
+   margin-top: 80px;
 }
 
 .joinWrap h1 {
-	font-size: 2em;
+   font-size: 2em;
 }
 
 /* 회원가입 title */
 .joinTitle {
-	width: 72px;
-	margin: auto;
+   width: 72px;
+   margin: auto;
 }
 
 /* 회원가입 fieldset */
 .joinFiledset {
-	border: none;
-	padding: 0px;
+   border: none;
+   padding: 0px;
 }
 
 /* 회원가입 input box div */
 .joinInputBoxWrap {
-	width: 100%;
-	margin-top: 10px;
+   width: 100%;
+   margin-top: 10px;
 }
 
 /* 회원가입 input box */
 .joinInputBox {
-	width: 100%;
-	height: 38px;
-	padding-left: 10px;
+   width: 100%;
+   height: 38px;
+   padding-left: 10px;
 }
 
 /* 회원가입 취소 */
 .joinSubButtonWrap {
-	width: 80%;
-	margin: auto;
-	margin-top: 40px;
-	color: #5d5d5d;
+   width: 80%;
+   margin: auto;
+   margin-top: 40px;
+   color: #5d5d5d;
 }
 
 /* 로그인 change, cancle button */
 .joinSubButton {
-	background-color: transparent;
-	border: none;
-	font-size: 14px;
-	color: #5d5d5d;
-	width: 100%;
-	height: 30px;
-	padding: 0px;
-	cursor: pointer;
+   background-color: transparent;
+   border: none;
+   font-size: 14px;
+   color: #5d5d5d;
+   width: 100%;
+   height: 30px;
+   padding: 0px;
+   cursor: pointer;
 }
 
 /* 회원가입 submit 버튼 */
@@ -378,21 +378,64 @@ a.pm-link{
 
 /* 회원가입 id inputbox, button wrap */
 .joinIdWrap {
-	position: relative;
+   position: relative;
 }
 
 /* 회원가입 id 중복체크 button */
 .duplicateCheck {
-	position: absolute;
-	top: 0px;
-	left: 309px;
-	height: 38px;
-	border: none;
-	background-color: transparent;
-	color: black;
-	cursor: pointer;
+   position: absolute;
+   top: 0px;
+   left: 309px;
+   height: 38px;
+   border: none;
+   background-color: transparent;
+   color: black;
+   cursor: pointer;
 }
 
 .duplicateCheck i {
-	margin-top: 4px;
+   margin-top: 4px;
+}
+
+.search-box{
+   position: absolute;
+    top: 22;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    background-color: 45,45,45,0.98;
+}
+
+.search-box:hover > .search-text{
+width: 240px;
+paddig: 0 6px;
+}
+.search-box:hover > .search-btn{
+   background: 45,45,45,0.98;
+}
+
+.search-text{
+   border:none;
+   background: none;
+   outline: none;
+   float: left;
+   padding: 0;
+   color: white;
+   font-size: 15px;
+   transition: 0.4s;
+   line-height: 40px;
+   width: 0px;
+}
+
+.search-btn{
+   color: #fff;
+    float: right;
+    width: 40;
+    height: 30;
+    border-radius: 50%;
+    background: 45,45,45,0.98;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
 }
