@@ -50,8 +50,9 @@ function idcheck() {
 		      <div class="joinInputBoxWrap">
 		      	<div class="joinIdWrap">
 			      <input type="text" name="mid" size="20" class="joinInputBox" placeholder="아이디 입력">
+			      <input type="hidden"    name="reid">
 			      <div class="duplicateCheck">
-			      	<i class="fas fa-user-check fa-2x"></i>
+			      	<i class="fas fa-user-check fa-2x" onclick="idcheck()"></i>
 			      </div>
 			    </div>
 		      </div>
