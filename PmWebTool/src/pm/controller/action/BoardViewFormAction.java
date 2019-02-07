@@ -25,6 +25,7 @@ public class BoardViewFormAction implements Action {
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			BoardVO boardVO = boardDAO.getBoard(bseq);
 			request.setAttribute("boardVO", boardVO);
+			request.setAttribute("checkId", loginUser.getMid());
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

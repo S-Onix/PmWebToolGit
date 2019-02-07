@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Project Manager</title>
 <link rel="stylesheet" type="text/css" href="pm_css.css" />
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
    /* $( document ).ready( function() {
     var jbOffset = $( '.headerArticle' ).offset();

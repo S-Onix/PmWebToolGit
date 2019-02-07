@@ -214,14 +214,15 @@ public class BoardDAO {
 
 
 	public void updateBoard(BoardVO board) {
-		String sql = "update into board (subject, content) values(?, ?)";
+		String sql = "update board set subject = ?, content = ? where bseq = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getSubject());
-			pstmt.setString(1, board.getContent());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getBseq());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -235,7 +236,6 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
-		return;
 	}
 
 	public ArrayList<BoardVO> getList() {

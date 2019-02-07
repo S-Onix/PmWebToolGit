@@ -32,6 +32,7 @@ public class BoardFormAction implements Action {
 					listBoard = BoardDAO.getInstance().listAllBoard();
 				}
 				request.setAttribute("listBoard", listBoard);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

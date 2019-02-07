@@ -26,8 +26,13 @@ public class BoardUpdateAction implements Action {
 			boardVO.setSubject(request.getParameter("subject"));
 			boardVO.setContent(request.getParameter("content"));
 			BoardDAO boardDAO = BoardDAO.getInstance();
+			System.out.println(request.getParameter("bseq") + " " + request.getParameter("subject") + " " + request.getParameter("content"));
 			boardDAO.updateBoard(boardVO);
-			response.sendRedirect(url);
+
 		}
+
+/*		response.sendRedirect(url);
+		*/
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 }
