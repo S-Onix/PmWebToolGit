@@ -17,7 +17,7 @@ public class BoardDAO {
 		return instance;
 	}
 
-	public void insertBoard(BoardVO boardVO, String mid) {// 게시물 작성
+	public void insertBoard(BoardVO boardVO, String key) {// 게시물 작성
 		String sql = "insert into board (subject, content, mid) values(?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -26,7 +26,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardVO.getSubject());
 			pstmt.setString(2, boardVO.getContent());
-			pstmt.setString(3, boardVO.getMid());
+			pstmt.setString(3, key);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,7 +178,7 @@ public class BoardDAO {
 		}
 	}
 
-	public BoardVO getBoardvView(int bseq) {//게시물 보기
+	public BoardVO getBoardView(int bseq) {//게시물 보기
 		BoardVO boardVO = new BoardVO();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -213,15 +213,15 @@ public class BoardDAO {
 	}
 
 
-	public void updateBoard(BoardVO boardVO) {
-		String sql = "update board set reply=?, rep='2' where bseq=?";
+	public void updateBoard(BoardVO board) {
+		String sql = "update into board (subject, content) values(?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, boardVO.getReply());
-			pstmt.setInt(2, boardVO.getBseq());
+			pstmt.setString(1, board.getSubject());
+			pstmt.setString(1, board.getContent());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -235,6 +235,7 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
+		return;
 	}
 
 	public ArrayList<BoardVO> getList() {

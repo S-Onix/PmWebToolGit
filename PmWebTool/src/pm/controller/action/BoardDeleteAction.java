@@ -12,7 +12,7 @@ public class BoardDeleteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "PmServlet?command=board";
+		String url = "PmServlet?command=board_form";
 		String[] bseqArr = request.getParameterValues("bseq");
 		for (String bseq : bseqArr) {
 			BoardDAO boardDAO = BoardDAO.getInstance();

@@ -107,7 +107,6 @@ public class MemberDAO {
 				memberVO.setMid(rs.getString("mid"));
 				memberVO.setMname(rs.getString("mname"));
 				memberVO.setEmail(rs.getString("email"));
-				memberVO.setMimg(rs.getString("mimg"));
 				memberVO.setPassword(rs.getString("password"));
 			}
 		} catch (Exception e) {

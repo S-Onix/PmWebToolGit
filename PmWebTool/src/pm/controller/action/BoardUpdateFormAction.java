@@ -11,11 +11,11 @@ import pm.dao.BoardDAO;
 import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
-public class BoardViewFormAction implements Action {
+public class BoardUpdateFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "board/board_view.jsp";
+		String url = "board/board_update.jsp";
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		if (loginUser == null) {

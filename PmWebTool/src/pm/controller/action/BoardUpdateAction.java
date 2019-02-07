@@ -11,21 +11,23 @@ import pm.dao.BoardDAO;
 import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
-public class BoardViewFormAction implements Action {
+public class BoardUpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "board/board_view.jsp";
+		String url = "PmServlet?command=board_form";
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			int bseq = Integer.parseInt(request.getParameter("bseq"));
+			BoardVO boardVO = new BoardVO();
+			boardVO.setBseq(Integer.parseInt(request.getParameter("bseq")));
+			boardVO.setSubject(request.getParameter("subject"));
+			boardVO.setContent(request.getParameter("content"));
 			BoardDAO boardDAO = BoardDAO.getInstance();
-			BoardVO boardVO = boardDAO.getBoard(bseq);
-			request.setAttribute("boardVO", boardVO);
+			boardDAO.updateBoard(boardVO);
+			response.sendRedirect(url);
 		}
-		request.getRequestDispatcher(url).forward(request, response);
 	}
 }
