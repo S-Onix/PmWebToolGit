@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBAction;
-import pm.dto.BoardVO;
 import pm.dto.MemberVO;
-import pm.dto.ProjectVO;
 
 public class MemberDAO {
 	private static MemberDAO instance = new MemberDAO();
@@ -124,5 +122,38 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public ArrayList<MemberVO> memberList() throws Exception{
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				member.setMseq(rs.getInt(1));
+				member.setMid(rs.getString(2));
+				member.setEmail(rs.getString(3));
+				member.setPassword(rs.getString(4));
+				member.setMname(rs.getString(5));
+				list.add(member);
+			}
+			return list;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		
+		return null;
+		
 	}
 }

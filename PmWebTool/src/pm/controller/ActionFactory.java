@@ -16,6 +16,7 @@ import pm.controller.action.CardUpdateAction;
 import pm.controller.action.CardUpdateFormAction;
 import pm.controller.action.ChangePwAction;
 import pm.controller.action.ChangePwFormAction;
+import pm.controller.action.CheckIdAction;
 import pm.controller.action.IdCheckFormAction;
 import pm.controller.action.IndexAction;
 import pm.controller.action.JoinAction;
@@ -50,7 +51,9 @@ public class ActionFactory {
 			action = new JoinFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
-		} else if (command.equals("id_check_form")) {
+		}else if (command.equals("check_id")) {
+			action = new CheckIdAction();
+		}else if (command.equals("id_check_form")) {
 			action = new IdCheckFormAction();
 		} else if (command.equals("login_form")) {
 			action = new LoginFormAction();

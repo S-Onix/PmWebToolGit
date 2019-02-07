@@ -14,18 +14,17 @@ public class ChangePwAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "PmServlet?command=login";
-		HttpSession session = request.getSession();
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-		if (loginUser == null) {
-			url = "PmServlet?command=login_form";
-		} else {
-		MemberVO memberVO = new MemberVO();
-		memberVO.setMseq(Integer.parseInt(request.getParameter("mseq")));
-		memberVO.setPassword(request.getParameter("passowrd"));
-		MemberDAO memberDAO = MemberDAO.getInstance();
-		memberDAO.changePw(memberVO);
-		}
-	request.getRequestDispatcher(url).forward(request,response);
+		String url = "PmServlet?command=login_form";
+
+			MemberDAO memberDAO = MemberDAO.getInstance();
+			try {
+				MemberVO memberVO = memberDAO.getMember(request.getParameter("id"));
+				memberVO.setPassword(request.getParameter("password"));
+				memberDAO.changePw(memberVO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher(url).forward(request,response);
 	}
 }
