@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.DBAction;
 import pm.dto.MemberVO;
@@ -15,29 +16,6 @@ public class MemberDAO {
 		return instance;
 	}
 
-/*	public int insertMember(MemberVO memberVO) throws Exception {
-		int result = -1;
-		String sql = "insert into member(mid, mname, email, password)" + " values(?,?,?,?)";
-		Connection conn = null;
-		conn = DBAction.getInstance().getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getMid());
-			pstmt.setString(2, memberVO.getMname());
-			pstmt.setString(3, memberVO.getEmail());
-			pstmt.setString(4, memberVO.getPassword());
-			return pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-		}
-		return result;
-	}*/
 	public int insertMember(MemberVO memberVO) throws Exception {
 		int result = -1;
 		String sql = "insert into member(mid, password, mname, email)" + " values(?,?,?,?)";
@@ -120,5 +98,62 @@ public class MemberDAO {
 				conn.close();
 		}
 		return memberVO;
+	}
+	
+	public void changePw(MemberVO member) {
+		String sql = "update member set password = ? where mseq = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getPassword());
+			pstmt.setInt(2, member.getMseq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public ArrayList<MemberVO> memberList() throws Exception{
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from member";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MemberVO member = new MemberVO();
+				member.setMseq(rs.getInt(1));
+				member.setMid(rs.getString(2));
+				member.setEmail(rs.getString(3));
+				member.setPassword(rs.getString(4));
+				member.setMname(rs.getString(5));
+				list.add(member);
+			}
+			return list;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		
+		return null;
+		
 	}
 }

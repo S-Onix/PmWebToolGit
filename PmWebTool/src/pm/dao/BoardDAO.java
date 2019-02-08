@@ -178,7 +178,7 @@ public class BoardDAO {
 		}
 	}
 
-	public BoardVO getBoardView(int bseq) {//게시물 보기
+	/*public BoardVO getBoardView(int bseq) {//게시물 보기
 		BoardVO boardVO = new BoardVO();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -210,7 +210,7 @@ public class BoardDAO {
 			}
 		}
 		return boardVO;
-	}
+	}*/
 
 
 	public void updateBoard(BoardVO board) {
@@ -238,7 +238,7 @@ public class BoardDAO {
 		}
 	}
 
-	public ArrayList<BoardVO> getList() {
+	/*public ArrayList<BoardVO> getList() {
 		ArrayList<BoardVO> listBoard = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -274,9 +274,9 @@ public class BoardDAO {
 			}
 		}
 		return listBoard;
-	}
+	}*/
 
-	public void setBoardReply(BoardVO boardVO) {
+	/*public void setBoardReply(BoardVO boardVO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "update board set reply=?, rep='2' where bseq=?";
@@ -298,9 +298,9 @@ public class BoardDAO {
 			} catch (SQLException e) {
 			}
 		}
-	}
+	}*/
 	
-	static int view_rows = 5; // 페이지 개수
+/*	static int view_rows = 5; // 페이지 개수
 	static int counts = 5; // 한 페이지에 나타낼 상품의 개수
 
 	public String pageNumber(int tpage, String key) {
@@ -420,5 +420,5 @@ public class BoardDAO {
 			}
 		}
 		return listBoard;
-	}
+	}*/
 }

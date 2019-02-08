@@ -1,58 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../header_login.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ID 중복 확인</title>
-<style type="text/css">
-body {
-	background-color: #B96D85;
-	font-family: Verdana;
-}
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-#wrap {
-	margin: 0 20px;
-}
+	<h1>비밀번호 변경</h1>
+	
+	<form method="post" name="idForm">
+		<c:choose>
+			<c:when test="${id == null }">
+				<span>아이디 입력 : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()"/></span>
+			</c:when>
+			<c:otherwise>
+				<span>아이디 입력 : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()" value="${id}"/></span>
+			</c:otherwise>
+		</c:choose>
 
-h1 {
-	font-family: "Times New Roman", Times, serif;
-	font-size: 45px;
-	color: #CCC;
-	font-weight: normal;
-}
+		 <br />
+		 <c:if test="${exitId == 0 }">
+		 	존재하지 않는 아이디 입니다.
+		 </c:if>
+		
+		<c:choose>
+		 	<c:when test="${exitId == 1}">
+		 	<div id="checkPassword">
+			<span><input type="password" id="newPw" name="password" placeholder="새 비밀번호 입력" /></span> <br />
+			<span><input type="password" id="checkPw" placeholder="비밀번호 확인" onkeyup="checkPw2()"/></span>
+			<div id="field"></div>
+			</div>
+			</c:when>
+		 	<c:otherwise> 	
+		 		
+		 	</c:otherwise>
+		 </c:choose>
+	</form>
+	
+	<div id="correct" style="color:red; display:none;">
+				일치합니다. <br>
+				<input type="button" value="변경하기" onclick="changePw()"/>
+	</div>
+	<script>
 
-input[type=button], input[type=submit] {
-	float: right;
-}
-</style>
-<script type="text/javascript">
-	function idcheck() {
-		opener.formm.mid.value = "${mid}"
-		opener.formm.reid.value = "${mid}"
-		self.close();
-	}
-</script>
-</head>
-<body>
-<div id="wrap">
-<h1>비밀번호 변경</h1>
-<form method=post name=formm style="margin-right:0" action="PmServlet?command=change_pw_form">
-User ID <input type=text name="mid" value="" size="15">
-        <input type=submit value="검색" class="submit"><br>
-        <div style="margin-top: 20px">
-        <c:if test="${message == 1}">
-        <script type="text/javascript">
-        opener.document.formm.mid.value="";
-        </script>
-        ${mid}는 이미 사용중입니다
-        </c:if>
-        <c:if test="${message==-1}">
-        ${mid}는 사용 가능합니다
-        <input type="button" value="사용" class="cancel" onclick="idok()">
-        </c:if>
-</div>
-</form>
-</div>
-</body>
-</html>
+		function idCheck(){
+			if(window.event.keyCode == 13){
+				document.idForm.action = "PmServlet?command=check_id";
+				document.idForm.submit();
+			}
+		}
+		
+		function checkPw2(){
+			var newPw = document.getElementById('newPw').value;
+			var checkPw = document.getElementById('checkPw').value;
+			if(newPw === checkPw){
+				var div = document.createElement('div');
+				div.innerHTML = document.getElementById('correct').innerHTML;
+				document.getElementById('field').appendChild(div);
+			}
+		}
+		
+		function changePw(){
+			document.idForm.action="PmServlet?command=change_pw";
+			document.idForm.submit();
+		}
+	</script>
+	</body>
+	</html>

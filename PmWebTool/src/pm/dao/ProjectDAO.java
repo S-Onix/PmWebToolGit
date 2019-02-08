@@ -45,7 +45,7 @@ public class ProjectDAO {
 		}
 	}
 	
-	public void modifyProjectName(int pseq, String pname) throws Exception{
+	public void modifyProjectName(ProjectVO projectVO) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -53,8 +53,8 @@ public class ProjectDAO {
 			String sql = "update project set pname = ? where pseq = ?";
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pname);
-			pstmt.setInt(2, pseq);
+			pstmt.setString(1, projectVO.getPname());
+			pstmt.setInt(2, projectVO.getPseq());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {

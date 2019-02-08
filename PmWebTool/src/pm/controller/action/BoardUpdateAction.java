@@ -31,8 +31,6 @@ public class BoardUpdateAction implements Action {
 
 		}
 
-/*		response.sendRedirect(url);
-		*/
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 }

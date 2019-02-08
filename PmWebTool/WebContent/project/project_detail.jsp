@@ -2,14 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header_login.jsp"%>
 
-	<form method="post" name="phForm" action="">
+	<form method="post" name="phForm">
 		<div id="project_info" onclick="modifyProjectName()">
-	
-			<span class="flexable"> ${project.pname }</span>
-	
-	
+			<span class="pname_input"> ${project.pname }</span>
 		</div>
 	</form>
+	
 	<div class="project_detail">
 		<form name="pForm" method="post"
 			action="PmServlet?command=card_updat_form">
@@ -22,31 +20,32 @@
 				onclick="location='PmServlet?command=card_update_form'"><br>
 			<input type="button" value="카드 삭제"
 				onclick="location='PmServlet?command=project_detail_form'"><br>
-	
+		
+		<c:forEach items="${cardList }" var="cardVO">
 			<div id="todo">
-				<c:forEach items="${cardList }" var="cardVO">
 					<c:if test="${cardVO.ctype == 1 }">
-						<span class="card" onclick="startClick()">${cardVO.ctitle }</span>
+						<span class="card" onclick="startClick(${cardVO})">${cardVO.ctitle }</span>
 					</c:if>
-				</c:forEach>
 			</div>
 			<div id="doing">
-				<c:forEach items="" var="cardVO">
 					<c:if test="${cardVO.ctype == 2 }">
-							${cardVO.ctitle }
+							<span class="card" onclick="startClick(${cardVO})">${cardVO.ctitle }</span>
 						</c:if>
-				</c:forEach>
 			</div>
 	
 			<div id="done">
-				<c:forEach items="" var="cardVO">
-					<c:if test="${cardVO.ctype == 3 }">
-							${cardVO.ctitle }
+						<c:if test="${cardVO.ctype == 3 }">
+							<span class="card" onclick="startClick(${cardVO})">${cardVO.ctitle }</span>
 						</c:if>
-				</c:forEach>
 			</div>
+			
+			
+			
+			</c:forEach>
 		</form>
 	</div>
+	
+
 
 <script>
 	var flag = 0;
@@ -54,25 +53,27 @@
 	var timeOut;
 
 	//oneclick && doubleclick 이벤트 구분 타임 조정 가능
-	function startClick() {
+	function startClick(cardVO) {
 		cardClicks++;
 
 		switch (cardClicks) {
 		case 2:
-			doDouble();
+			doDouble(cardVO);
 			break;
 		case 1:
-			timeOut = setTimeout("doSingle()", 300);
+			timeOut = setTimeout("doSingle()", 150);
 			break;
 		}
 	}
 
-	function doSingle() {
-		alert("singleClick");
+	//카드 이름 변경
+	function doSingle(cardVO) {
+		alert(cardVO.cseq);
 		cardClicks = 0;
 	}
 
-	function doDouble() {
+	//카드 디테일 모달팝업
+	function doDouble(cardVO) {
 		alert("doubleClick");
 		clearTimeout(timeOut);
 		cardClicks = 0;
@@ -82,14 +83,14 @@
 		//크기 조정 필요할듯
 		if (flag == 0) {
 			var content = '';
-			content += "<input type='text' id='newPname' placeholder='프로젝트이름' name='newPname' onkeyup='enterKey()' onfocus='focus()''>";
+			content += "<input type='text' id='newPname' placeholder='프로젝트이름' name='newPname' onkeydown='enterKey(${project.pseq})''>";
 			document.getElementById('project_info').innerHTML = content;
 			document.phForm.newPname.focus();
 			flag = 1;
 			return flag;
 		} else if (flag == 1) { //초기화 작업
 			var content = '';
-			content += "<h1>${project.pname }</h1>";
+			content += "<span class='pname_input'> ${project.pname }</span>";
 			document.getElementById('project_info').innerHTML = content;
 			flag = 2;
 			return flag;
@@ -99,10 +100,12 @@
 		}
 
 	}
-
-	function enterKey() {
+	
+	//enter 클릭시 프로젝트 명 변경
+ 	function enterKey(project) {
 		if (window.event.keyCode == 13) {
-			alert("enter Key Event");
+			document.phForm.action="PmServlet?command=project_update&pseq=" + project;
+			document.phForm.submit();
 		}
 	}
 
@@ -111,7 +114,7 @@
 	}
 
 	function moveNext() {
-
+		
 	}
 
 	function moveBefore() {
