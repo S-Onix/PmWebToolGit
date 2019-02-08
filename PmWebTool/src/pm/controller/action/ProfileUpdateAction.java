@@ -28,10 +28,11 @@ public class ProfileUpdateAction implements Action {
 			loginMember.setMname(request.getParameter("mname"));
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			memberDAO.updateMember(loginMember);
-			session.setAttribute("loginMember", loginMember);
+			session.setAttribute("loginUser", loginMember);
 			System.out.println(request.getParameter("mname") + "/" + request.getParameter("email"));
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+		
 	}
 }
