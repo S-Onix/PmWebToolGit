@@ -7,7 +7,7 @@ public class MemberVO {
 	private String email;
 	private String password;
 	private String mimg;
-	
+	private String useyn;
 	
 
 	public String getMid() {
@@ -56,6 +56,14 @@ public class MemberVO {
 
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+
+	public String getUseyn() {
+		return useyn;
+	}
+
+	public void setUseyn(String useyn) {
+		this.useyn = useyn;
 	}
 
 }

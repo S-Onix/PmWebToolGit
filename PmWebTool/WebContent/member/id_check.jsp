@@ -5,27 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>ID 중복 확인</title>
-<style type="text/css">
-body {
-	background-color: #B96D85;
-	font-family: Verdana;
-}
-
-#wrap {
-	margin: 0 20px;
-}
-
-h1 {
-	font-family: "Times New Roman", Times, serif;
-	font-size: 45px;
-	color: #CCC;
-	font-weight: normal;
-}
-
-input[type=button], input[type=submit] {
-	float: right;
-}
-</style>
 <script type="text/javascript">
 	function idok() {
 		opener.formm.mid.value = "${mid}"

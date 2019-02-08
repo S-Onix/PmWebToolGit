@@ -19,7 +19,6 @@ public class ProfileUpdateFormAction implements Action {
 		if (loginMember == null) {
 		} else {
 			try {
-				
 				request.setAttribute("loginMember", loginMember);
 			} catch (Exception e) {
 				e.printStackTrace();

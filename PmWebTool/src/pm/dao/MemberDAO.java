@@ -87,6 +87,7 @@ public class MemberDAO {
 				memberVO.setMname(rs.getString("mname"));
 				memberVO.setEmail(rs.getString("email"));
 				memberVO.setPassword(rs.getString("password"));
+				memberVO.setUseyn(rs.getString("useyn"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,16 +194,38 @@ public class MemberDAO {
 	}
 	
 	public void updateMember(MemberVO member) {
-		String sql = "update member set mid = ?, email = ?, mname = ? where mseq = ?";
+		String sql = "update member set email = ?, mname = ? where mseq = ?";
 		Connection conn = null; 
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMid());
-			pstmt.setString(2, member.getEmail());
-			pstmt.setString(3, member.getMname());
-			pstmt.setInt(4, member.getMseq());
+			pstmt.setString(1, member.getEmail());
+			pstmt.setString(2, member.getMname());
+			pstmt.setInt(3, member.getMseq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void deleteMember(int mseq) {
+		String sql = "update member set useyn=n where mseq=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mseq);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

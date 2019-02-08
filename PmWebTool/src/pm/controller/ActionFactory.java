@@ -51,9 +51,9 @@ public class ActionFactory {
 			action = new JoinFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
-		}else if (command.equals("check_id")) {
+		} else if (command.equals("check_id")) {
 			action = new CheckIdAction();
-		}else if (command.equals("id_check_form")) {
+		} else if (command.equals("id_check_form")) {
 			action = new IdCheckFormAction();
 		} else if (command.equals("login_form")) {
 			action = new LoginFormAction();

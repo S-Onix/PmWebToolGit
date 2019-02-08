@@ -18,6 +18,7 @@ public class LoginAction implements Action {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("mid");
 		String pw = request.getParameter("password");
+		String useyn = "y";
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		MemberVO memberVO = null;
 		try {
@@ -26,11 +27,13 @@ public class LoginAction implements Action {
 			e.printStackTrace();
 		}
 		if (memberVO != null) {
-			if (memberVO.getPassword().equals(pw)) {
+			if (memberVO.getPassword().equals(pw) && memberVO.getUseyn().equals(useyn)) {
 				session.removeAttribute("mid");
 				session.setAttribute("loginUser", memberVO);
 				url = "PmServlet?command=project_form";
-			}
+			}/* else if (memberVO.getUseyn().equals("n")) {
+				url = "/member/login_fail.jsp";
+			}*/
 		}
 
 		request.getRequestDispatcher(url).forward(request, response);
