@@ -54,5 +54,23 @@ private static CardDAO instance = new CardDAO();
 		return null;
 	}
 	
+	public void deleteAllCard(int projectNum) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "delete from card where pseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, projectNum);
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+	}
 	
 }

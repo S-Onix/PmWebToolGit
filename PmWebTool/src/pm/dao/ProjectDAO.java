@@ -120,24 +120,23 @@ public class ProjectDAO {
 		return project;
 	}
 	
-	public void deleteProject(ProjectVO project) throws Exception {
+	public void deleteProject(int pseq) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		/*
-		 * 1. 카드 삭제
-		 * 2. 카드삭제가 완료후 프로젝트 삭제를 해야함
-		 * */
+
 		try {
+			String sql = "delete from project where pseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pseq);
+			pstmt.executeUpdate();
 			
-			//카드 삭제 부분
-			String sql = "delete from card where pseq = ?";
-			
-			
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
 		}
 	}
 	
