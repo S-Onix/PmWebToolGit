@@ -5,8 +5,8 @@
 
 	<section>
 		<form name="pForm" method="post" action="PmServlet?command=project_form">
-			<div>
-				<h1>Project</h1>
+			<div class="profont-wrap">
+				<h1 class="project-font">Project</h1>
 			</div>
 			
 			<div class="project-center">
@@ -21,25 +21,12 @@
 			
 			<ul class="projectList">
 			<c:forEach items="${projectList }" var="projectVO">
-				<li class="project-card">
-					<input type="button" value="${projectVO.pname }" class="cancel"
-						onclick="goProjectDetail(${projectVO.pseq})">
+				<li class="project-wrap">
+					<button class="project-card cancel"
+						onclick="goProjectDetail(${projectVO.pseq})">${projectVO.pname }</button>
 				</li>
 			</c:forEach>
-			</ul>
-			
-			<%-- <div class="projectList">
-			<c:forEach items="${projectList }" var="projectVO">
-				<span class="project-card">
-					<input type="button" value="${projectVO.pname }" class="cancel"
-						onclick="goProjectDetail(${projectVO.pseq})">
-				</span>
-			</c:forEach>
-			</div> --%>
-			
-			<!-- <div id="newProject">
-				<input type="button" onclick="addProject()" value="프로젝트 생성" />
-			</div> -->
+			</ul>			
 			
 		</form>
 	</section>

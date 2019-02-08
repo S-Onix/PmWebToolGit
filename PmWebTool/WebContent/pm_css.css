@@ -57,7 +57,7 @@ article {
    padding: 12px;
    float: left;
 }
-.submit {
+/* .submit {
    border: none; 
     background-color: black;
     color: white;
@@ -66,9 +66,9 @@ article {
     font-size: 25px;
     font-family: fantasy;
     cursor: pointer;
-}
+} */
 
-d
+
 /* index 화면 관리 */
 /* 글 관리 */
 
@@ -478,7 +478,7 @@ paddig: 0 6px;
    width: 0px;
 }
 
-/* project button */
+/* project-add-btn */
 .project-btn{
    color: black;
     float: right;
@@ -494,30 +494,82 @@ paddig: 0 6px;
    background-color: transparent;
    cursor: pointer;
 }
-
+/* project-add-btn 아이콘 */
 .fa-folder-plus{
 	font-size: 30px;
 }
-
+/* project-card 위치 */
 .project-center{
 	margin: auto;
     width: 250px;
     padding-bottom: 50;
 }
-
+/* project-card (ul) */
 .projectList{
 	padding: 0;
 	display: flex;
     flex-wrap: wrap;
 }
-
-.project-card{
-	padding-left: 20px;
+/* project-card (li) */
+.project-wrap{
+	padding: 20 0 0 20;
 }
-.cancel{
+/* .cancel{
 	width: 140;
 	height: 120;
 	border: none;
 	background: #9e9e9e;
 	color: #fff;
+} */
+
+/* project-card 디자인 */
+.project-card{
+  position:relative;
+  height:140px;
+  width: 210px;
+  padding:0 2em;
+  background:#242424;
+  border:none;
+  font-size:1.6em;
+  color:#fff;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  font-family: cursive, "돋움", dotum;
+  font-size: large;
+  border-radius:7px;
+}
+/* hover시 색상 */
+.project-card:hover{
+  background:#fff;
+  color:#000000;
+}
+/* hover시 선 위치 (top)*/
+.project-card:before,.cancel:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #000000;
+  transition:400ms ease all;
+}
+/* hover시 선 위치 (bottom)*/
+.project-card:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+/* hover시 선 길이/속도 */
+.project-card:hover:before,.cancel:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+.profont-wrap{
+	width: 250px;
+}
+.project-font{
+	font-size: 40px;
 }
