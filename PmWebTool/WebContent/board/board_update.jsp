@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
-function go_update() {// 저장
+function board_update() {// 저장
 	document.formm.action = "PmServlet?command=board_update";
 	document.formm.submit();
 }
@@ -27,7 +27,7 @@ function go_update() {// 저장
 		</td>
 		</tr>
 		</table>
-	        <input class="btn" type="button" value="저장" onClick="go_update()">
-			<input class="cancel" type="button" value="취소" onclick='location.href="PmServlet?command=board_form"'>
+	        <input class="btn" type="button" value="저장" onClick="board_update()">
+			<input class="btn" type="button" value="취소" onclick='location.href="PmServlet?command=board_form"'>
 	</form>
 </article>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBAction;
+import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
 public class MemberDAO {
@@ -100,6 +101,42 @@ public class MemberDAO {
 		return memberVO;
 	}
 	
+	public MemberVO getProfile(int mseq) {
+		MemberVO memberVO = null;
+		String sql = "select * from member where mseq=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mseq);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				memberVO = new MemberVO();
+				memberVO.setMseq(mseq);
+				memberVO.setMid(rs.getString("mid"));
+				memberVO.setEmail(rs.getString("email"));
+				memberVO.setPassword(rs.getString("password"));
+				memberVO.setMname(rs.getString("mname"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return memberVO;
+	}
+	
 	public void changePw(MemberVO member) {
 		String sql = "update member set password = ? where mseq = ?";
 		Connection conn = null;
@@ -152,8 +189,32 @@ public class MemberDAO {
 			if(pstmt != null) pstmt.close();
 			if(conn != null) conn.close();
 		}
-		
-		return null;
-		
+		return null;	
+	}
+	
+	public void updateMember(MemberVO member) {
+		String sql = "update member set mid = ?, email = ?, mname = ? where mseq = ?";
+		Connection conn = null; 
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getMid());
+			pstmt.setString(2, member.getEmail());
+			pstmt.setString(3, member.getMname());
+			pstmt.setInt(4, member.getMseq());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
