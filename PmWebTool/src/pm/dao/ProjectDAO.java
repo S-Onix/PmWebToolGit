@@ -124,7 +124,6 @@ public class ProjectDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-
 		try {
 			String sql = "delete from project where pseq = ?";
 			conn = DBAction.getInstance().getConnection();

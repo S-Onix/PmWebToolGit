@@ -54,6 +54,93 @@ private static CardDAO instance = new CardDAO();
 		return null;
 	}
 	
+	public void insertCard(CardVO card) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "insert into card(ctitle, pseq, mseq) values(?, ?, ?)";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, card.getCtitle());
+			pstmt.setInt(2, card.getPseq());
+			pstmt.setInt(3, card.getMseq());
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+	}
+	
+	public CardVO selectCard(int cseq) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from card where cseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cseq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				CardVO card = new CardVO();
+				card.setCseq(rs.getInt(1));
+				card.setPseq(rs.getInt(2));
+				card.setMseq(rs.getInt(3));
+				card.setDueDate(rs.getTimestamp(4));
+				card.setCtitle(rs.getString(5));
+				card.setCtype(rs.getInt(6));
+				return card;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		return null;
+	}
+	
+	//디테일 추가해야함
+	public void updateCard(CardVO card, int flag) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			if(flag == 1) {//타이틀만 변경
+				sql = "update card set ctitle=? where cseq = ?";
+			}else if (flag == 2) {//디테일 변경
+				sql = "update card set ctitle=? where cseq = ?";
+			}else {//타입 변경
+				sql = "update card set ctype=? where cseq = ?";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			if(flag == 1) {
+				pstmt.setString(1, card.getCtitle());
+				pstmt.setInt(2, card.getCseq());
+			}else if (flag == 2) {
+				
+			}else {
+				pstmt.setInt(1, card.getCtype());
+				pstmt.setInt(2, card.getCseq());
+			}
+			
+			pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+	}
+	
 	public void deleteAllCard(int projectNum) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
