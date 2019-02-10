@@ -573,3 +573,52 @@ paddig: 0 6px;
 .project-font{
 	font-size: 40px;
 }
+
+.container {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.list {
+	list-style: none;
+	padding-inline-start: 0px;
+}
+
+.list-input {
+	width: 400px;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.list_item {
+	margin: 0px;
+}
+
+.list_item .projectName {
+	margin-bottom: 15px;
+	-webkit-animation-name: list; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+	animation-name: list;
+	animation-duration: 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes list {
+  25%  {margin-top:30px;}
+  50%  {background-color:#e2e2e2;}
+  75%  {background-color:white;}
+  100% {background-color:white;}
+}
+
+/* Standard syntax */
+@keyframes list {
+  25%  {margin-top:30px;}
+  50%  {background-color:#e2e2e2;}
+  75%  {background-color:white;}
+  100% {background-color:white;}
+}
+
+.projectName {
+	padding: 10px;
+	width: 400px;
+}

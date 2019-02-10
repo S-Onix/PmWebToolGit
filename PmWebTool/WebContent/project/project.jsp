@@ -8,8 +8,12 @@
 			<div class="profont-wrap">
 				<h1 class="project-font">Project</h1>
 			</div>
-			
-			<div class="project-center">
+			<div class="container">
+				<input class="list-input" type="text" placeholder="Add Project" onkeypress="if(event.keyCode==13){addProject();}">
+				<ul class="list">
+				</ul> 
+			</div>   
+			<!-- <div class="project-center">
 			<div class="project-box">
 						<input class="project-text" type="text" name='newName' placeholder="addProject">
 						
@@ -26,12 +30,13 @@
 						onclick="goProjectDetail(${projectVO.pseq})">${projectVO.pname }</button>
 				</li>
 			</c:forEach>
-			</ul>			
+			</ul>	-->		
 			
 		</form>
 	</section>
-	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script>
+	/*
 		function goProjectDetail(project){
 			document.pForm.action ="PmServlet?command=project_detail_form&pseq=" + project;
 			document.pForm.submit();
@@ -45,9 +50,10 @@
 		
 		function addProject(){
 			var content = "";
-			
+		*/
 			/* content += "<input type='text' name='newName'/>";
 			content += "<input type='button' onclick='newProject()' value='생성'>"; */
+			/*
 			content += "<input type='button' onclick='initButton()' value='취소'>";
 			document.getElementById('newProject').innerHTML = content;
 		}
@@ -55,8 +61,20 @@
 		function newProject(){
 			document.pForm.action="PmServlet?command=project_add";
 			document.pForm.submit();
-		}
+		} */
 		
+		function addProject()
+		{
+			var listValue = $(".list-input").val();
+			var listItem = '<li class="list_item">' +
+			'<input class="projectName" type="text" value="'+listValue+'">' +
+			'<a>' +
+			'<i class="icon-close"></i>' +
+		    '</a></li>';
+			    
+			$('.list').append(listItem);
+			$('.list-input').val("");
+		}
 	</script>
 </body>
 </html>
