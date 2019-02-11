@@ -10,9 +10,11 @@
 			</div>
 			<div class="container">
 				<input class="list-input" type="text" placeholder="Add Project" onkeypress="if(event.keyCode==13){addProject();}">
+				
 				<ul class="list">
 				</ul> 
-			</div>   
+			</div> 
+			
 			<!-- <div class="project-center">
 			<div class="project-box">
 						<input class="project-text" type="text" name='newName' placeholder="addProject">
@@ -67,13 +69,17 @@
 		{
 			var listValue = $(".list-input").val();
 			var listItem = '<li class="list_item">' +
-			'<input class="projectName" type="text" value="'+listValue+'">' +
+			'<input class="projectName" type="button" onclick='newProject()' value="'+listValue+'">' +
 			'<a>' +
 			'<i class="icon-close"></i>' +
 		    '</a></li>';
 			    
 			$('.list').append(listItem);
 			$('.list-input').val("");
+		}
+		function newProject(){
+			document.pForm.action="PmServlet?command=project_add";
+			document.pForm.submit();
 		}
 	</script>
 </body>
