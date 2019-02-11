@@ -76,7 +76,7 @@
 			    
 			$('.list').append(listItem);
 			$('.list-input').val("");
-		}
+		} 
 		function newProject(){
 			document.pForm.action="PmServlet?command=project_add";
 			document.pForm.submit();
