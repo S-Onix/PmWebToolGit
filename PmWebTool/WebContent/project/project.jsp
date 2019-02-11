@@ -81,6 +81,6 @@
 			document.pForm.action="PmServlet?command=project_add";
 			document.pForm.submit();
 		}
-	</script>
+	</script> 
 </body>
 </html>
