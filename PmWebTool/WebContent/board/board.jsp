@@ -55,16 +55,14 @@ table.post-wrap td {
 	<form name="frm" method="post" action="PmServlet?command=board_form">
 		<table>
 			<tr>
-				<td width="640">작성자<input type="text" name="key"> <input
-					class="btn" type="button" name="btn_search" value="검색"
-					onClick="go_search()"> <input class="btn" type="button"
-					name="btn_total" value="전체보기" onClick="go_total()">
+				<td width="640">작성자<input type="text" name="key"> 
+				<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()"> 
+			    <input class="btn" type="button" name="btn_total" value="전체보기" onClick="go_total()">
 				</td>
 			</tr>
 		</table>
-		<table class="post-wrap">
+		<table id="boardList" class="post-wrap">
 			<thead>
-
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -72,7 +70,7 @@ table.post-wrap td {
 					<th>등록일</th>
 				</tr>
 				<c:choose>
-					<c:when test="${listBoardSize<=0}">
+					<c:when test="${boardListSize<=0}">
 						<tr>
 							<td width="100%" colspan="7" align="center" height="23">등록된
 								게시물이 없습니다</td>
@@ -81,17 +79,14 @@ table.post-wrap td {
 					<c:otherwise>
 						<c:forEach items="${listBoard}" var="boardVO">
 							<tr>
-								<td>${boardVO.bseq}
-								
-								<td><a
-									href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}">${boardVO.subject}</a></td>
+								<td>${boardVO.bseq}<td>
+								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}">${boardVO.subject}</a></td>
 								<td>${boardVO.mid}</td>
 								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td colspan="6" style="text-align: center;">${paging}1 2 3 4
-								5</td>
+							<td colspan="6" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>

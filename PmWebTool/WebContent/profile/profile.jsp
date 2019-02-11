@@ -3,6 +3,7 @@
 <%@ include file="../header_login.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<html>
 <head>
 <script id="text/javascript">
 function withdraw() { 
@@ -10,6 +11,7 @@ function withdraw() {
 	if (ret == true){
 		document.frm.action = "PmServlet?command=withdraw";
 		document.frm.submit();
+		alert("탈퇴 완료");
 	} else {
 		alert("취소되었습니다");
 	}
@@ -30,3 +32,4 @@ Name : ${loginMember.mname}
 <input type="button" value="회원탈퇴" onclick="withdraw()">
 </form>
 </article>
+</html>

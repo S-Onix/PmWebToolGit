@@ -5,9 +5,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
 	function profile_update() {// 저장
+		if (document.formm.email.value == "") {
+			alert("이메일을 입력하세요");
+			document.formm.email.focus();
+		} else if(document.formm.mname.value == "") {
+				alert("이름을 입력하세요");
+				document.formm.mname.focus();
+		} else {
 		document.formm.action = "PmServlet?command=profile_update";
 		document.formm.submit();
+		alert("프로필 수정 완료");
 	}
+}
 </script>
 <article>
 	<h2>프로필 수정</h2>
@@ -16,7 +25,7 @@
 		<table>
 			<tr>
 				<th>ID</th>
-				<td colspan="20"><input type="text" name="mid" value="${loginMember.mid}" /></td>
+				<td>${loginMember.mid}</td>
 			
 			</tr>
 			<tr>
