@@ -218,14 +218,14 @@ public class MemberDAO {
 		}
 	}
 	
-	public void deleteMember(int mseq) {
-		String sql = "update member set useyn=n where mseq=?";
+	public void deleteMember(MemberVO member) {
+		String sql = "update member set useyn = 'n' where mseq = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mseq);
+			pstmt.setInt(1, member.getMseq());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
