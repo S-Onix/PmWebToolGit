@@ -6,17 +6,18 @@
 <head>
 <script id="text/javascript">
 function withdraw() { 
-	var ret = prompt("탈퇴하시려면 '탈퇴'를 입력해주세요");
-	if (ret == null){//취소 or 닫기
-		self.close();
-	}else (ret == "탈퇴");{//확인
-		document.formm.action = "PmServlet?command=withdraw";
+	var ret = confirm("정말 탈퇴하시겠습니까?");
+	if (ret == true){
+		document.frm.action = "PmServlet?command=withdraw";
+		document.frm.submit();
+	} else {
+		alert("취소되었습니다");
 	}
-	}
+}
 </script>
 </head>
 <article>
-<form name="frm" method="post" action="PmServlet?command=profile_form">
+<form name="frm" method="post">
 	<input type="hidden" name="mseq" value="${loginMember.mseq}"/>
 <div>
 <h1>Profile</h1>
