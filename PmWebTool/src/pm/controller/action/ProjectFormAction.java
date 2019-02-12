@@ -19,19 +19,17 @@ public class ProjectFormAction implements Action {
 		String url = "/project/project.jsp";
 
 		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
-		System.out.println(loginMember.getMseq());
-		if(loginMember == null) {
-			System.out.println("로그인되어있지 않습니다.");
-		}else {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			url = "PmServlet?command=login_form";
+		}
 			try {
 				ProjectDAO projectDAO = ProjectDAO.getInstance();
-				ArrayList<ProjectVO> projectList = projectDAO.selectLsit(loginMember.getMseq());
+				ArrayList<ProjectVO> projectList = projectDAO.selectLsit(loginUser.getMseq());
 				request.setAttribute("projectList", projectList);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
