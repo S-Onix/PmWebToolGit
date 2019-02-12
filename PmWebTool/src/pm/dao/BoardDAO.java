@@ -205,6 +205,7 @@ public class BoardDAO {
 
 	static int view_rows = 5; // 페이지 개수
 	static int counts = 5; // 한 페이지에 나타낼 상품의 개수
+	
 	public String pageNumber(int tpage, String key) {
 		String str = "";
 		int total_pages = totalRecord(key);
@@ -271,7 +272,7 @@ public class BoardDAO {
 
 	public ArrayList<BoardVO> listBoard(int tpage, String key) {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
-		String str = "select * from board where bseq like '%" + key + "%' order by bseq desc";
+		String str = "select * from board where mid like '%" + key + "%' order by bseq desc";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

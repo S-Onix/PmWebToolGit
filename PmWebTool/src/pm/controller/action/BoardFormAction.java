@@ -35,15 +35,16 @@ public class BoardFormAction implements Action {
 			url = "PmServlet?command=login_form";
 		} else {
 			try {
-				if (!key.equals("")) {
+				System.out.println(key);
+				/*if (!key.equals("")) {
 					listBoard = BoardDAO.getInstance().listMidBoard(key);
 				} else {
 					listBoard = BoardDAO.getInstance().listAllBoard();
-				}
+				}*/
 				BoardDAO boardDAO = BoardDAO.getInstance();
-				ArrayList<BoardVO> boardList = boardDAO.listBoard(Integer.parseInt(tpage), key); //
+				ArrayList<BoardVO> boardList = boardDAO.listBoard(Integer.parseInt(tpage), key); 
 				String paging = boardDAO.pageNumber(Integer.parseInt(tpage), key);
-				request.setAttribute("listBoard", listBoard);
+				request.setAttribute("listBoard", boardList);
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
