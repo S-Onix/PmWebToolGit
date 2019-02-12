@@ -5,8 +5,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
 function board_update() {// 저장
+	if (document.formm.subject.value == "") {
+		alert("제목을 입력해주세요");
+		document.formm.subject.focus();
+	} else if (document.formm.content.value == ""){
+		alert("내용을 입력해주세요");
+		document.formm.content.focus();
+	} else {
 	document.formm.action = "PmServlet?command=board_update";
 	document.formm.submit();
+	alert("수정 완료");
+	}
+}
+
+function back() {
+	history.go(-1);
 }
 </script>
 <article>
@@ -27,7 +40,9 @@ function board_update() {// 저장
 		</td>
 		</tr>
 		</table>
-	        <input class="btn" type="button" value="저장" onClick="board_update()">
-			<input class="btn" type="button" value="취소" onclick='location.href="PmServlet?command=board_form"'>
-	</form>
+	        <input class="btn" type="button" value="수정" onClick="board_update()">
+			<%-- <input class="cancel" type="button" value="취소" onclick='location.href="PmServlet?command=board_view_form&bseq=" + "${boardVO.bseq}"'>
+	 --%>
+	 <input class="cancel" type="button" value="취소" onclick="back()">
+	 </form>
 </article>

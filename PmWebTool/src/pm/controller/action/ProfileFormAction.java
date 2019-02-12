@@ -19,7 +19,7 @@ public class ProfileFormAction implements Action {
 		if (loginMember == null) {
 		} else {
 			try {
-				request.setAttribute("loginMember", loginMember);
+				request.setAttribute("loginUser", loginMember);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -6,7 +6,7 @@
 <script id="text/javascript">
 	function go_search(key) {
 		if (document.frm.key.value == "") {
-			alert("작성자를 입력해 주세요.");
+			alert("작성자를 입력해주세요");
 			document.frm.key.focus();
 		} else {
 			document.frm.action = "PmServlet?command=board_form";

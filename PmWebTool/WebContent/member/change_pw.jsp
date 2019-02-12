@@ -24,7 +24,7 @@
 		<c:choose>
 		 	<c:when test="${exitId == 1}">
 		 	<div id="checkPassword">
-			<span><input type="password" id="newPw" name="password" placeholder="새 비밀번호 입력" /></span> <br />
+			<span><input type="password" id="newPw" name="password" placeholder="새 비밀번호 입력" /></span> <br>
 			<span><input type="password" id="checkPw" placeholder="비밀번호 확인" onkeyup="checkPw2()"/></span>
 			<div id="field"></div>
 			</div>
@@ -33,11 +33,13 @@
 		 		
 		 	</c:otherwise>
 		 </c:choose>
+		 <br>
+		 <input type="button" name="cancel" value="취소" onClick="back()">
 	</form>
 	
 	<div id="correct" style="color:red; display:none;">
 				일치합니다. <br>
-				<input type="button" value="변경하기" onclick="changePw()"/>
+	<input type="button" value="변경하기" onclick="changePw()"/>
 	</div>
 	<script>
 
@@ -60,6 +62,12 @@
 		
 		function changePw(){
 			document.idForm.action="PmServlet?command=change_pw";
+			document.idForm.submit();
+			alert("비밀번호가 변경되었습니다");
+		}
+		
+		function back() {
+			document.idForm.action="PmServlet?command=login_form";
 			document.idForm.submit();
 		}
 	</script>

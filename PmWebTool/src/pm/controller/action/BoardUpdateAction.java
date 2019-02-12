@@ -2,6 +2,7 @@ package pm.controller.action;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,8 @@ public class BoardUpdateAction implements Action {
 			System.out.println(request.getParameter("bseq") + " " + request.getParameter("subject") + " " + request.getParameter("content"));
 			boardDAO.updateBoard(boardVO);
 		}
-		request.getRequestDispatcher(url).forward(request, response);
+		/*request.getRequestDispatcher(url).forward(request, response);*/
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		dispatcher.forward(request, response);
 	}
 }

@@ -20,12 +20,12 @@ function withdraw() {
 </head>
 <article>
 <form name="frm" method="post">
-	<input type="hidden" name="mseq" value="${loginMember.mseq}"/>
+	<input type="hidden" name="mseq" value="${loginUser.mseq}"/>
 <div>
 <h1>Profile</h1>
-ID : ${loginMember.mid}<br>
-E-Mail : ${loginMember.email}<br>
-Name : ${loginMember.mname}
+ID : ${loginUser.mid}<br>
+E-Mail : ${loginUser.email}<br>
+Name : ${loginUser.mname}
 </div>
 <br>
 <input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">

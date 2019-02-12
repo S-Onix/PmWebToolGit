@@ -24,8 +24,11 @@ public class ProfileUpdateAction implements Action {
 			MemberVO loginMember = new MemberVO();
 			loginMember.setMseq(Integer.parseInt(request.getParameter("mseq")));
 			loginMember.setMid(request.getParameter("mid"));
+		    System.out.println(request.getParameter("mid"));
 			loginMember.setEmail(request.getParameter("email"));
+			System.out.println(request.getParameter("email"));
 			loginMember.setMname(request.getParameter("mname"));
+			System.out.println(request.getParameter("mname"));
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			memberDAO.updateMember(loginMember);
 			session.setAttribute("loginUser", loginMember);

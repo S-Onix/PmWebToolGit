@@ -31,9 +31,7 @@ public class LoginAction implements Action {
 				session.removeAttribute("mid");
 				session.setAttribute("loginUser", memberVO);
 				url = "PmServlet?command=project_form";
-			}/* else if (memberVO.getUseyn().equals("n")) {
-				url = "/member/login_fail.jsp";
-			}*/
+			}
 		}
 
 		request.getRequestDispatcher(url).forward(request, response);

@@ -5,23 +5,24 @@
 <script id="text/javascript">
 function go_save() {
 	if (document.formm.mid.value == "") {
-		alert("아이디를 입력하세요");
+		alert("아이디를 입력해주세요");
 		document.formm.mid.focus();
 	} else if (document.formm.mid.value != document.formm.reid.value) {
-		alert("중복확인을 확인하세요");
+		alert("중복확인을 확인해주세요");
 		document.formm.mid.focus();
 	} else if (document.formm.password.value == "") {
-		alert("비밀번호를 입력하세요");
+		alert("비밀번호를 입력해주세요");
 		document.formm.password.focus();
 	} else if (document.formm.mname.value == "") {
-		alert("이름을 입력하세요");
+		alert("이름을 입력해주세요");
 		document.formm.mname.focus();
 	} else if (document.formm.email.value == "") {
-		alert("이메일을 입력하세요");
+		alert("이메일을 입력해주세요");
 		document.formm.email.focus();
 	} else {
 		document.formm.action = "PmServlet?command=join";
 		document.formm.submit();
+		alert("회원가입 완료");
 	}
 }
 
@@ -39,9 +40,6 @@ function idcheck() {
 }
 </script>
 <html>
-<head>
-<meta charset="UTF-8">
-</head>
   <form id="join" action="PmServlet?command=join" method="post" name="formm">
   	<div class="joinWrap">
 	  <article>
@@ -63,7 +61,7 @@ function idcheck() {
 		        <input type="text" name="mname" class="joinInputBox" placeholder="이름 입력">
 		      </div>
 		      <div class="joinInputBoxWrap">
-		        <input type="text" name="email" size="32" class="joinInputBox" placeholder="이메일 입력">     
+		        <input type="email" name="email" size="32" class="joinInputBox" placeholder="이메일 입력">     
 		      </div>
 	      </fieldset>
 	      

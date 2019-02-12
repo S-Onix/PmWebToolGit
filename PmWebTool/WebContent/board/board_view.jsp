@@ -10,6 +10,17 @@
 				+ bseq;
 		theForm.submit();
 	}
+	
+	function go_delete() { 
+		var ret = confirm("삭제하시겠습니까?");
+		if (ret == true){
+			document.frm.action = "PmServlet?command=board_delete&bseq=${boardVO.bseq}";
+			document.frm.submit();
+			alert("삭제 완료");
+		} else {
+			alert("취소되었습니다");
+		}
+	}
 </script>
 <article>
 	<form name="frm" method="post"
@@ -34,7 +45,7 @@
 				<input class="btn" type="button" value="수정"
 					onClick="go_update_form('${boardVO.bseq}')">
 				<input type="button" value="삭제"
-					onclick="location.href='PmServlet?command=board_delete&bseq=${boardVO.bseq}'">
+				    onClick="go_delete()">
 				<input type="button" value="목록"
 					onclick="location.href='PmServlet?command=board_form'">
 			</c:when>
@@ -43,7 +54,5 @@
 					onclick="location.href='PmServlet?command=board_form'">
 			</c:otherwise>
 		</c:choose>
-
-
 	</form>
 </article>
