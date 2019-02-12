@@ -23,6 +23,7 @@ public class ProjectAddAction implements Action {
 			url = "PmServlet?command=index";
 		}else {
 			String pname = request.getParameter("newName");
+			System.out.println(pname);
 			ProjectVO newProject = new ProjectVO();
 			newProject.setMseq(loginMember.getMseq());
 			newProject.setPname(pname);

@@ -18,6 +18,11 @@ public class BoardViewFormAction implements Action {
 		String url = "board/board_view.jsp";
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		String tpage =  request.getParameter("tpage");
+		String key = request.getParameter("key");
+		
+		
+	
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
@@ -26,6 +31,8 @@ public class BoardViewFormAction implements Action {
 			BoardVO boardVO = boardDAO.getBoard(bseq);
 			request.setAttribute("boardVO", boardVO);
 			request.setAttribute("checkId", loginUser.getMid());
+			request.setAttribute("tpage", tpage);
+			request.setAttribute("key", key);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

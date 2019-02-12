@@ -80,7 +80,7 @@ table.post-wrap td {
 						<c:forEach items="${listBoard}" var="boardVO">
 							<tr>
 								<td>${boardVO.bseq}<td>
-								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}">${boardVO.subject}</a></td>
+								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage }&key=${key }">${boardVO.subject}</a></td>
 								<td>${boardVO.mid}</td>
 								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
 							</tr>

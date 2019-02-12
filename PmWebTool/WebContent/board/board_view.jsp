@@ -21,10 +21,14 @@
 			alert("취소되었습니다");
 		}
 	}
+	
+	function go_list(tpage, key){
+		document.frm.action = "PmServlet?command=board_form&tpage=" + tpage + "&key=" + key;
+		document.frm.submit();
+	}
 </script>
 <article>
-	<form name="frm" method="post"
-		action="PmServlet?command=board_view_form">
+	<form name="frm" method="post">
 		<table>
 			<tr>
 				<td>제목</td>
@@ -47,11 +51,11 @@
 				<input type="button" value="삭제"
 				    onClick="go_delete()">
 				<input type="button" value="목록"
-					onclick="location.href='PmServlet?command=board_form'">
+					onclick="go_list('${tpage}', '${key }')">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value="목록"
-					onclick="location.href='PmServlet?command=board_form'">
+					onclick="go_list('${tpage}', '${key }')" >
 			</c:otherwise>
 		</c:choose>
 	</form>

@@ -18,6 +18,7 @@ public class BoardFormAction implements Action {
 		String url = "/board/board.jsp";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
+		
 		if (key == null) {
 			key = "";
 		}
@@ -28,19 +29,12 @@ public class BoardFormAction implements Action {
 		}
 		request.setAttribute("key", key);
 		request.setAttribute("tpage", tpage);
-		ArrayList<BoardVO> listBoard = null;
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
 			try {
-				System.out.println(key);
-				/*if (!key.equals("")) {
-					listBoard = BoardDAO.getInstance().listMidBoard(key);
-				} else {
-					listBoard = BoardDAO.getInstance().listAllBoard();
-				}*/
 				BoardDAO boardDAO = BoardDAO.getInstance();
 				ArrayList<BoardVO> boardList = boardDAO.listBoard(Integer.parseInt(tpage), key); 
 				String paging = boardDAO.pageNumber(Integer.parseInt(tpage), key);
