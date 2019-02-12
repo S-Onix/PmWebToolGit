@@ -39,6 +39,9 @@ function idcheck() {
 					+ " height=300, top=300, left=300, ");
 }
 </script>
+<style>
+
+</style>
 <html>
   <form id="join" action="PmServlet?command=join" method="post" name="formm">
   	<div class="joinWrap">
@@ -50,7 +53,8 @@ function idcheck() {
 			      <input type="text" name="mid" size="20" class="joinInputBox" placeholder="아이디 입력">
 			      <input type="hidden"    name="reid">
 			      <div class="duplicateCheck">
-			      	<i class="fas fa-user-check fa-2x" onclick="idcheck()"></i>
+			      	<!-- <i class="fas fa-user-check fa-2x" onclick="idcheck()"></i> -->
+			      	<input type="button" class="check-btn" onclick="idcheck()" value="CHECK">
 			      </div>
 			    </div>
 		      </div>
