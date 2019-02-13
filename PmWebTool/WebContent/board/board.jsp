@@ -49,6 +49,20 @@ table.post-wrap td {
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 }
+ /* a tag 효과 */
+ 
+.post-a:link {
+	color: blue;
+	text-decoration: none;
+}
+
+.post-a:visited {
+	text-decoration: none;
+}
+
+.post-a:hover {
+	text-decoration: underline;
+}  
 </style>
 <article>
 	<h1>게시판</h1>
@@ -82,7 +96,7 @@ table.post-wrap td {
 						<c:forEach items="${listBoard}" var="boardVO">
 							<tr>
 								<td>${boardVO.bseq}<td>
-								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage}&key=${key}">${boardVO.subject}</a></td>
+								<a class="post-a" href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage}&key=${key}">${boardVO.subject}</a></td>
 								<td>${boardVO.mid}</td>
 								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
 							</tr>
