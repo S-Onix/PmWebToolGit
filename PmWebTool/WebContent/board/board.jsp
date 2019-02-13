@@ -52,7 +52,9 @@ table.post-wrap td {
 </style>
 <article>
 	<h1>게시판</h1>
-	<form name="frm" method="post" action="PmServlet?command=board_form">
+	<form name="frm" method="post">
+	<input type="hidden" name="tpage" value="${tpage}"/>
+	<input type="hidden" name="key" value="${key}"/>
 		<table>
 			<tr>
 				<td width="640">작성자<input type="text" name="key"> 
@@ -80,7 +82,7 @@ table.post-wrap td {
 						<c:forEach items="${listBoard}" var="boardVO">
 							<tr>
 								<td>${boardVO.bseq}<td>
-								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage }&key=${key }">${boardVO.subject}</a></td>
+								<a href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage}&key=${key}">${boardVO.subject}</a></td>
 								<td>${boardVO.mid}</td>
 								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
 							</tr>

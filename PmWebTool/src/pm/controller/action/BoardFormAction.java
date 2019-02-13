@@ -16,9 +16,8 @@ public class BoardFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/board/board.jsp";
-		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
-		
+		String key = request.getParameter("key");
 		if (key == null) {
 			key = "";
 		}
@@ -27,10 +26,11 @@ public class BoardFormAction implements Action {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		request.setAttribute("key", key);
 		request.setAttribute("tpage", tpage);
+		request.setAttribute("key", key);
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
@@ -42,6 +42,7 @@ public class BoardFormAction implements Action {
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
+				System.out.println("페이지:" + tpage + " 키:Y" + key);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

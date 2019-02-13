@@ -4,17 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
-	function go_update_form(bseq) {// 수정화면으로
+	function go_update_form(bseq, tpage, key) {// 수정화면으로
 		var theForm = document.frm;
-		theForm.action = "PmServlet?command=board_update_form" + "&bseq="
-				+ bseq;
+		theForm.action = "PmServlet?command=board_update_form&bseq="
+				+ bseq + "&tpage=" + tpage + "&key=" + key;
 		theForm.submit();
 	}
 	
-	function go_delete() { 
+	function go_delete(bseq) { 
 		var ret = confirm("삭제하시겠습니까?");
 		if (ret == true){
-			document.frm.action = "PmServlet?command=board_delete&bseq=${boardVO.bseq}";
+			document.frm.action = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
 			document.frm.submit();
 			alert("삭제 완료");
 		} else {
@@ -29,6 +29,8 @@
 </script>
 <article>
 	<form name="frm" method="post">
+	<input type="hidden" name="tpage" value="${tpage}"/>
+	<input type="hidden" name="key" value="${key}"/>
 		<table>
 			<tr>
 				<td>제목</td>
@@ -47,15 +49,15 @@
 		<c:choose>
 			<c:when test="${checkId == boardVO.mid}">
 				<input class="btn" type="button" value="수정"
-					onClick="go_update_form('${boardVO.bseq}')">
+					onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
 				<input type="button" value="삭제"
 				    onClick="go_delete()">
 				<input type="button" value="목록"
-					onclick="go_list('${tpage}', '${key }')">
+					onclick="go_list('${tpage}', '${key}')">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value="목록"
-					onclick="go_list('${tpage}', '${key }')" >
+					onclick="go_list('${tpage}', '${key}')" >
 			</c:otherwise>
 		</c:choose>
 	</form>
