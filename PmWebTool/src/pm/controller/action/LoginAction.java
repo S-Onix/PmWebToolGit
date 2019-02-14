@@ -31,6 +31,7 @@ public class LoginAction implements Action {
 				session.removeAttribute("mid");
 				session.setAttribute("loginUser", memberVO);
 				url = "PmServlet?command=project_form";
+				System.out.println(id + "님 환영합니다");
 			}
 		}
 

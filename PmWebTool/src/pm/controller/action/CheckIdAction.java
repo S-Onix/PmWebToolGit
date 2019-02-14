@@ -12,31 +12,23 @@ public class CheckIdAction implements Action{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String url = "PmServlet?command=change_pw_form";
 		int exitId = 0;
-		System.out.println("들어옴");
 		MemberDAO memberDao = MemberDAO.getInstance();
+		String id = request.getParameter("id");
 		try {
 			if(memberDao.getMember(request.getParameter("id")) != null) {
-				System.out.println("아이디 있다");
+				System.out.println(id + "님 변경할 비밀번호를 입력해주세요");
 				exitId = 1;
 				request.setAttribute("id", request.getParameter("id"));
 				request.setAttribute("exitId", exitId);
 			}else {
-				System.out.println("아이디 없다");
+				System.out.println("존재하지 않는 아이디입니다");
 				request.setAttribute("exitId", exitId);
 			}
-			
-			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		request.getRequestDispatcher(url).forward(request,response);
-		
-		
+		request.getRequestDispatcher(url).forward(request,response);	
 	}
-
 }

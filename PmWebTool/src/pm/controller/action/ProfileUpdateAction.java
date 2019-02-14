@@ -16,6 +16,8 @@ public class ProfileUpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "PmServlet?command=profile_form";
+		String name = request.getParameter("mname");
+		String email = request.getParameter("email");
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		if (loginUser == null) {
@@ -24,11 +26,9 @@ public class ProfileUpdateAction implements Action {
 			MemberVO loginMember = new MemberVO();
 			loginMember.setMseq(Integer.parseInt(request.getParameter("mseq")));
 			loginMember.setMid(request.getParameter("mid"));
-		    System.out.println(request.getParameter("mid"));
-			loginMember.setEmail(request.getParameter("email"));
-			System.out.println(request.getParameter("email"));
 			loginMember.setMname(request.getParameter("mname"));
-			System.out.println(request.getParameter("mname"));
+			loginMember.setEmail(request.getParameter("email"));
+			System.out.println("이름 : " + name + " 이메일 : " + email);
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			memberDAO.updateMember(loginMember);
 			session.setAttribute("loginUser", loginMember);

@@ -3,26 +3,24 @@
 <%@ include file="../header_login.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 	<h1>비밀번호 변경</h1>
-	
 	<form method="post" name="idForm">
 		<c:choose>
 			<c:when test="${id == null }">
-				<span>아이디 입력 : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()"/></span>
+				<span>ID : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()"/></span>
 			</c:when>
 			<c:otherwise>
-				<span>아이디 입력 : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()" value="${id}"/></span>
+				<span>ID : <input type="text" placeholder="id 입력" name="id" onkeydown="idCheck()" value="${id}"/></span>
 			</c:otherwise>
 		</c:choose>
-
-		 <br />
 		 <c:if test="${exitId == 0 }">
-		 	존재하지 않는 아이디 입니다.
+		 <br>
+		 	존재하지 않는 아이디 입니다
 		 </c:if>
-		
 		<c:choose>
 		 	<c:when test="${exitId == 1}">
+		 	<br>
+		 	${id}님 변경할 비밀번호를 입력해주세요
 		 	<div id="checkPassword">
 			<span><input type="password" id="newPw" name="password" placeholder="새 비밀번호 입력" /></span> <br>
 			<span><input type="password" id="checkPw" placeholder="비밀번호 확인" onkeyup="checkPw2()"/></span>
@@ -38,11 +36,10 @@
 	</form>
 	
 	<div id="correct" style="color:red; display:none;">
-				일치합니다. <br>
+				일치합니다 <br>
 	<input type="button" value="변경하기" onclick="changePw()"/>
 	</div>
 	<script>
-
 		function idCheck(){
 			if(window.event.keyCode == 13){
 				document.idForm.action = "PmServlet?command=check_id";
@@ -68,7 +65,6 @@
 		
 		function back() {
 			document.idForm.action="PmServlet?command=login_form";
-			document.idForm.submit();
 		}
 	</script>
 	</body>

@@ -15,6 +15,10 @@ public class JoinAction implements Action {
 @Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/member/login.jsp";
+		String id = request.getParameter("mid");
+	    String pw = request.getParameter("password");
+		String name = request.getParameter("mname");
+		String email = request.getParameter("email");
 		HttpSession session = request.getSession();
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMid(request.getParameter("mid"));
@@ -25,6 +29,7 @@ public class JoinAction implements Action {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		try {
 			memberDAO.insertMember(memberVO);
+		    System.out.println(id + "\n" + pw + "\n" + name + "\n" + email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

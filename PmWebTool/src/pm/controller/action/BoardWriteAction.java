@@ -26,6 +26,7 @@ public class BoardWriteAction implements Action {
 			boardVO.setContent(request.getParameter("content"));
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.insertBoard(boardVO, loginUser.getMid());
+			System.out.println("작성 완료");
 		}
 		response.sendRedirect(url);
 	}

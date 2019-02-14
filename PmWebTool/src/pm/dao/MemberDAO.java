@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBAction;
-import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
 public class MemberDAO {
@@ -194,14 +193,14 @@ public class MemberDAO {
 	}
 	
 	public void updateMember(MemberVO member) {
-		String sql = "update member set email = ?, mname = ? where mseq = ?";
+		String sql = "update member set mname = ?, email = ? where mseq = ?";
 		Connection conn = null; 
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getEmail());
-			pstmt.setString(2, member.getMname());
+			pstmt.setString(1, member.getMname());
+			pstmt.setString(2, member.getEmail());
 			pstmt.setInt(3, member.getMseq());
 			pstmt.executeUpdate();
 		} catch (Exception e) {

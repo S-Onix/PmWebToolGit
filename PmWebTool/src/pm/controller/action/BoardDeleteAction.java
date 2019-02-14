@@ -17,6 +17,7 @@ public class BoardDeleteAction implements Action {
 		for (String bseq : bseqArr) {
 			BoardDAO boardDAO = BoardDAO.getInstance();
 			boardDAO.deleteBoard(Integer.parseInt(bseq));
+			System.out.println("삭제 완료");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

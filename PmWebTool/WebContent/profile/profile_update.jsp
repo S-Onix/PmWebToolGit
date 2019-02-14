@@ -5,12 +5,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
 	function profile_update() {// 저장
-		if (document.formm.email.value == "") {
-			alert("이메일을 입력해주세요");
-			document.formm.email.focus();
-		} else if (document.formm.mname.value == "") {
+		if (document.formm.mname.value == "") {
 			alert("이름을 입력해주세요");
 			document.formm.mname.focus();
+		} else if (document.formm.email.value == "") {
+			alert("이메일을 입력해주세요");
+			document.formm.email.focus(); 
 		} else {
 			document.formm.action = "PmServlet?command=profile_update";
 			document.formm.submit();
@@ -31,14 +31,14 @@
 					 </td>
 			</tr>
 			<tr>
-				<th>E-Mail</th>
-				<td colspan="20"><input type="email" name="email"
-					value="${loginUser.email}" /></td>
-			</tr>
-			<tr>
 				<th>Name</th>
 				<td colspan="20"><input type="text" name="mname"
 					value="${loginUser.mname}" /></td>
+			</tr>
+			<tr>
+				<th>E-Mail</th>
+				<td colspan="20"><input type="email" name="email"
+					value="${loginUser.email}" /></td>
 			</tr>
 		</table>
 		<input class="btn" type="button" value="저장" onclick="profile_update()">

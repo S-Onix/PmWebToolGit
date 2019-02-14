@@ -35,7 +35,7 @@ public class BoardUpdateAction implements Action {
 			request.setAttribute("bseq", bseq);
 			request.setAttribute("tpage", tpage);
 			request.setAttribute("key", key);
-			System.out.println("번호:" + bseq + " 페이지:" + tpage + " 키:Y" + key);
+			System.out.println("수정 완료");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
