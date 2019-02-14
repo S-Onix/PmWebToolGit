@@ -24,7 +24,7 @@ private static CardDAO instance = new CardDAO();
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from card where pseq=?";
+			String sql = "select * from card where pseq=? and deleteyn='n'";
 			conn = DBAction.getInstance().getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, projectNum);
@@ -111,27 +111,46 @@ private static CardDAO instance = new CardDAO();
 		try {
 			conn = DBAction.getInstance().getConnection();
 			if(flag == 1) {//타이틀만 변경
-				sql = "update card set ctitle=? where cseq = ?";
-			}else if (flag == 2) {//디테일 변경
-				sql = "update card set ctitle=? where cseq = ?";
-			}else {//타입 변경
-				sql = "update card set ctype=? where cseq = ?";
-			}
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			if(flag == 1) {
+				sql = "update card set ctitle= ? where cseq = ? AND deleteyn='n'";
+				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, card.getCtitle());
 				pstmt.setInt(2, card.getCseq());
-			}else if (flag == 2) {
+			}else if (flag == 2) {//디테일 변경
+				sql = "update card set ctitle= ?, mseq = ?, duedate = ?, ctype = ?  where cseq = ?";
+				
+			}else if(flag == 3) {//타입 변경
+				sql = "update card set ctype=? where cseq = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, card.getCtype() + 1);
+				pstmt.setInt(2, card.getCseq());
 				
 			}else {
-				pstmt.setInt(1, card.getCtype());
-				pstmt.setInt(2, card.getCseq());
+				sql = "update card set completeyn = ? where cseq = ?";
+				
 			}
 			
 			pstmt.executeUpdate();
 			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+	}
+	
+	public void deleteCard(int cseq) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "delete from card where cseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cseq);
+			pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
