@@ -51,8 +51,6 @@ public class ActionFactory {
 			action = new JoinFormAction();
 		} else if (command.equals("join")) {
 			action = new JoinAction();
-		} else if (command.equals("check_id")) {
-			action = new CheckIdAction();
 		} else if (command.equals("id_check_form")) {
 			action = new IdCheckFormAction();
 		} else if (command.equals("login_form")) {
@@ -61,6 +59,8 @@ public class ActionFactory {
 			action = new LoginAction();
 		} else if (command.equals("change_pw_form")) {
 			action = new ChangePwFormAction();
+		} else if (command.equals("check_id")) {
+			action = new CheckIdAction();
 		} else if (command.equals("change_pw")) {
 			action = new ChangePwAction();
 		} else if (command.equals("project_form")) {

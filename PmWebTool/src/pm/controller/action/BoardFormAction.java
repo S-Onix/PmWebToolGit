@@ -42,7 +42,7 @@ public class BoardFormAction implements Action {
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
-				System.out.println("페이지:" + tpage + " 키:Y" + key);
+				System.out.println("페이지 : " + tpage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

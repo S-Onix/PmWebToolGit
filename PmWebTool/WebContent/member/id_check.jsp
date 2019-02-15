@@ -54,7 +54,7 @@ font-weight: bold;
 <div id="wrap">
 <h1>ID 중복확인</h1>
 <form method=post name=formm style="margin-right:0" action="PmServlet?command=id_check_form">
-User ID <input type=text class="check-id" placeholder="Check ID" name="mid" value="" size="15">
+ID : <input type=text class="check-id" placeholder="Check ID" name="mid" value="" size="15">
         <input type=submit value="검색" class="check-submit"><br>
         <div style="margin: 0 auto;">
         <c:if test="${message == 1}">
@@ -62,12 +62,12 @@ User ID <input type=text class="check-id" placeholder="Check ID" name="mid" valu
         opener.document.formm.mid.value="";
         </script>
         <div class="check-text">
-        <span class="m-id">${mid}</span>는 이미 사용중입니다.
+        <span class="m-id">${mid}</span>는 이미 사용중입니다
         </div>
         </c:if>
         <c:if test="${message==-1}">
         <div class="check-text">
-        <span class="m-id">${mid}</span>는 사용 가능합니다.
+        <span class="m-id">${mid}</span>는 사용 가능합니다
         </div>
         <input type="button" value="사용" class="check-cancle" onclick="idok()">
         </c:if>

@@ -18,7 +18,6 @@ public class BoardViewFormAction implements Action {
 		String url = "board/board_view.jsp";
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-		
 		int bseq = Integer.parseInt(request.getParameter("bseq"));
 		String tpage =  request.getParameter("tpage");
 		String key = request.getParameter("key");
@@ -32,7 +31,7 @@ public class BoardViewFormAction implements Action {
 			request.setAttribute("bseq", bseq);
 			request.setAttribute("tpage", tpage);
 			request.setAttribute("key", key);
-			System.out.println("번호:" + bseq + " 페이지:" + tpage + " 키:Y" + key);
+			System.out.println("번호 : " + bseq + " 페이지 : " + tpage);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
