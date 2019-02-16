@@ -71,7 +71,6 @@ body {
 </style>
 </head>
 <body>
-
 	<h2>Modal Example</h2>
 
 	<!-- Trigger/Open The Modal -->
@@ -140,6 +139,5 @@ body {
 			}
 		}
 	</script>
-
 </body>
 </html>
