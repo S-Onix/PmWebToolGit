@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import db.DBAction;
 import pm.dto.BoardVO;
+import pm.dto.MemberVO;
 
 public class BoardDAO {
 
@@ -245,9 +246,9 @@ public class BoardDAO {
 		return boardList;
 	}
 	
-	public String profilepageNumber(int tpage, String key) {
+	public String profilepageNumber(MemberVO member, int tpage) {
 		String str = "";
-		int total_pages = profiletotalRecord(key);
+		int total_pages = profiletotalRecord(member);
 		int page_count = total_pages / counts + 1;
 		if (total_pages % counts == 0) {
 			page_count--;
@@ -261,27 +262,27 @@ public class BoardDAO {
 			end_page = page_count;
 		}
 		if (start_page > view_rows) {
-			str += "<a href='PmServlet?command=profile_form&page=1&key=" + key + "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='PmServlet?command=profile_form&page=1>&lt;&lt;</a>&nbsp;&nbsp;";
 			str += "<a href='PmServlet?command=profile_form&tpage=" + (start_page - 1);
-			str += "&key=<%=mid%>'>&lt;</a>&nbsp;&nbsp;";
+			str += "'>&lt;</a>&nbsp;&nbsp;";
 		}
 		for (int i = start_page; i <= end_page; i++) {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='PmServlet?command=profile_form&tpage=" + i + "&key=" + key + "'>[" + i + "]</a>&nbsp;&nbsp;";
+				str += "<a href='PmServlet?command=profile_form&tpage=" + i + "' >[" + i + "]</a>&nbsp;&nbsp;";
 			}
 		}
 		if (page_count > end_page) {
-			str += "<a href='PmServlet?command=profile_form&tpage=" + (end_page + 1) + "&key=" + key + "'> &gt; </a>&nbsp;&nbsp;";
-			str += "<a href='PmServlet?command=profile_form&tpage=" + page_count + "&key=" + key + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='PmServlet?command=profile_form&tpage=" + (end_page + 1) + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='PmServlet?command=profile_form&tpage=" + page_count + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
 	}
 
-	public int profiletotalRecord(String key) { // 전체 게시글
+	public int profiletotalRecord(MemberVO member) { // 전체 게시글
 		int total_pages = 0;
-		String sql = "select count(*) from board where mid like '%" + key + "%'";
+		String sql = "select count(*) from board where mid = '" + member.getMid() + "'";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet pageset = null;
@@ -309,10 +310,10 @@ public class BoardDAO {
 		return total_pages;
 	}
 
-	public ArrayList<BoardVO> profileBoard(int tpage, String key) {
+	public ArrayList<BoardVO> profileBoard(int tpage, MemberVO member) {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
 		/*String str = "select * from board where mid like '%" + mid + "%' order by bseq desc";*/
-		String str = "select * from board where mid like '%" + key + "%' order by bseq desc";
+		String str = "select * from board where mid = '"+ member.getMid() +"' order by bseq desc";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

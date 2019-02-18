@@ -17,35 +17,37 @@ public class ProfileFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/profile/profile.jsp";
 		String tpage = request.getParameter("tpage");
-		String key = request.getParameter("key");
-		if (key == null) {
-			key = "";
-		}
+		HttpSession session = request.getSession();
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
+
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		request.setAttribute("tpage", tpage);
-		request.setAttribute("key", key);
 
-		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
 		if (loginMember == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			try {			
+			try {
 				BoardDAO boardDAO = BoardDAO.getInstance();
-				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), key);
-				String paging = boardDAO.profilepageNumber(Integer.parseInt(tpage), key);
+				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), loginMember);
+				String paging = boardDAO.profilepageNumber(loginMember, Integer.parseInt(tpage));
+				System.out.println(paging);
+				System.out.println(loginMember.getMid());
 				request.setAttribute("profileBoard", boardList);
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
-				System.out.println(loginMember + key);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			System.out.println();
+			
+			request.setAttribute("mid", loginMember.getMid());
+			request.setAttribute("tpage", tpage);
+			
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}

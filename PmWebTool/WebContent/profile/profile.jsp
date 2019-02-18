@@ -75,6 +75,7 @@ Name : ${loginUser.mname}<br>
 E-Mail : ${loginUser.email}
 </div>
 <br>
+
 <table id="boardList" class="post-wrap">
 			<thead>
 				<tr>
@@ -106,9 +107,11 @@ E-Mail : ${loginUser.email}
 				</c:choose>
 			</thead>
 		</table>
-		<br>
-<input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
-<input type="button" value="회원탈퇴" onclick="withdraw()">
+		<br />
+		<input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
+	<input type="button" value="회원탈퇴" onclick="withdraw()">
+			
+
 </form>
 </article>
 </html>
