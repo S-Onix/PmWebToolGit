@@ -30,7 +30,6 @@ public class BoardFormAction implements Action {
 		request.setAttribute("key", key);
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
