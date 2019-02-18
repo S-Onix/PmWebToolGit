@@ -400,7 +400,8 @@
 			if(map.get(list[i].cseq) == "1"){
 				var cardId = '#card' + list[i].cseq;
 				deleteCardList.push(list[i].cseq);
-				$(cardId).css("display", "none");
+				$(cardId).remove();
+				map.delete(list[i].cseq);
 			}
 		}
 		
