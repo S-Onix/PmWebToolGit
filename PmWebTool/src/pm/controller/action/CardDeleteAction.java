@@ -15,8 +15,6 @@ import pm.dto.MemberVO;
 public class CardDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "PmServlet?command=project_detail_form&pseq=" + request.getParameter("pseq");
-
 		String[] cardSeq = request.getParameterValues("deleteCardList");
 		int[] intCardSeq = new int[cardSeq.length];
 
@@ -38,9 +36,6 @@ public class CardDeleteAction implements Action {
 				}
 			}
 
-		} else {
-			url = "PmServlet?command=login_form";
 		}
-		response.sendRedirect(url);
 	}
 }

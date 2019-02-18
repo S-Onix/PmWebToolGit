@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
 	function idCheck() {
-		if (window.event.keyCode == 13) {
+	    if(window.event.keyCode == 13) {
 			document.idForm.action = "PmServlet?command=check_id";
 			document.idForm.submit();
 		}
@@ -14,7 +14,11 @@
 	function changePw() {
  		var newPw = document.getElementById('newPw').value;
 		var checkPw = document.getElementById('checkPw').value;
-		if (newPw === checkPw) {
+        if (document.idForm.newPw.value == "") {
+			alert("비밀번호를 입력해주세요");
+		} else if (document.idForm.checkPw.value == "") {
+			alert("비밀번호를 입력해주세요");
+		} else if (newPw === checkPw) {
 			document.idForm.action = "PmServlet?command=change_pw";
 			document.idForm.submit();
 			alert("변경 완료");
@@ -32,15 +36,16 @@
 <form method="post" name="idForm">
 	<c:choose>
 		<c:when test="${id == null }">
-			<span>ID : <input type="text" placeholder="ID 입력" name="id" onkeydown="idCheck()" /></span>
+			<span>ID : <input type="text" placeholder="ID를 입력하고 Enter를 눌러주세요" name="id" size="30" onkeypress="idCheck()" /></span>
 		</c:when>
 		<c:otherwise>
-			<span>ID : <input type="text" placeholder="ID 입력" name="id" onkeydown="idCheck()" value="${id}" /></span>
+			<span>ID : <input type="text" placeholder="ID를 입력하고 Enter를 눌러주세요" name="id" size="30" onkeypress="idCheck()" value="${id}" /></span>
 		</c:otherwise>
 	</c:choose>
 	<br>
 	<c:if test="${exitId == 0 }">
           존재하지 않는 아이디 입니다
+          <br>
        </c:if>
 	<c:choose>
 		<c:when test="${exitId == 1}">
