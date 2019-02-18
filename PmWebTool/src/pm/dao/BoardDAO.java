@@ -311,6 +311,7 @@ public class BoardDAO {
 
 	public ArrayList<BoardVO> profileBoard(int tpage, String key) {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		/*String str = "select * from board where mid like '%" + mid + "%' order by bseq desc";*/
 		String str = "select * from board where mid like '%" + key + "%' order by bseq desc";
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pm.dao.BoardDAO;
-import pm.dao.MemberDAO;
 import pm.dto.BoardVO;
 import pm.dto.MemberVO;
 
@@ -19,14 +18,9 @@ public class ProfileFormAction implements Action {
 		String url = "/profile/profile.jsp";
 		String tpage = request.getParameter("tpage");
 		String key = request.getParameter("key");
-		String mid = request.getParameter("mid");
-		String mname = request.getParameter("mname");
-		String email = request.getParameter("email");
 		if (key == null) {
 			key = "";
 		}
-		
-		
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
@@ -34,6 +28,7 @@ public class ProfileFormAction implements Action {
 		}
 		request.setAttribute("tpage", tpage);
 		request.setAttribute("key", key);
+
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
 		if (loginMember == null) {
@@ -47,7 +42,7 @@ public class ProfileFormAction implements Action {
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
-				System.out.println(mid + mname + email + loginMember + key);
+				System.out.println(loginMember + key);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

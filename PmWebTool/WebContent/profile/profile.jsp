@@ -69,9 +69,6 @@ table.post-wrap td {
 <input type="hidden" name="key" value="${key}"/>
 <input type="hidden" name="mid" value="${boardVO.mid}"/>
 <div>
-
-
-
 <h1>프로필</h1>
 ID : ${loginUser.mid}<br>
 Name : ${loginUser.mname}<br>
