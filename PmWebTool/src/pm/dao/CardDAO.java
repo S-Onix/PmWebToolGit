@@ -121,9 +121,8 @@ private static CardDAO instance = new CardDAO();
 			}else if(flag == 3) {//타입 변경
 				sql = "update card set ctype=? where cseq = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, card.getCtype() + 1);
+				pstmt.setInt(1, card.getCtype());
 				pstmt.setInt(2, card.getCseq());
-				
 			}else {
 				sql = "update card set completeyn = ? where cseq = ?";
 				

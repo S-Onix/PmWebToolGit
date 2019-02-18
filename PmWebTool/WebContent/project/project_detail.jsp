@@ -38,7 +38,8 @@
 			onclick="location='PmServlet?command=card_update_form'"><br>
 		<input type="button" id="delete" />
 
-		<div id="todo">
+		
+		<div class="list">
 			<c:forEach items="${cardList }" var="cardVO">
 				<c:if test="${cardVO.ctype == 1 }">
 					<div id="card${cardVO.cseq }">
@@ -48,7 +49,7 @@
 				</c:if>
 			</c:forEach>
 		</div>
-		<div id="doing">
+		<div class="list">
 			<c:forEach items="${cardList }" var="cardVO">
 				<c:if test="${cardVO.ctype == 2 }">
 					<div id="card${cardVO.cseq }">
@@ -59,7 +60,7 @@
 			</c:forEach>
 		</div>
 
-		<div id="done">
+		<div class="list">
 			<c:forEach items="${cardList }" var="cardVO">
 				<c:if test="${cardVO.ctype == 3 }">
 					<div id="card${cardVO.cseq }">
@@ -71,12 +72,11 @@
 		</div>
 
 	</form>
+	
+	
 
 
 </div>
-<!-- 
-<img src="http://lorempixel.com/400/200/" id="HoldListener"> -->
-
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
@@ -86,11 +86,12 @@
 	/* 타임 테스트 */
 	var time1, time2;
 	
-	$('.card').mousedown(function(){
+	//동적 html 이벤트 바인딩
+	$(document).on("mousedown", ".card", function (){
 		time1 = new Date();
 	});
 	
-	$('.card').mouseup(function(){
+	$(document).on("mouseup", ".card", function(){
 		time2 = new Date();
 		var flag = true;
 		if(time2 - time1 < 300){
@@ -112,59 +113,85 @@
 			doModalPrint($(this).attr('value'));
 			return;
 		}
-	});
+	})
+	
 	
 	$('#pre').click(function(){
 		var preCardList = new Array();
+		var pseq = ${project.pseq};
 		for(var i = 0; i < list.length; i++){
 			if(map.get(list[i].cseq) == "1" && list[i].ctype == 2){
 				var cardId = '#card' + list[i].cseq;
-				preCardList.push(list[i].cseq);
-				if($(cardId).parent().prop('id') == 'doing'){
-					var $div = $(cardId).html();
-					$('#todo').append($div);
+				preCardList.push(list[i]);
+				if($(cardId).parent().prop('class') == 'list'){
+					var $div = $('.list').children(cardId).html();
+					var parentN = $(cardId).parent();
+					$div = $div.replace("color: red", "color: black");
 					$(cardId).remove();
+					var tag = "<div id='card" + list[i].cseq + "' >";
+					tag += $div;
+					tag += "</div>";
+					$(parentN).prev().append(tag);
 				}
+				toggleMapVal(list[i].cseq);
+				list[i].ctype = (list[i].ctype*1) - 1;
+				list[i].ctype += "";
 			}
 		}
 		
+		var data = JSON.stringify(preCardList);
+		jQuery.ajaxSettings.traditional = true;
 		
-		/* $.ajax({
+	 	 $.ajax({
 			url: "PmServlet?command=card_move",
-			type : "POST",
-			data : {
-				"preCardList" : preCardList,
-				"flag" : "0"
+			type: "post",
+			data: {
+				"data" : data
 			}
-		}) */
+		}) 
 	});
+	
+	
 	
 	$('#next').click(function(){
 		var nextCardList = new Array();
+		var pseq = ${project.pseq};
 		for(var i = 0 ; i < list.length; i++){
 			if(map.get(list[i].cseq) == "1" && list[i].ctype < 3){
 				var cardId = '#card' + list[i].cseq;
-				nextCardList.push(list[i].cseq);
-				if($(cardId).parent().prop('id') == 'todo'){
-					var $div = $('#todo').children(cardId).html();
-					$('#doing').append($div);
+				console.log(cardId);
+				nextCardList.push(list[i]);
+				console.log(nextCardList);
+				if($(cardId).parent().prop('class') == 'list'){
+					var $div = $('.list').children(cardId).html();
+					var parentN = $(cardId).parent();
+					$div = $div.replace("color: red", "color: black");
 					$(cardId).remove();
-				}else if($(cardId).parent().prop('id') == 'doing'){
-					var $div = $(cardId).html();
-					$('#done').append($div);
-					$(cardId).remove();
+					var tag = "<div id='card" + list[i].cseq + "' >";
+					tag += $div;
+					tag += "</div>";
+					$(parentN).next().append(tag);
 				}
+				toggleMapVal(list[i].cseq);
+				list[i].ctype = (list[i].ctype*1) + 1;
+				list[i].ctype += "";
 			}
 		}
-	/* 	$.ajax({
+		
+		//JSON으로 데이터 변환
+		var data = JSON.stringify(nextCardList);
+		
+		console.log(data);
+		
+		jQuery.ajaxSettings.traditional = true;
+		
+	 	 $.ajax({
 			url: "PmServlet?command=card_move",
-			type: "POST",
+			type: "post",
 			data: {
-				"nextCardList" : nextCardList,
-				"flag" : "1"		
-			},
-			async: false
-		}) */
+				"data" : data
+			}
+		}) 
 		
 	});
 	
@@ -217,13 +244,9 @@
 	var checkCardList = new Array();
 	
 	function clickCard(cardVO){
-		console.log(cardVO);
 		toggleMapVal(cardVO);
 		console.log(cardVO + ' ' + map.get(cardVO));
 	}
-	
-	
-	
 
 	function findKey(cseq){
 		for(var i = 0; i < list.length; i++){
