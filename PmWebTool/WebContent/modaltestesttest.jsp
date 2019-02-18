@@ -175,7 +175,7 @@ body {
 			
 			<!-- center -->
 			<div class="center-line"></div>
-			
+			 
 			<!-- ----------right---------- -->
 			<div class="modal-right">
 				<span class="close">&times;</span>
