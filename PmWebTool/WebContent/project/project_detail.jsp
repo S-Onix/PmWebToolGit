@@ -74,12 +74,137 @@
 	</form>
 	
 	
+	
+<!-- 	<div id="myModal" class="modal">
+		Modal content
+		<div class="modal-content">
+			<span class="modal-close">&times;</span>
+			<div class="modal-header">
+				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
+			</div>
+			<div class="modal-body">
+
+				content goes here
+				<form>
+					<div class="form-group">
+						<label for="exampleInputEmail1">TITLE</label> <input
+							type="text" class="form-control" id="exampleInputEmail1"
+							placeholder="TITLE UPDATE">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">SCHADULE</label> <input
+							type="date" class="form-control" id="exampleInputPassword1"
+							placeholder="SCHADULE">
+					</div>
+							<button>calendar</button>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				---------------------
+				<p>footer..</p>
+					<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</div> -->
+	
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<!-- ----------left--------- -->
+			<div class="modal-left">
+				<div class="modal-header">
+					<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
+				</div>
+				<div class="modal-body">
+
+					<!-- content goes here -->
+					<form>
+						<div class="form-group">
+							<input type="text" class="form-control" id="title"
+								placeholder="TITLE UPDATE">
+						</div>
+						<div class="form-group">
+							<input type="date" class="form-control" id="chadule"
+								placeholder="SCHADULE">
+						</div>
+
+					</form>
+				</div>
+				<div class="calendar">
+					<button>calendar</button>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+			
+			<!-- center -->
+			<div class="center-line"></div>
+			 
+			<!-- ----------right---------- -->
+			<div class="modal-right">
+				<span class="close">&times;</span>
+				<div class="test1">
+					<div class="test2">
+						<h3>comment title</h3>
+					</div>
+					<div class="test3">
+						<h3>comment</h3>
+
+					</div>
+				</div>
+				<div class="comment-wrap">
+					<div class="comment-text">
+						<h3>text</h3>
+						<input type="text" placeholder="COMMENT" class="cm-text">
+						<button value="comment">CM</button>
+
+						<div class="comment-btn"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+
+
+	/////////////////////////////////////////
+/* 
+	var modal = document.getElementById('myModal');
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+		 */
+	/////////////////////////////////////////
+
 	var pflag = 0;
 	var cflag = 0;
 	
@@ -111,12 +236,84 @@
 		}else{
 			console.log('card detail');
 			doModalPrint($(this).attr('value'));
+			var card = testMap.get($(this).attr('value'));
+			
+			$('#myModal').css("display", "block");
+	
+			
+			if(card.dueDate != "" || card.dueDate !== null){
+				console.log('들어왔나?');
+				var compareDate = calDate(card.dueDate);
+				
+				if(compareDate == 1){
+					$(this).css("background-color", "yello");	
+				}else if (compareDate == 2){
+					$(this).css("background-color", "blue")
+				}else{
+					$(this).css("background-color", "green");
+				}
+			}
+			
+			
 			return;
 		}
 	})
+	window.onclick = function(event){
+		if(event.target == document.getElementById('myModal')){
+			$('#myModal').css("display", "none");
+		}
+	}
+	$('.close').click(function(){
+		$('#myModal').css("display", "none");
+	});
 	
 	
-	$('#pre').click(function(){
+	function doModalPrint(cardSeq){
+		var card = testMap.get(cardSeq);
+		console.log(card.dueDate);
+		var cDate = new Date(card.dueDate);
+		//포맷과정있어야함
+		fDate = getFormatDate(cDate);
+		// 모달의 데이터 넣기
+		$('#title').html(card.ctitle);
+		$('#title').val(card.ctitle);
+		$('#chadule').val(fDate);
+		
+
+
+		
+	}
+	
+	function getFormatDate(date){
+		var year = date.getFullYear();                                
+		var month = (1 + date.getMonth());             
+		month = month >= 10 ? month : '0' + month;     
+		var day = date.getDate();                                     
+		day = day >= 10 ? day : '0' + day;                            
+		return  year + '-' + month + '-' + day;
+	}
+	
+	function calDate(cardDate){
+		var result = 0;
+		var today = new Date();
+		var cDay = new Date(cardDate);
+		var distance = today - cDay;
+		var oneDayMs = 86400000;
+		
+		if(distance / oneDayMs  < 1){
+			result = 1;
+		}else if(distance / oneDayMs < 4){
+			result = 2;
+		}
+		console.log("result : " + result);
+		return result;
+	}
+
+	
+
+	
+	
+ 	$('#pre').click(function(){
 		var preCardList = new Array();
 		var pseq = ${project.pseq};
 		for(var i = 0; i < list.length; i++){
@@ -151,6 +348,7 @@
 		}) 
 	});
 	
+		
 	
 	
 	$('#next').click(function(){
@@ -225,6 +423,7 @@
 	//카드 오브젝트 리스트 (카드 구분을 위해서)
 	var list = new Array();
 	var map = new Map();
+	var testMap = new Map();
 	//변경 정보를 한번에 보내기 위해서 
 	<c:forEach items="${cardList }" var="item">
 		list.push({
@@ -238,8 +437,19 @@
 		);
 		//클릭된 카드의 정보를 보내기위해(todo, doing, done 으로 이동을 위한 cseq check)
 		map.set('${item.cseq}', '0');
+		
+		//모달 팝업의 데이터를 넣기 위해서
+		testMap.set('${item.cseq}', {
+			cseq : "${item.cseq }",
+			pseq : "${item.pseq}" ,
+			mseq : "${item.mseq}"  ,
+			ctype : "${item.ctype}",
+			ctitle : "${item.ctitle }",
+			dueDate : "${item.dueDate }"
+		});
 
 	</c:forEach>
+	
 	
 	var checkCardList = new Array();
 	
@@ -306,13 +516,6 @@
 		}
 	}
 
-	
-	
-	//카드 디테일 모달팝업 출력되야함
-	function doModalPrint(cardVO) {
-		console.log('double click');
-	}
-
 	function modifyProjectName() {
 		//크기 조정 필요할듯
 		if (pflag == 0) {
@@ -355,71 +558,135 @@
 	}
 	
 	
-	
-	/*  $(':root').on('mousedown', '*', function() {
-	    var el = $(this),
-	        events = $._data(this, 'events');
-	    if (events && events.clickHold && flag == 1) {
-	        el.data(
-	            'clickHoldTimer',
-	            setTimeout(
-	                function() {
-	                    el.trigger('clickHold')
-	                },
-	                el.data('clickHoldTimeout')
-	            )
-	        );
-	    }
-	}).on('mouseup mouseleave mousemove', '*', function() {
-	    clearTimeout($(this).data('clickHoldTimer'));
-	    flag = 0;
-	});
-	
-	//Attach it to the element
-	$('#HoldListener').data('clickHoldTimeout', 1000); //Time to hold
-	$('#HoldListener').on('clickHold', function() {	  
-	    alert('이벤트 발생!!!');
-	});	 */
-	
-	
-
-
-	
-	
-	
-
-	
-	
-	
-	function getMouseEvent(){
-		
-	}
-
-	function cardForm(){
-		var content ='';	
-		content += "<intput type='text' name='cardName'>";
-	}
-	
-	function addCard() {
-		
-		content = "";
-		content += "<input";
-		
-		
-	}
-
-	function moveNext() {
-		
-	}
-
-	function moveBefore() {
-
-	}
-	
-	
-
-	
-	
 </script>
+
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* background / opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 60%;
+	height: 60%;
+	display: flex;
+}
+
+.modal-left {
+	width: 50%;
+	float: left;
+	flex: 5;
+}
+
+.center-line {
+	border-left: 0.5px solid #cccccc;;
+  	height: 360px;
+	flex: 0.5;
+}
+
+.modal-right {
+	width: 50%;
+	float: right;
+	flex: 5;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.center {
+	margin-top: 50px;
+}
+
+.modal-header {
+	padding-bottom: 5px;
+}
+
+.modal-footer {
+	padding: 0;
+}
+
+.modal-footer .btn-group button {
+	height: 40px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
+
+.modal-footer .btn-group:last-child>button {
+	border-right: 0;
+}
+
+.form-group {
+	padding-top: 10px;
+}
+
+.modal-footer {
+	padding-top: 70px;
+	padding-left: 30%;
+}
+
+.calendar {
+	padding-top: 70px;
+	padding-left: 30%;
+}
+
+.form-control {
+	width: 80%;
+	height: 30px;
+	font-size: 18px;
+}
+
+.cm-text {
+	width: 80%;
+	height: 50px;
+	font-size: 18px;
+}
+
+.test1 {
+	width: 80%;
+	height: 170px;
+}
+
+.test2 {
+	height: 50%;
+}
+
+.test3 {
+	height: 50%;
+}
+
+
+</style>
 </body>
 </html>
