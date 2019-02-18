@@ -25,6 +25,8 @@ public class ProfileFormAction implements Action {
 		if (key == null) {
 			key = "";
 		}
+		
+		
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
@@ -37,9 +39,7 @@ public class ProfileFormAction implements Action {
 		if (loginMember == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			try {
-				
-				MemberDAO memberDAO = MemberDAO.getInstance();
+			try {			
 				BoardDAO boardDAO = BoardDAO.getInstance();
 				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), key);
 				String paging = boardDAO.profilepageNumber(Integer.parseInt(tpage), key);

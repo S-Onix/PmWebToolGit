@@ -21,6 +21,7 @@ public class BoardFormAction implements Action {
 		if (key == null) {
 			key = "";
 		}
+		
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
