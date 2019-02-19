@@ -23,15 +23,15 @@ public class ProfileUpdateAction implements Action {
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			MemberVO loginMember = new MemberVO();
-			loginMember.setMseq(Integer.parseInt(request.getParameter("mseq")));
-			loginMember.setMid(request.getParameter("mid"));
-			loginMember.setMname(request.getParameter("mname"));
-			loginMember.setEmail(request.getParameter("email"));
+			MemberVO memberVO = new MemberVO();
+			memberVO.setMseq(Integer.parseInt(request.getParameter("mseq")));
+			loginUser.setMid(request.getParameter("mid"));
+			loginUser.setMname(request.getParameter("mname"));
+			loginUser.setEmail(request.getParameter("email"));
 			System.out.println("이름 : " + name + " 이메일 : " + email);
 			MemberDAO memberDAO = MemberDAO.getInstance();
-			memberDAO.updateMember(loginMember);
-			session.setAttribute("loginUser", loginMember);
+			memberDAO.updateMember(loginUser);
+			session.setAttribute("loginUser", loginUser);
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

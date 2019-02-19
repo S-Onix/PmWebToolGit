@@ -21,7 +21,6 @@ public class BoardFormAction implements Action {
 		if (key == null) {
 			key = "";
 		}
-		
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
@@ -36,13 +35,14 @@ public class BoardFormAction implements Action {
 		} else {
 			try {
 				BoardDAO boardDAO = BoardDAO.getInstance();
+				loginUser.setMid(request.getParameter("mid"));
 				ArrayList<BoardVO> boardList = boardDAO.listBoard(Integer.parseInt(tpage), key); 
 				String paging = boardDAO.pageNumber(Integer.parseInt(tpage), key);
 				request.setAttribute("listBoard", boardList);
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
 				request.setAttribute("paging", paging);
-				System.out.println("페이지 : " + tpage);
+				System.out.println("페이지 : " + tpage + " 키 : " + key);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

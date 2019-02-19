@@ -18,20 +18,20 @@ public class ProfileFormAction implements Action {
 		String url = "/profile/profile.jsp";
 		String tpage = request.getParameter("tpage");
 		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		if (loginMember == null) {
+		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
 			try {
 				BoardDAO boardDAO = BoardDAO.getInstance();
-				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), loginMember);
-				String paging = boardDAO.profilepageNumber(loginMember, Integer.parseInt(tpage));
+				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), loginUser);
+				String paging = boardDAO.profilepageNumber(loginUser, Integer.parseInt(tpage));
 				request.setAttribute("profileBoard", boardList);
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
@@ -39,7 +39,7 @@ public class ProfileFormAction implements Action {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			request.setAttribute("mid", loginMember.getMid());
+			request.setAttribute("mid", loginUser.getMid());
 			request.setAttribute("tpage", tpage);	
 			request.getRequestDispatcher(url).forward(request, response);
 		}

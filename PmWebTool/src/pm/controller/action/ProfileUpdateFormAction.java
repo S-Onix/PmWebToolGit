@@ -15,11 +15,11 @@ public class ProfileUpdateFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "profile/profile_update.jsp";
 		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
-		if (loginMember == null) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		if (loginUser == null) {
 		} else {
 			try {
-				request.setAttribute("loginUser", loginMember);
+				request.setAttribute("loginUser", loginUser);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

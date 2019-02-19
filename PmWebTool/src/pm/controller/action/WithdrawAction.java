@@ -20,11 +20,11 @@ public class WithdrawAction implements Action {
 		if (loginUser == null) {
 			url = "PmServlet?command=login_form";
 		} else {
-			MemberVO loginMember = new MemberVO();
-			loginMember.setMseq(Integer.parseInt(request.getParameter("mseq")));
-			loginMember.setUseyn(request.getParameter("useyn"));
+			MemberVO memberVO = new MemberVO();
+			loginUser.setMseq(Integer.parseInt(request.getParameter("mseq")));
+			loginUser.setUseyn(request.getParameter("useyn"));
 			MemberDAO memberDAO = MemberDAO.getInstance();
-			memberDAO.deleteMember(loginMember);
+			memberDAO.deleteMember(memberVO);
 		}		
 		request.getRequestDispatcher(url).forward(request, response);
 		

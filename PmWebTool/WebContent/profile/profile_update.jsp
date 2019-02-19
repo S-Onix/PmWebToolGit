@@ -11,19 +11,19 @@
 	<h2>프로필 수정</h2>
 		<table class="post-wrap">
 			<tr>
-				<th>ID</th>
+				<th>아이디</th>
 				<td colspan="20"><input type="text"
 					value="${loginUser.mid}" name="mid" disabled/>
 					 <input type="hidden" name="mid" value="${loginUser.mid }" >
 					 </td>
 			</tr>
 			<tr>
-				<th>Name</th>
+				<th>이름</th>
 				<td colspan="20"><input type="text" name="mname"
 					value="${loginUser.mname}" /></td>
 			</tr>
 			<tr>
-				<th>E-Mail</th>
+				<th>이메일</th>
 				<td colspan="20"><input type="email" name="email"
 					value="${loginUser.email}" /></td>
 			</tr>

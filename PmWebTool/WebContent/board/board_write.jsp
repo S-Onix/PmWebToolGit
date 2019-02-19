@@ -19,13 +19,18 @@ function go_write() {
 }
 </script>
 <article>
-	<h2>글 쓰기</h2>
 	<form name="formm" method="post" action="PmServlet?command=board_write">
+	<h2>글 쓰기</h2>
 		<fieldset>
-			<label>Title</label> 
-			<input type="text" name="subject" size="80"><br>
-			<label>Content</label>
-			<textarea rows="8" cols="65" name="content"></textarea><br>
+			<label>제목</label> 
+			<input type="text" name="subject" size="80">
+			<br><br>
+			<label>작성자</label>
+			<input type="text" value="${loginUser.mid}" name="mid" disabled/>
+			<br><br>
+			<label>내용</label><br>
+			<textarea rows="8" cols="80" name="content"></textarea>
+			<br>
 		</fieldset>
 		<div class="clear"></div>
 		<div id="buttons" style="float: right">	
