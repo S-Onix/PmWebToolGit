@@ -2,14 +2,55 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/header_login.jsp"%>
 
-
-<section>
-	<form name="pForm" method="post"
+<style>
+.project-body{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url(https://t1.kakaocdn.net/kakaocorp/operating/co/main-banner/2928.png);
+    opacity: 0.9;
+    z-index: -1;
+}
+.projectName{
+	color: lightgray;
+    background: transparent;
+    border: 0.3px solid;
+}
+.header:hover{
+	background-color: white;
+    color: black;
+}
+.h1{
+	font-size: 30px;
+    color: white;
+    height: 20px;
+}
+.project-driver{
+	width: 100%;
+    height: 2px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+.project-form{
+	width: 400px;
+    margin: 0 auto;
+    margin-top: 70px;
+    z-index: 1;
+}
+.project-font{
+    font-size: 30px;
+    color: white;
+    height: 20px;
+}
+</style>
+<section class="project-body">
+	<form name="pForm" class="project-form" method="post"
 		action="PmServlet?command=project_form">
 		<div class="profont-wrap">
 			<h1 class="project-font">Project</h1>
 		</div>
-
+		<div class="project-driver">
+		</div>
 		<div class="container">
 			<input class="list-input" type="text" name="newName"
 				placeholder="Add Project"
