@@ -28,11 +28,13 @@
 				</tr>
 				</thead>
 </table>
-</div>
 <br>
-	<input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
-	<input type="button" value="회원탈퇴" onclick="withdraw()">
-	<br><br><br><br>
+ <div id="buttons">
+	<input type="button" class="btn" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
+	<input type="button" class="btn" value="회원탈퇴" onclick="withdraw()">
+	<br><br><br>
+ </div>
+</div>
 <table id="boardList" class="post-wrap">
 			<thead>
 				<tr>
@@ -64,7 +66,7 @@
 				</c:choose>
 			</thead>
 		</table>
-		<br />
+		<br>
 </form>
 </article>
 <script id="text/javascript">
@@ -80,6 +82,24 @@ function withdraw() {
 }
 </script>
 <style type="text/css">
+form #buttons {
+	margin: 20px 0 0 0;
+}
+
+form  .btn {
+	height: 30px;
+	width: 120px;
+	border: 2px solid #369;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: #369;
+	margin: 0 0 0 20px;
+}
+
 table.post-wrap {
 	border-collapse: collapse;
 	text-align: left;

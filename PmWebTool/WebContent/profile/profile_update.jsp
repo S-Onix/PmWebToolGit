@@ -50,6 +50,24 @@
 	}
 </script>
 <style type="text/css">
+form #buttons {
+	margin: 20px 0 0 0;
+}
+
+form .btn {
+	height: 30px;
+	width: 120px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: black;
+	margin: 0 0 0 20px;
+}
+
 table.post-wrap {
 	border-collapse: collapse;
 	text-align: left;

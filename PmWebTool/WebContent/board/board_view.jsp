@@ -26,15 +26,15 @@
 		<br>
 		<c:choose>
 			<c:when test="${checkId == boardVO.mid}">
-				<input class="btn" type="button" value="수정"
+				<input type="button" value="수정" class="btn button"
 					onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
-				<input type="button" value="삭제"
-				    onClick="go_delete()">
-				<input type="button" value="목록"
+				<input type="button" value="삭제" class="btn button" onClick="go_delete()">
+				<a href="#" class="btn button" onclick="go_delete2()">마구자비</a>
+				<input type="button" value="목록" class="btn button"
 					onclick="go_list('${tpage}', '${key}')">
 			</c:when>
 			<c:otherwise>
-				<input type="button" value="목록"
+				<input type="button" value="목록" class="btn"
 					onclick="go_list('${tpage}', '${key}')" >
 			</c:otherwise>
 		</c:choose>
@@ -59,12 +59,43 @@
 		}
 	}
 	
+	function go_delete2() { 
+		var ret = confirm("삭제하시겠습니까?");
+		if (ret == true){
+			location.href = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
+			alert("삭제 완료");
+		} else {
+			alert("취소되었습니다");
+		}
+	}
+	
 	function go_list(tpage, key){
 		document.frm.action = "PmServlet?command=board_form&tpage=" + tpage + "&key=" + key;
 		document.frm.submit();
 	}
 </script>
 <style type="text/css">
+.btn {
+   /* 줄어드는 모션 */
+   -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+   display: block;
+   margin: 20px auto;
+   max-width: 180px;
+   text-decoration: none;
+   border-radius: 4px;
+   padding: 20px 30px;
+}
+
+.btn.button {
+   color: rgba(30, 22, 54, 0.6);
+   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+.btn.button:hover {
+   color: rgba(255, 255, 255, 0.85);
+   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
 table.post-wrap {
 	border-collapse: collapse;
 	text-align: left;

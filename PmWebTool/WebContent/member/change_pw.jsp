@@ -60,7 +60,8 @@
 
 		</c:otherwise>
 	</c:choose>
-	<input type="button" name="change" value="변경" onClick="changePw()"><br>
+	<br>
+	<input type="button" class="bt" name="change" value="변경" onClick="changePw()">
 	<input type="button" name="cancel" value="취소" onClick="back()">
 </form>
 </body>
