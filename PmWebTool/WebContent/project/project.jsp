@@ -9,7 +9,7 @@
     position: absolute;
     background-image: url(https://t1.kakaocdn.net/kakaocorp/operating/co/main-banner/2928.png);
     opacity: 0.9;
-    z-index: -1;
+    z-index: 1;
 }
 .projectName{
 	color: lightgray;
@@ -35,7 +35,7 @@
 	width: 400px;
     margin: 0 auto;
     margin-top: 70px;
-    z-index: 1;
+    z-index: -1;
 }
 .project-font{
     font-size: 30px;
