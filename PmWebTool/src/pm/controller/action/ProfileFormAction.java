@@ -25,7 +25,6 @@ public class ProfileFormAction implements Action {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-
 		if (loginMember == null) {
 			url = "PmServlet?command=login_form";
 		} else {
@@ -33,8 +32,6 @@ public class ProfileFormAction implements Action {
 				BoardDAO boardDAO = BoardDAO.getInstance();
 				ArrayList<BoardVO> boardList = boardDAO.profileBoard(Integer.parseInt(tpage), loginMember);
 				String paging = boardDAO.profilepageNumber(loginMember, Integer.parseInt(tpage));
-				System.out.println(paging);
-				System.out.println(loginMember.getMid());
 				request.setAttribute("profileBoard", boardList);
 				int n = boardList.size();
 				request.setAttribute("boardListSize", n);
@@ -42,12 +39,8 @@ public class ProfileFormAction implements Action {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			System.out.println();
-			
 			request.setAttribute("mid", loginMember.getMid());
-			request.setAttribute("tpage", tpage);
-			
+			request.setAttribute("tpage", tpage);	
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}

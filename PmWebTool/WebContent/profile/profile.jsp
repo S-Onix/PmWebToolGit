@@ -4,7 +4,68 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
-<head>
+<article>
+<form name="frm" method="post">
+<input type="hidden" name="tpage" value="${tpage}"/>
+<input type="hidden" name="key" value="${key}"/>
+<input type="hidden" name="mid" value="${boardVO.mid}"/>
+<div>
+<h1>프로필</h1>
+<table class="post-wrap">
+<thead>
+				<tr>
+					<th>ID</th>
+					<td>${loginUser.mid}</td>
+				</tr>
+				<tr>
+					<th>NAME</th>
+					<td>${loginUser.mname}</td>
+				</tr>
+				<tr>
+					<th>E-MAIL</th>
+					<td>${loginUser.email}</td>
+				</tr>
+				</thead>
+</table>
+</div>
+<br>
+	<input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
+	<input type="button" value="회원탈퇴" onclick="withdraw()">
+	<br><br><br><br>
+<table id="boardList" class="post-wrap">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
+				<c:choose>
+					<c:when test="${boardListSize<=0}">
+						<tr>
+							<td width="100%" colspan="7" align="center" height="23">등록된
+								게시물이 없습니다</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${profileBoard}" var="boardVO">
+							<tr>
+								<td>${boardVO.bseq}<td>
+								<a class="post-a" href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage}&key=${key}">${boardVO.subject}</a></td>
+								<td>${boardVO.mid}</td>
+								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="6" style="text-align: center;">${paging}</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+			</thead>
+		</table>
+		<br />
+</form>
+</article>
 <script id="text/javascript">
 function withdraw() { 
 	var ret = confirm("정말 탈퇴하시겠습니까?");
@@ -62,56 +123,4 @@ table.post-wrap td {
 	text-decoration: underline;
 }  
 </style>
-</head>
-<article>
-<form name="frm" method="post">
-<input type="hidden" name="tpage" value="${tpage}"/>
-<input type="hidden" name="key" value="${key}"/>
-<input type="hidden" name="mid" value="${boardVO.mid}"/>
-<div>
-<h1>프로필</h1>
-ID : ${loginUser.mid}<br>
-Name : ${loginUser.mname}<br>
-E-Mail : ${loginUser.email}
-</div>
-<br>
-
-<table id="boardList" class="post-wrap">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-				<c:choose>
-					<c:when test="${boardListSize<=0}">
-						<tr>
-							<td width="100%" colspan="7" align="center" height="23">등록된
-								게시물이 없습니다</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${profileBoard}" var="boardVO">
-							<tr>
-								<td>${boardVO.bseq}<td>
-								<a class="post-a" href="PmServlet?command=board_view_form&bseq=${boardVO.bseq}&tpage=${tpage}&key=${key}">${boardVO.subject}</a></td>
-								<td>${boardVO.mid}</td>
-								<td><fmt:formatDate value="${boardVO.indate}" type="date" /></td>
-							</tr>
-						</c:forEach>
-						<tr>
-							<td colspan="6" style="text-align: center;">${paging}</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-			</thead>
-		</table>
-		<br />
-		<input type="button" value="프로필 수정" onclick="location='PmServlet?command=profile_update_form'">
-	<input type="button" value="회원탈퇴" onclick="withdraw()">
-			
-
-</form>
-</article>
 </html>
