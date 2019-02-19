@@ -73,41 +73,6 @@
 
 	</form>
 	
-	
-	
-<!-- 	<div id="myModal" class="modal">
-		Modal content
-		<div class="modal-content">
-			<span class="modal-close">&times;</span>
-			<div class="modal-header">
-				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
-			</div>
-			<div class="modal-body">
-
-				content goes here
-				<form>
-					<div class="form-group">
-						<label for="exampleInputEmail1">TITLE</label> <input
-							type="text" class="form-control" id="exampleInputEmail1"
-							placeholder="TITLE UPDATE">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">SCHADULE</label> <input
-							type="date" class="form-control" id="exampleInputPassword1"
-							placeholder="SCHADULE">
-					</div>
-							<button>calendar</button>
-				</form>
-
-			</div>
-			<div class="modal-footer">
-				---------------------
-				<p>footer..</p>
-					<button type="submit" class="btn btn-default">Submit</button>
-			</div>
-		</div>
-	</div> -->
-	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 
@@ -121,13 +86,14 @@
 				<div class="modal-body">
 
 					<!-- content goes here -->
-					<form>
+					<form method="post">
+					<input type="hidden" id="mcseq" value="">
 						<div class="form-group">
 							<input type="text" class="form-control" id="title"
 								placeholder="TITLE UPDATE">
 						</div>
 						<div class="form-group">
-							<input type="date" class="form-control" id="chadule"
+							<input type="text" class="form-control" id="date"
 								placeholder="SCHADULE">
 						</div>
 
@@ -137,7 +103,7 @@
 					<button>calendar</button>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button id="mSubmit" class="btn btn-default">카드변경</button>
 				</div>
 			</div>
 			
@@ -149,16 +115,16 @@
 				<span class="close">&times;</span>
 				<div class="test1">
 					<div class="test2">
-						<h3>comment title</h3>
+						<h3>댓글 제목</h3>
 					</div>
 					<div class="test3">
-						<h3>comment</h3>
+						<h3>댓글</h3>
 
 					</div>
 				</div>
 				<div class="comment-wrap">
 					<div class="comment-text">
-						<h3>text</h3>
+						<h3>댓글</h3>
 						<input type="text" placeholder="COMMENT" class="cm-text">
 						<button value="comment">CM</button>
 
@@ -173,43 +139,33 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
-
-
-	/////////////////////////////////////////
-/* 
-	var modal = document.getElementById('myModal');
-
-		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-		 */
-	/////////////////////////////////////////
-
-	var pflag = 0;
+    var pflag = 0;
 	var cflag = 0;
+	
+	var checkMap = new Map();
+	var dataMap = new Map();
+	//변경 정보를 한번에 보내기 위해서 
+	<c:forEach items="${cardList }" var="item">
+		//클릭된 카드의 정보를 보내기위해(todo, doing, done 으로 이동을 위한 cseq check)
+		checkMap.set('${item.cseq}', '0');
+		//모달 팝업의 데이터를 넣기 위해서
+		dataMap.set('${item.cseq}', {
+			cseq : "${item.cseq }",
+			pseq : "${item.pseq}" ,
+			mseq : "${item.mseq}"  ,
+			ctype : "${item.ctype}",
+			ctitle : "${item.ctitle }",
+			dueDate : "${item.dueDate }"
+		});
+
+	</c:forEach>
 	
 	/* 타임 테스트 */
 	var time1, time2;
+	
 	
 	//동적 html 이벤트 바인딩
 	$(document).on("mousedown", ".card", function (){
@@ -229,35 +185,26 @@
 				this.flag = true;
 			}
 			return;
-		}else if(time2 - time1 < 800){
-			console.log('change cardname');
-			doChangeCTitle($(this).attr('value'));
-			return;
 		}else{
-			console.log('card detail');
 			doModalPrint($(this).attr('value'));
-			var card = testMap.get($(this).attr('value'));
-			
+			var card = dataMap.get($(this).attr('value'));
 			$('#myModal').css("display", "block");
-	
-			
+			 //	*/
 			if(card.dueDate != "" || card.dueDate !== null){
-				console.log('들어왔나?');
 				var compareDate = calDate(card.dueDate);
-				
-				if(compareDate == 1){
-					$(this).css("background-color", "yello");	
-				}else if (compareDate == 2){
+				if(compareDate === 1){
+					$(this).css("background-color", "red");	
+				}else if (compareDate === 2){
 					$(this).css("background-color", "blue")
 				}else{
 					$(this).css("background-color", "green");
 				}
 			}
 			
-			
 			return;
 		}
 	})
+	
 	window.onclick = function(event){
 		if(event.target == document.getElementById('myModal')){
 			$('#myModal').css("display", "none");
@@ -269,20 +216,68 @@
 	
 	
 	function doModalPrint(cardSeq){
-		var card = testMap.get(cardSeq);
+		var card = dataMap.get(cardSeq);
 		console.log(card.dueDate);
 		var cDate = new Date(card.dueDate);
 		//포맷과정있어야함
 		fDate = getFormatDate(cDate);
+		console.log(fDate);
 		// 모달의 데이터 넣기
+		$('#mcseq').val(cardSeq);
 		$('#title').html(card.ctitle);
 		$('#title').val(card.ctitle);
-		$('#chadule').val(fDate);
-		
-
-
+		$('#date').val(fDate);
 		
 	}
+	
+	
+	$('#mSubmit').click(function(){
+		var updateData = dataMap.get($('#mcseq').val());
+		var cardId = '#card' + updateData.cseq;
+		updateData.ctitle = $('#title').val();
+		
+		dataMap.get($('#mcseq').val()).ctitle = $('#title').val();
+		dataMap.get($('#mcseq').val()).dueDate = $('#date').val() + " 09:00:00.0";
+		
+		//타이틀 변경시 카드의 이름 변경
+	 	if($(cardId).children().text() != $('#title').val()){
+			$(cardId).children().html($('#title').val());
+		} 
+		
+		$('#myModal').css('display','none');
+		 	
+		var data = JSON.stringify(dataMap.get($('#mcseq').val()));
+		jQuery.ajaxSettings.traditional = true;
+		console.log("data : " + data);
+		
+	 	 $.ajax({
+			url: "PmServlet?command=card_update",
+			type: "post",
+			data: {
+				"data" : data
+			}
+		})
+		
+	});
+	
+	$("#date").datepicker({
+	      dateFormat:"yy-mm-dd",
+	      dayNamesMin:["일","월","화","수","목","금","토"],
+	      monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	      onSelect:function( d ){
+
+	    	  var arrDate = d.split("-");
+	          var year = arrDate[0];
+	          var month = arrDate[1];
+	          var day = arrDate[2];
+	         
+	          //날자 구하기          
+	          var date = new Date($("#date").datepicker({dateFormant:"yy-mm-dd hh:mm:ss"}).val() );
+	          
+	      }
+	   });
+	
+	
 	
 	function getFormatDate(date){
 		var year = date.getFullYear();                                
@@ -294,6 +289,7 @@
 	}
 	
 	function calDate(cardDate){
+		console.log(cardDate);
 		var result = 0;
 		var today = new Date();
 		var cDay = new Date(cardDate);
@@ -305,34 +301,30 @@
 		}else if(distance / oneDayMs < 4){
 			result = 2;
 		}
-		console.log("result : " + result);
 		return result;
 	}
 
-	
 
-	
-	
  	$('#pre').click(function(){
 		var preCardList = new Array();
 		var pseq = ${project.pseq};
-		for(var i = 0; i < list.length; i++){
-			if(map.get(list[i].cseq) == "1" && list[i].ctype == 2){
-				var cardId = '#card' + list[i].cseq;
-				preCardList.push(list[i]);
+		for(var [key, value] of dataMap){
+			if(checkMap.get(key) == "1" && value.ctype == 2){
+				var cardId = '#card' + key;
+				preCardList.push(value);
 				if($(cardId).parent().prop('class') == 'list'){
 					var $div = $('.list').children(cardId).html();
 					var parentN = $(cardId).parent();
-					$div = $div.replace("color: red", "color: black");
+					$div = $div.replace("color: rgb(255, 0, 0)", "color: black");
 					$(cardId).remove();
-					var tag = "<div id='card" + list[i].cseq + "' >";
+					var tag = "<div id='card" + key + "' >";
 					tag += $div;
 					tag += "</div>";
 					$(parentN).prev().append(tag);
 				}
-				toggleMapVal(list[i].cseq);
-				list[i].ctype = (list[i].ctype*1) - 1;
-				list[i].ctype += "";
+				toggleMapVal(key);
+				value.ctype = (value.ctype*1) - 1;
+				value.ctype += "";
 			}
 		}
 		
@@ -354,33 +346,31 @@
 	$('#next').click(function(){
 		var nextCardList = new Array();
 		var pseq = ${project.pseq};
-		for(var i = 0 ; i < list.length; i++){
-			if(map.get(list[i].cseq) == "1" && list[i].ctype < 3){
-				var cardId = '#card' + list[i].cseq;
-				console.log(cardId);
-				nextCardList.push(list[i]);
-				console.log(nextCardList);
+
+		for(var [key, value] of dataMap){
+			if(checkMap.get(key) == "1" && value.ctype < 3){
+				var cardId = '#card' + key;
+				nextCardList.push(value);
 				if($(cardId).parent().prop('class') == 'list'){
 					var $div = $('.list').children(cardId).html();
+					console.log($div);
 					var parentN = $(cardId).parent();
-					$div = $div.replace("color: red", "color: black");
+					$div = $div.replace("color: rgb(255, 0, 0)", "color: black");
+					console.log($div);
 					$(cardId).remove();
-					var tag = "<div id='card" + list[i].cseq + "' >";
+					var tag = "<div id='card" + key + "' >";
 					tag += $div;
 					tag += "</div>";
 					$(parentN).next().append(tag);
 				}
-				toggleMapVal(list[i].cseq);
-				list[i].ctype = (list[i].ctype*1) + 1;
-				list[i].ctype += "";
+				toggleMapVal(key);
+				value.ctype = (value.ctype*1) + 1;
+				value.ctype += "";
 			}
 		}
 		
-		//JSON으로 데이터 변환
+		 //JSON으로 데이터 변환
 		var data = JSON.stringify(nextCardList);
-		
-		console.log(data);
-		
 		jQuery.ajaxSettings.traditional = true;
 		
 	 	 $.ajax({
@@ -396,18 +386,21 @@
 	$('#delete').click(function(){
 		var deleteCardList = new Array();
 		var pseq = ${project.pseq};
-		for(var i = 0; i < list.length; i++){
-			if(map.get(list[i].cseq) == "1"){
-				var cardId = '#card' + list[i].cseq;
-				deleteCardList.push(list[i].cseq);
+		for(var [key, value] of dataMap){
+			if(checkMap.get(key) == "1"){
+				var cardId = '#card' + key;
+				deleteCardList.push(value.cseq);
 				$(cardId).remove();
-				map.delete(list[i].cseq);
+				checkMap.delete(key);
+				dataMap.delete(key);
 			}
 		}
 		
+		console.log(deleteCardList);
+		
 		jQuery.ajaxSettings.traditional = true;
 		
-		$.ajax({
+	 	$.ajax({
 			url: "PmServlet?command=card_delete",
 			type : "post",
 			data : {
@@ -422,100 +415,21 @@
 	//카드 관련
 	
 	//카드 오브젝트 리스트 (카드 구분을 위해서)
-	var list = new Array();
-	var map = new Map();
-	var testMap = new Map();
-	//변경 정보를 한번에 보내기 위해서 
-	<c:forEach items="${cardList }" var="item">
-		list.push({
-			cseq : "${item.cseq }",
-			pseq : "${item.pseq}" ,
-			mseq : "${item.mseq}"  ,
-			ctype : "${item.ctype}",
-			ctitle : "${item.ctitle }",
-			dueDate : "${item.dueDate }",
-			}
-		);
-		//클릭된 카드의 정보를 보내기위해(todo, doing, done 으로 이동을 위한 cseq check)
-		map.set('${item.cseq}', '0');
-		
-		//모달 팝업의 데이터를 넣기 위해서
-		testMap.set('${item.cseq}', {
-			cseq : "${item.cseq }",
-			pseq : "${item.pseq}" ,
-			mseq : "${item.mseq}"  ,
-			ctype : "${item.ctype}",
-			ctitle : "${item.ctitle }",
-			dueDate : "${item.dueDate }"
-		});
 
-	</c:forEach>
-	
-	
-	var checkCardList = new Array();
 	
 	function clickCard(cardVO){
 		toggleMapVal(cardVO);
-		console.log(cardVO + ' ' + map.get(cardVO));
+		console.log(cardVO + ' ' + checkMap.get(cardVO));
+	}
+	
+	function toggleMapVal(card){
+		if(checkMap.get(card) == "0"){
+			checkMap.set(card, "1");
+		}else{
+			checkMap.set(card, "0");
+		}
 	}
 
-	function findKey(cseq){
-		for(var i = 0; i < list.length; i++){
-			if(list[i].cseq == cseq)
-				return list[i];
-		}
-	}
-	
-	function toggleMapVal(key){
-		if(map.get(key) == "0"){
-			map.set(key, "1");
-		}else{
-			map.set(key, "0");
-		}
-	}
-	
-	//카드 이름 변경
-	function doChangeCTitle(cardVO) {
-		var item = findKey(cardVO);
-	 	modifyCardName(item);
-	 }
-	
-	function modifyCardName(item){
-		var cardId = 'card' + item.cseq; 
-		
-		
-		if(cflag == 0){//클릭시
-			var content = "";
-			content += "<input type='text' id='newCtitle' name='newCtitle' placeholder='카드이름' onkeydown='enterKey(" + item.pseq +", 2)' >";
-			content += "<input type='hidden' name='cseq' value='"+ item.cseq +"'>";
-			content += "<input type='button' onclick='modifyCardName("+ item.cseq +")' value='취소')'>"
-			document.getElementById(cardId).innerHTML = content;
-			document.pForm.newCtitle.focus();
-			cflag = 1;
-			return cflag;
-		}else if(cflag == 1){//초기화
-			/* 
-			
-				<div id="card${cardVO.cseq }">
-						<button type="button" name="cseq" value="${cardVO.cseq }"
-							class="card"> ${cardVO.ctitle }</button>
-				</div>
-			
-			*/
-			
-			var content = '';
-			
-			content += "<button type='button' name ='cseq' value='";
-			content += item.cseq + "' class ='card'>";
-			content += item.ctitle + "</button>";
-			document.getElementById(cardId).innerHTML = content;
-			cflag = 2;
-			return cflag;
-		}else{
-			cflag = 0;
-			return cflag;
-		}
-	}
 
 	function modifyProjectName() {
 		//크기 조정 필요할듯
@@ -562,6 +476,7 @@
 </script>
 
 <style>
+body
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -688,6 +603,6 @@ body {
 }
 
 
-</style>
+e>
 </body>
 </html>

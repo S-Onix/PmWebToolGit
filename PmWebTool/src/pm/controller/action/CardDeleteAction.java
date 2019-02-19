@@ -15,27 +15,30 @@ import pm.dto.MemberVO;
 public class CardDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] cardSeq = request.getParameterValues("deleteCardList");
-		int[] intCardSeq = new int[cardSeq.length];
-
 		HttpSession session = request.getSession();
 		CardDAO cardDao = CardDAO.getInstance();
 		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
-
-		for (int i = 0; i < cardSeq.length; i++) {
-			intCardSeq[i] = Integer.parseInt(cardSeq[i]);
-		}
-
-		if (loginMember != null) {
-			for (int cseq : intCardSeq) {
-				try {
-					cardDao.deleteCard(cseq);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		String[] cardSeq = request.getParameterValues("deleteCardList");
+		if (cardSeq != null) {
+			int[] intCardSeq = new int[cardSeq.length];
+			
+			for (int i = 0; i < cardSeq.length; i++) {
+				intCardSeq[i] = Integer.parseInt(cardSeq[i]);
 			}
 
+			if (loginMember != null) {
+				for (int cseq : intCardSeq) {
+					try {
+						cardDao.deleteCard(cseq);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			}
+		}else {
+			
 		}
 	}
 }

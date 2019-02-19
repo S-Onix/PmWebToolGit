@@ -110,27 +110,22 @@ private static CardDAO instance = new CardDAO();
 		String sql;
 		try {
 			conn = DBAction.getInstance().getConnection();
-			if(flag == 1) {//타이틀만 변경
-				sql = "update card set ctitle= ? where cseq = ? AND deleteyn='n'";
+			if(flag == 2) {//카드 내용 변경
+				sql = "update card set ctitle= ? , dueDate = ? where cseq = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, card.getCtitle());
-				pstmt.setInt(2, card.getCseq());
-			}else if (flag == 2) {//디테일 변경
-				sql = "update card set ctitle= ?, mseq = ?, duedate = ?, ctype = ?  where cseq = ?";
-				
+				pstmt.setTimestamp(2, card.getDueDate());
+				pstmt.setInt(3, card.getCseq());
 			}else if(flag == 3) {//타입 변경
 				sql = "update card set ctype=? where cseq = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, card.getCtype());
 				pstmt.setInt(2, card.getCseq());
 			}else {
-				sql = "update card set completeyn = ? where cseq = ?";
+				System.out.println("Error");
 				
 			}
-			
 			pstmt.executeUpdate();
-			
-			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
