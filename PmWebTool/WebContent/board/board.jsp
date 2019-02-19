@@ -7,7 +7,7 @@
 	<h1>게시판</h1>
 	<form name="frm" method="post">
 	<input type="hidden" name="tpage" value="${tpage}"/>
- 	<%-- <input type="hidden" name="key" value="${key}"/> --%>
+
 				작성자
 				<input type="text" name="key"> 
 				<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()"> 
@@ -51,16 +51,16 @@
 	</form>
 </article>
 <script id="text/javascript">
-    function go_search() {
-	if (document.frm.key.value == "") {
-		alert("작성자를 입력해주세요");
-		document.key.focus();
-	} else {
-		document.frm.action = "PmServlet?command=board_form";
-		document.frm.submit();
+   function go_search(key) {
+		if (document.frm.key.value == "") {
+			alert("작성자를 입력해주세요");
+			document.frm.key.focus();
+		} else {
+			document.frm.action = "PmServlet?command=board_form&tpage=" + 1;
+			document.frm.submit();
+		}
 	}
-}
-
+	
 	function go_total() {// 전체보기
 		document.frm.action = "PmServlet?command=board_form&tpage=1&key=";
 		document.frm.submit();

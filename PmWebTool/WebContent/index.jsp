@@ -141,12 +141,12 @@ body {
     <div class="line-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
     
     <div class="line-date">
-      <p class="f2 heading--sanSerif">1/15</p>
+      <p class="f2 heading--sanSerif">안</p>
     </div>
 
     <div class="tl-content">
-      <h1>Project Team One</h1>
-      <p>Suspendisse potenti. Sed sollicitudin eros lorem</p>
+      <h1>Team One</h1>
+      <p>유민석<br>주나라<br>이성희</p>
     </div>
 
   </div>
@@ -156,12 +156,12 @@ body {
     <div class="line-bg" style="background-image: url(https://placeimg.com/802/802/nature)"></div>
     
     <div class="line-date">
-      <p class="f2 heading--sanSerif">1/30</p>
+      <p class="f2 heading--sanSerif">경</p>
     </div>
 
     <div class="tl-content">
-      <h1 class="f3 text--accent ttu">Project Manage</h1>
-      <p>Morbi sed nisl et arcu.</p>
+      <h1 class="f3 text--accent ttu">Project Manage Web Tool</h1>
+      <p>프로젝트를 보기 쉽게 관리할 수 있는 웹 도구</p>
     </div>
 
   </div>
@@ -171,12 +171,12 @@ body {
     <div class="line-bg" style="background-image: url(https://placeimg.com/803/803/nature)"></div>
     
     <div class="line-date">
-      <p class="f2 heading--sanSerif">2/10</p>
+      <p class="f2 heading--sanSerif">잡</p>
     </div>
 
     <div class="tl-content">
-      <h1 class="f3 text--accent ttu">Phasellus mauris</h1>
-      <p>Mauris cursus magna at libero lobortis tempor. </p>
+      <h1 class="f3 text--accent ttu">Feedback</h1>
+      <p>naraku95@naver.com</p>
     </div>
 
   </div>
@@ -186,12 +186,12 @@ body {
     <div class="line-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
     
     <div class="line-date">
-      <p class="f2 heading--sanSerif">2/15</p>
+      <p class="f2 heading--sanSerif">이</p>
     </div>
 
     <div class="tl-content">
-      <h1 class="f3 text--accent ttu">Mauris vitae nunc</h1>
-      <p>Suspendisse ac mi at dolor sodales faucibus. </p>
+      <h1 class="f3 text--accent ttu">Ezen academy</h1>
+      <p><a href="http://www.ezenac.co.kr/">바로가기</a></p>
     </div>
 
   </div>

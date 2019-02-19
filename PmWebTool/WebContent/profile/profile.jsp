@@ -9,20 +9,21 @@
 <input type="hidden" name="tpage" value="${tpage}"/>
 <input type="hidden" name="key" value="${key}"/>
 <input type="hidden" name="mid" value="${boardVO.mid}"/>
+<input type="hidden" name="mseq" value="${loginUser.mseq}"/>
 <div>
 <h1>프로필</h1>
 <table class="post-wrap">
 <thead>
 				<tr>
-					<th>ID</th>
+					<th>아이디</th>
 					<td>${loginUser.mid}</td>
 				</tr>
 				<tr>
-					<th>NAME</th>
+					<th>이름</th>
 					<td>${loginUser.mname}</td>
 				</tr>
 				<tr>
-					<th>E-MAIL</th>
+					<th>이메일</th>
 					<td>${loginUser.email}</td>
 				</tr>
 				</thead>

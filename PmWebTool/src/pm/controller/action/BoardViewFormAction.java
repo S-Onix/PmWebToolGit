@@ -31,7 +31,7 @@ public class BoardViewFormAction implements Action {
 			request.setAttribute("bseq", bseq);
 			request.setAttribute("tpage", tpage);
 			request.setAttribute("key", key);
-			System.out.println("번호 : " + bseq + " 페이지 : " + tpage);
+			System.out.println("게시물 번호 : " + bseq + " 페이지 : " + tpage);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

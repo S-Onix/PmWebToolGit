@@ -44,7 +44,7 @@
 	</c:choose>
 	<br>
 	<c:if test="${exitId == 0 }">
-          존재하지 않는 아이디 입니다
+          존재하지 않는 ID 입니다
           <br>
        </c:if>
 	<c:choose>

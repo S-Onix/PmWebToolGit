@@ -54,7 +54,7 @@ font-weight: bold;
 <div id="wrap">
 <h1>ID 중복확인</h1>
 <form method=post name=formm style="margin-right:0" action="PmServlet?command=id_check_form">
-ID : <input type=text class="check-id" placeholder="Check ID" name="mid" value="" size="15">
+ID : <input type=text class="check-id" placeholder="Check ID" name="mid" value="아이디를 입력해주세요" size="15">
         <input type=submit value="검색" class="check-submit"><br>
         <div style="margin: 0 auto;">
         <c:if test="${message == 1}">

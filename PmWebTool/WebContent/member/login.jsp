@@ -217,12 +217,12 @@ input{
 				<input type="checkbox" id="idSaveCheck">ID 저장
   </div>
   <div id="submit-btn" class="login-wrap">
-  <input type="button" value="LOGIN" class="loginSubmit" onclick="go_login()">
+  <input type="button" value="로그인" class="loginSubmit" onclick="go_login()">
   </div>
   
   <div class="login-btn-wrap">
-			<input type="button" value="Change" class="loginSubButton" onclick="location='PmServlet?command=change_pw_form'"> |
-			<input type="button" value="Cancle" class="loginSubButton" onclick="location='PmServlet?command=index'">
+			<input type="button" value="비밀번호 변경" class="loginSubButton" onclick="location='PmServlet?command=change_pw_form'"> |
+			<input type="button" value="취소" class="loginSubButton" onclick="location='PmServlet?command=index'">
 		</div>
     <p class="related">See also: <a href="https://codepen.io/ariona/details/LVZLGP/" target="_blank">Staged Dropdown Animation</a></p>  
   </div>

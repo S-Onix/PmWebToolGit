@@ -29,7 +29,7 @@ public class JoinAction implements Action {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		try {
 			memberDAO.insertMember(memberVO);
-		    System.out.println(id + "\n" + pw + "\n" + name + "\n" + email);
+		    System.out.println(id + " " + pw + " " + name + " " + email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
