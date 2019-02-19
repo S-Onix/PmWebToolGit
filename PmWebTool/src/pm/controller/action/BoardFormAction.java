@@ -35,7 +35,6 @@ public class BoardFormAction implements Action {
 		} else {
 			try {
 				BoardDAO boardDAO = BoardDAO.getInstance();
-				loginUser.setMid(request.getParameter("mid"));
 				ArrayList<BoardVO> boardList = boardDAO.listBoard(Integer.parseInt(tpage), key); 
 				String paging = boardDAO.pageNumber(Integer.parseInt(tpage), key);
 				request.setAttribute("listBoard", boardList);
