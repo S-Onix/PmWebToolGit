@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pm.dao.CardCommentDAO;
 import pm.dao.CardDAO;
 import pm.dto.CardVO;
 import pm.dto.MemberVO;
@@ -17,6 +18,8 @@ public class CardDeleteAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		CardDAO cardDao = CardDAO.getInstance();
+		CardCommentDAO commentDAO = CardCommentDAO.getInstance();
+		
 		MemberVO loginMember = (MemberVO) session.getAttribute("loginUser");
 		String[] cardSeq = request.getParameterValues("deleteCardList");
 		if (cardSeq != null) {
@@ -29,6 +32,7 @@ public class CardDeleteAction implements Action {
 			if (loginMember != null) {
 				for (int cseq : intCardSeq) {
 					try {
+						commentDAO.deleteAllComment(cseq);
 						cardDao.deleteCard(cseq);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

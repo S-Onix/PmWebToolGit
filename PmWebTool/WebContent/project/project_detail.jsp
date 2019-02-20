@@ -137,22 +137,48 @@
 				<!-- ----------right---------- -->
 				<div class="modal-right">
 					<span class="close">&times;</span>
-					<div class="test1">
-						<div class="test2">
-							<h3>댓글 제목</h3>
-						</div>
-						<div class="test3">
-							<h3>댓글</h3>
+
+							<h3>메모 사항</h3>
 	
-						</div>
-					</div>
 					<div class="comment-wrap">
 						<div class="comment-text">
-							<h3>댓글</h3>
+							<h3>메모 작성</h3>
 							<input type="text" placeholder="COMMENT" class="cm-text">
 							<button value="comment">CM</button>
 	
-							<div class="comment-btn"></div>
+							<div id="comment-content" style="overflow:auto;">
+								<c:choose>
+									<c:when test="${comments != null }">
+										<c:forEach items="${commetns }" var="comment">
+											<div>
+												<span>
+													
+												</span>
+											</div>
+										</c:forEach>
+										
+									</c:when>
+									<c:otherwise>
+										<div>
+											테스트 댓글입니다  <button>삭제</button>
+										</div>
+										
+										<div>
+											테스트 댓글입니다2  <button>삭제</button>
+										</div>
+										<div>
+											테스트 댓글입니다3  <button>삭제</button>
+										</div>
+										<div>
+											테스트 댓글입니다4  <button>삭제</button>
+										</div>
+										<div>
+											테스트 댓글입니다5  <button>삭제</button>
+										</div>
+										
+									</c:otherwise>
+								</c:choose>
+							</div>
 						</div>
 					</div>
 				</div>
