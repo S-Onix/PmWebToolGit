@@ -5,57 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>ID 중복 확인</title>
-<script type="text/javascript">
-	function idok() {
-		opener.formm.mid.value = "${mid}"
-		opener.formm.reid.value = "${mid}"
-		self.close();
-	}
-</script>
-<style type="text/css">
-.check-submit{	
-    border: none;
-    background-color: black;
-    color: white;
-    width: 40;
-    height: 25;
-    font-size: 15;
-    font-family: fantasy;
-    cursor: pointer;
-    margin-top: 20px;
-}
-.check-cancle{	
-    border: none;
-    background-color: black;
-    color: white;
-    width: 58;
-    height: 38;
-    font-size: 18;
-    font-family: fantasy;
-    cursor: pointer;
-    margin-top: 60;
-    margin-left: 250;
-}
-.check-id{
-    width: 200;
-    height: 25;
-}
-.m-id{
-font-weight: bold;
-}
-.check-text{
-	width: 60%;
-    margin: 0 auto;
-    margin-top: 50;
-}
-</style>
 </head>
-<body>
 <div id="wrap">
 <h1>ID 중복확인</h1>
 <form method=post name=formm style="margin-right:0" action="PmServlet?command=id_check_form">
-ID : <input type=text class="check-id" placeholder="Check ID" name="mid" value="아이디를 입력해주세요" size="15">
-        <input type=submit value="검색" class="check-submit"><br>
+ID : <input type=text class="check-id" placeholder="아이디를 입력해주세요" name="mid" size="15">
+       <!--  <a href="#" class="btn button" type="submit">검색</a> -->
+       <input type=submit value="검색" class="btn button"><br>
         <div style="margin: 0 auto;">
         <c:if test="${message == 1}">
         <script type="text/javascript">
@@ -69,10 +25,59 @@ ID : <input type=text class="check-id" placeholder="Check ID" name="mid" value="
         <div class="check-text">
         <span class="m-id">${mid}</span>는 사용 가능합니다
         </div>
-        <input type="button" value="사용" class="check-cancle" onclick="idok()">
+        <a href="#" class="btn button" onclick="idok()">사용</a>
+        <!-- <input type="button" value="사용" class="btn button" onclick="idok()"> -->
         </c:if>
+        <a href="#" class="btn button" onclick="back()">취소</a>
+        <!-- <input type="button" value="취소" class="btn button" onClick="back()"> -->       
 </div>
 </form>
 </div>
-</body>
+<script type="text/javascript">
+	function idok() {
+		opener.formm.mid.value = "${mid}"
+		opener.formm.reid.value = "${mid}"
+		self.close();
+	}
+	
+	function back() {
+		self.close();
+	}
+</script>
+<style type="text/css">
+.btn {
+   /* 줄어드는 모션 */
+   -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+   display: block;
+   margin: 20px auto;
+   max-width: 80px;
+   text-decoration: none;
+   border-radius: 4px;
+   padding: 20px 30px;
+   text-align: center;
+}
+
+.btn.button {
+   color: rgba(30, 22, 54, 0.6);
+   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+.btn.button:hover {
+   color: rgba(255, 255, 255, 0.85);
+   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+.check-id{
+    width: 200;
+    height: 25;
+}
+.m-id{
+font-weight: bold;
+}
+.check-text{
+	width: 60%;
+    margin: 0 auto;
+    margin-top: 50;
+}
+</style>
 </html>

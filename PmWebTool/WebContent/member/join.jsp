@@ -204,11 +204,11 @@ p.related a:hover {
 	<input type="text" name="email" class="joinInputBox" placeholder="이메일 입력">
 </div>
   <div id="submit-btn" class="join-wrap">
-  <input type="button" value="JOIN" class="joinSubmit" onclick="go_save()">
+  <input type="button" value="회원가입" class="joinSubmit" onclick="go_save()">
   </div>
   
   <div class="join-btn-wrap">
-			<input type="button" value="cancle" class="joinSubButton" onclick="location='PmServlet?command=index'">
+			<input type="button" value="취소" class="joinSubButton" onclick="location='PmServlet?command=index'">
 		</div>
     <p class="related">See also: <a href="https://codepen.io/ariona/details/LVZLGP/" target="_blank">Staged Dropdown Animation</a></p>  
   </div>
