@@ -1,19 +1,226 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header_login.jsp"%>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	
+	.pm-link {
+		--smLinkTextColor: black;
+		--smLinkTextColorHover: black;
+	}
+	
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0, 0, 0); /* Fallback color */
+		background-color: rgba(0, 0, 0, 0.4); /* background / opacity */
+	}
+	
+	/* Modal Content */
+	.modal-content {
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 60%;
+		height: 60%;
+		display: flex;
+	}
+	
+	.modal-left {
+		width: 50%;
+		float: left;
+		flex: 5;
+	}
+	
+	.center-line {
+		border-left: 0.5px solid #cccccc;;
+	  	height: 360px;
+		flex: 0.5;
+	}
+	
+	.modal-right {
+		width: 50%;
+		float: right;
+		flex: 5;
+	}
+	
+	/* The Close Button */
+	.close {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	.close:hover, .close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.center {
+		margin-top: 50px;
+	}
+	
+	.modal-header {
+		padding-bottom: 5px;
+	}
+	
+	.modal-footer {
+		padding: 0;
+	}
+	
+	.modal-footer .btn-group button {
+		height: 40px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border: none;
+		border-right: 1px solid #ddd;
+	}
+	
+	.modal-footer .btn-group:last-child>button {
+		border-right: 0;
+	}
+	
+	.form-group {
+		padding-top: 10px;
+	}
+	
+	.modal-footer {
+		padding-top: 70px;
+		padding-left: 30%;
+	}
+	
+	.calendar {
+		padding-top: 70px;
+		padding-left: 30%;
+	}
+	
+	.form-control {
+		width: 80%;
+		height: 30px;
+		font-size: 18px;
+	}
+	
+	.cm-text {
+		width: 80%;
+		height: 50px;
+		font-size: 18px;
+	}
+	
+	.test1 {
+		width: 80%;
+		height: 170px;
+	}
+	
+	.test2 {
+		height: 50%;
+	}
+	
+	.test3 {
+		height: 50%;
+	}
+	
+	.container{
+	    width: 100%;
+	    /* margin: 0 auto; */
+	    height: 100%;
+	}
+	
+	.demo{
+	   text-transform: uppercase;
+	   letter-spacing: 0.1em;
+	}
+	
+	.demo .detail-wrap {
+	   background-image: url("background/desktop.jpg");
+	}
+	
+	/* backgrownd */
 	.detail-wrap {
+	   position: relative;
+	   width: 100%;
+	   height: 100%;
+	   overflow: hidden;
+	   background-size: cover;
+	   background-position: center center;
+	   z-index: 1;
+	}
+	
+	.main-title .thin {
+	   font-weight: 200;
+	}
+	
+	@media only screen and (max-width: 768px) {
+	   .demo .main-title {
+	      font-size: 3em;
+	   }
+	}
+	
+	.project-detail-header {
+		margin-top: 30px;
+		margin-left: 60px;
+	}
+	
+	.list-input-form {
+		width: 35%;
+		display: inline-block;
+	}
+	
+	.card-delete {
+		background: transparent;
+		border: 1px solid gray;
+		width: 80px;
+		height: 35px;
+		display: inline-block;
+	}
+	
+	.project-delete {
+		background: transparent;
+		border: 1px solid gray;
+		width: 100px;
+		height: 35px;
+		display: inline-block;
+	}
+	
+	.list-delete-form {
+		display: inline-block;
+	}
+	
+	.project-detail-delete {
+		display: inline-block;
+		margin-left: 34.4%;
+	}
+	
+	.detail-center {
 		width: 80%;
 		margin: 0 auto;
 	}
-	.detail-name {
+	
+	.project-name {
 		margin-top: 50px;
+		margin-left: 60px;
 	}
+	
 	.pname_input {
 		font-size: 30px;
 	}
+	
 	.list {
-		background-color: #f7f7f7;
+		background-color: rgba(211,211,211,0.7);
+		border: 1px solid gray;
 		width: 20%;
 		height: 300px;
 		display: inline-block;
@@ -21,189 +228,208 @@
 		margin-right: 60px;
 		margin-left: 60px;
 	}
+	
+	.list-input {
+		background: white;
+		border: 1px solid gray;
+		width: 100%;
+	}
+	
 	.detail-list {
 		width: 100%;
 		height: 300px;
 	}
+	
 	.card-wrap{
 	    margin: 0 auto;
 	    height: 30px;
-	    width: 60%;
-	    margin-top: 25;
+	    width: 70%;
+	    margin-top: 15px;
+	    margin-bottom: 15px;
 	}
+	
 	.card{
 		width: 100%;
 	    height: 100%;
 	    border-radius: 0.5em;
-	    background: transparent;
+	    border: 1px solid rgba(211,211,211);
+	    background: white;
 	    font-size: 15px;
+	}
+	
+	.next {
+		right: 12%;
+	}
+	
+	.next,
+	.prev {
+		position: absolute;
+		top: 45%;
+		background: transparent;
+		color: gray;
+		border: none;
+		cursor: pointer;
 	}
 </style>
 <div class="container demo">
-   <div class="content">
-      <div id="large-header" class="large-header">
-<div class="detail-wrap">
-         
-
-	<div id="project_info" class="detail-name" onclick="modifyProjectName()">
-		<span class="pname_input"> ${project.pname }</span>
-	</div>
-	
-	
-	
-	<div class="project_detail">
-		<form name="pForm" method="post">
-			<!-- [Pop-up]<input type="button" value="카드 생성" onclick="cardForm()"> -->
-			
-			<!-- 카드생성 -->
-			<div>
-				<input class="list-input" type="text" name="newCTitle"
-					placeholder="Add Card"
-					onkeypress="enterKey(${project.pseq}, 3)">
-			</div>
-					
-			<!-- [Pop-up]<input type="button" value="카드 수정"
-				onclick="location='PmServlet?command=card_update_form'"> -->
-	
-			<div class="detail-list">
-				<div class="list">
-					<c:forEach items="${cardList }" var="cardVO">
-						<c:if test="${cardVO.ctype == 1 }">
-							<div id="card${cardVO.cseq }" class="card-wrap">
-								<button type="button" name="cseq" value="${cardVO.cseq }"
-									class="card">${cardVO.ctitle }</button>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
+  <div class="detail-wrap">
+	<div class="detail-center">
+		<div id="project-name" class="project-name" onclick="modifyProjectName()">
+			<span class="pname_input"> ${project.pname }</span>
+		</div>
+		<div class="project-detail">
+				<!-- [Pop-up]<input type="button" value="카드 생성" onclick="cardForm()"> -->
 				
-				<div class="list">
-					<c:forEach items="${cardList }" var="cardVO">
-						<c:if test="${cardVO.ctype == 2 }">
-							<div id="card${cardVO.cseq }" class="card-wrap">
-								<button type="button" name="cseq" value="${cardVO.cseq }"
-									class="card">${cardVO.ctitle }</button>
+				<!-- 카드생성 -->
+				<div class="project-detail-header">
+					<form name="pForm" method="post" class="list-input-form">
+						<input class="list-input" type="text" name="newCTitle"
+							placeholder="Add Card"
+							onkeypress="enterKey(${project.pseq}, 3)">
+					</form>
+					<div class="project-detail-delete">
+						<input type="button" id="delete" class="card-delete" value="카드 삭제"/>
+						<form method="post" name="deleteForm" class="list-delete-form">
+							<div>
+								<input type="button" onclick="delete_project()" class="project-delete" value="프로젝트 삭제" />
+								<input type="hidden" name="pseq" value="${project.pseq }" />
 							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-		
-				<div class="list">
-					<c:forEach items="${cardList }" var="cardVO">
-						<c:if test="${cardVO.ctype == 3 }">
-							<div id="card${cardVO.cseq }" class="card-wrap">
-								<button type="button" name="cseq" value="${cardVO.cseq }"
-									class="card">${cardVO.ctitle }</button>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-			</div>
-		</form>
-		
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
-	
-			<!-- Modal content -->
-			<div class="modal-content">
-				<!-- ----------left--------- -->
-				<div class="modal-left">
-					<div class="modal-header">
-						<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
-					</div>
-					<div class="modal-body">
-	
-						<!-- content goes here -->
-						<form method="post">
-						<input type="hidden" id="mcseq" value="">
-							<div class="form-group">
-								<input type="text" class="form-control" id="title"
-									placeholder="TITLE UPDATE">
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" id="date"
-									placeholder="SCHADULE">
-							</div>
-	
 						</form>
 					</div>
-					<div class="calendar">
-						<button>calendar</button>
-					</div>
-					<div class="modal-footer">
-						<button id="mSubmit" class="btn btn-default">카드변경</button>
-					</div>
 				</div>
-				
-				<!-- center -->
-				<div class="center-line"></div>
-				 
-				<!-- ----------right---------- -->
-				<div class="modal-right">
-					<span class="close">&times;</span>
-
-							<h3>메모 사항</h3>
+						
+				<!-- [Pop-up]<input type="button" value="카드 수정"
+					onclick="location='PmServlet?command=card_update_form'"> -->
+		
+				<div class="detail-list">
+				<!-- 
+					<input type="button" id="next" value="다음단계이동" />
+					<input type="button" id="pre" value="이전단계이동" />
+				 -->
+				 <button id="pre" class="prev"><i class="fas fa-chevron-left fa-2x"></i></button>
+					<div class="list">
+						<div class="card-title"></div>
+						<c:forEach items="${cardList }" var="cardVO">
+							<c:if test="${cardVO.ctype == 1 }">
+								<div id="card${cardVO.cseq }" class="card-wrap">
+									<button type="button" name="cseq" value="${cardVO.cseq }"
+										class="card">${cardVO.ctitle }</button>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+					
+					<div class="list">
+						<c:forEach items="${cardList }" var="cardVO">
+							<c:if test="${cardVO.ctype == 2 }">
+								<div id="card${cardVO.cseq }" class="card-wrap">
+									<button type="button" name="cseq" value="${cardVO.cseq }"
+										class="card">${cardVO.ctitle }</button>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+			
+					<div class="list">
+						<c:forEach items="${cardList }" var="cardVO">
+							<c:if test="${cardVO.ctype == 3 }">
+								<div id="card${cardVO.cseq }" class="card-wrap">
+									<button type="button" name="cseq" value="${cardVO.cseq }"
+										class="card">${cardVO.ctitle }</button>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+				 	<button id="next" class="next"><i class="fas fa-chevron-right fa-2x"></i></button>
+				</div>
+			</form>
 	
-					<div class="comment-wrap">
-						<div class="comment-text">
-							<h3>메모 작성</h3>
-							<input type="text" placeholder="COMMENT" class="cm-text">
-							<button value="comment">CM</button>
-	
-							<div id="comment-content" style="overflow:auto;">
-								<c:choose>
-									<c:when test="${comments != null }">
-										<c:forEach items="${commetns }" var="comment">
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+		
+				<!-- Modal content -->
+				<div class="modal-content">
+					<!-- ----------left--------- -->
+					<div class="modal-left">
+						<div class="modal-header">
+							<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
+						</div>
+						<div class="modal-body">
+		
+							<!-- content goes here -->
+							<form method="post">
+							<input type="hidden" id="mcseq" value="">
+								<div class="form-group">
+									<input type="text" class="form-control" id="title"
+										placeholder="TITLE UPDATE">
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="date"
+										placeholder="SCHADULE">
+								</div>
+		
+							</form>
+						</div>
+						<div class="calendar">
+							<button>calendar</button>
+						</div>
+						<div class="modal-footer">
+							<button id="mSubmit" class="btn btn-default">카드변경</button>
+						</div>
+					</div>
+			
+					<!-- center -->
+					<div class="center-line"></div>
+			 
+					<!-- ----------right---------- -->
+					<div class="modal-right">
+						<span class="close">&times;</span>
+						<h3>메모 사항</h3>
+						<div class="comment-wrap">
+							<div class="comment-text">
+								<h3>메모 작성</h3>
+								<input type="text" placeholder="COMMENT" class="cm-text">
+								<button value="comment">CM</button>
+		
+								<div id="comment-content" style="overflow:auto;">
+									<c:choose>
+										<c:when test="${comments != null }">
+											<c:forEach items="${commetns }" var="comment">
+												<div>
+													<span></span>
+												</div>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
 											<div>
-												<span>
-													
-												</span>
+												테스트 댓글입니다  <button>삭제</button>
 											</div>
-										</c:forEach>
-										
-									</c:when>
-									<c:otherwise>
-										<div>
-											테스트 댓글입니다  <button>삭제</button>
-										</div>
-										
-										<div>
-											테스트 댓글입니다2  <button>삭제</button>
-										</div>
-										<div>
-											테스트 댓글입니다3  <button>삭제</button>
-										</div>
-										<div>
-											테스트 댓글입니다4  <button>삭제</button>
-										</div>
-										<div>
-											테스트 댓글입니다5  <button>삭제</button>
-										</div>
-										
-									</c:otherwise>
-								</c:choose>
+											
+											<div>
+												테스트 댓글입니다2  <button>삭제</button>
+											</div>
+											<div>
+												테스트 댓글입니다3  <button>삭제</button>
+											</div>
+											<div>
+												테스트 댓글입니다4  <button>삭제</button>
+											</div>
+											<div>
+												테스트 댓글입니다5  <button>삭제</button>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<input type="button" id="next" value="다음단계이동" />
-	<input type="button" id="pre" value="이전단계이동" />
-	<input type="button" id="delete" value="카드 삭제"/>
-	
-	<form method="post" name="deleteForm" class="detail-form">
-		<div>
-			<input type="button" onclick="delete_project()" value="프로젝트 삭제" /> <input
-				type="hidden" name="pseq" value="${project.pseq }" />
-		</div>
-	</form>
-</div>
-      </div>
+	 </div>
    </div>
-</div>
+ </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -428,6 +654,12 @@
 					tag += $div;
 					tag += "</div>";
 					$(parentN).next().append(tag);
+					var a = parentN + '> div';
+					var b = $(parentN).next();
+					var al = $(a).length;
+					var bl = $(b).length;
+					console.log("a : " + al);
+					console.log("b : " + bl);
 				}
 				toggleMapVal(key);
 				value.ctype = (value.ctype*1) + 1;
@@ -502,14 +734,14 @@
 		if (pflag == 0) {
 			var content = '';
 			content += "<input type='text' id='newPname' placeholder='프로젝트이름' name='newPname' onkeydown='enterKey(${project.pseq}, 1)'>";
-			document.getElementById('project_info').innerHTML = content;
+			document.getElementById('project-name').innerHTML = content;
 			document.phForm.newPname.focus();
 			pflag = 1;
 			return pflag;
 		} else if (pflag == 1) { //초기화 작업
 			var content = '';
 			content += "<span class='pname_input'> ${project.pname }</span>";
-			document.getElementById('project_info').innerHTML = content;
+			document.getElementById('project-name').innerHTML = content;
 			pflag = 2;
 			return pflag;
 		} else {
@@ -540,167 +772,5 @@
 	
 	
 </script>
-
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-/* The Modal (background) */
-.modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* background / opacity */
-}
-
-/* Modal Content */
-.modal-content {
-	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 60%;
-	height: 60%;
-	display: flex;
-}
-
-.modal-left {
-	width: 50%;
-	float: left;
-	flex: 5;
-}
-
-.center-line {
-	border-left: 0.5px solid #cccccc;;
-  	height: 360px;
-	flex: 0.5;
-}
-
-.modal-right {
-	width: 50%;
-	float: right;
-	flex: 5;
-}
-
-/* The Close Button */
-.close {
-	color: #aaaaaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.center {
-	margin-top: 50px;
-}
-
-.modal-header {
-	padding-bottom: 5px;
-}
-
-.modal-footer {
-	padding: 0;
-}
-
-.modal-footer .btn-group button {
-	height: 40px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border: none;
-	border-right: 1px solid #ddd;
-}
-
-.modal-footer .btn-group:last-child>button {
-	border-right: 0;
-}
-
-.form-group {
-	padding-top: 10px;
-}
-
-.modal-footer {
-	padding-top: 70px;
-	padding-left: 30%;
-}
-
-.calendar {
-	padding-top: 70px;
-	padding-left: 30%;
-}
-
-.form-control {
-	width: 80%;
-	height: 30px;
-	font-size: 18px;
-}
-
-.cm-text {
-	width: 80%;
-	height: 50px;
-	font-size: 18px;
-}
-
-.test1 {
-	width: 80%;
-	height: 170px;
-}
-
-.test2 {
-	height: 50%;
-}
-
-.test3 {
-	height: 50%;
-}
-/* backgrownd */
-.large-header {
-   position: relative;
-   width: 100%;
-   height: 100%;
-   background: #111;
-   overflow: hidden;
-   background-size: cover;
-   background-position: center center;
-   z-index: 1;
-}
-.container{
-    width: 100%;
-    /* margin: 0 auto; */
-    height: 100%;
-}
-.demo .large-header {
-   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
-}
-
-.demo{
-   text-transform: uppercase;
-   font-size: 4.2em;
-   letter-spacing: 0.1em;
-}
-
-.main-title .thin {
-   font-weight: 200;
-}
-
-@media only screen and (max-width: 768px) {
-   .demo .main-title {
-      font-size: 3em;
-   }
-}
-</style>
 </body>
 </html>
