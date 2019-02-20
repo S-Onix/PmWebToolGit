@@ -4,21 +4,22 @@
 
 <style>
 .project-body{
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
     position: absolute;
     background-image: url(https://t1.kakaocdn.net/kakaocorp/operating/co/main-banner/2928.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     opacity: 0.9;
     z-index: 1;
+}
+.profont-wrap {
+	width: 100%;
 }
 .projectName{
 	color: lightgray;
     background: transparent;
     border: 0.3px solid;
-}
-.header:hover{
-	background-color: white;
-    color: black;
 }
 .h1{
 	font-size: 30px;
@@ -29,6 +30,7 @@
 	width: 100%;
     height: 2px;
     background-color: white;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 .project-form{
@@ -40,7 +42,8 @@
 .project-font{
     font-size: 30px;
     color: white;
-    height: 20px;
+	width: 25%;
+	margin: 0 auto;
 }
 </style>
 <section class="project-body">

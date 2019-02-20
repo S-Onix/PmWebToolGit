@@ -1,141 +1,161 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header_login.jsp"%>
+<style>
+	.detail-wrap {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.detail-name {
+		margin-top: 50px;
+	}
+	.pname_input {
+		font-size: 30px;
+	}
+	.list {
+		background-color: red;
+		width: 20%;
+		height: 300px;
+		display: inline-block;
+		float: left;
+		margin-right: 60px;
+		margin-left: 60px;
+	}
+	.detail-list {
+		width: 100%;
+		height: 300px;
+	}
+</style>
 
-
-
-
-<form method="post" name="phForm">
-	<div id="project_info" onclick="modifyProjectName()">
+<div class="detail-wrap">
+	<div id="project_info" class="detail-name" onclick="modifyProjectName()">
 		<span class="pname_input"> ${project.pname }</span>
 	</div>
-	<div>
-		<input type="button" onclick="delete_project()" value="프로젝트 삭제" /> <input
-			type="hidden" name="pseq" value="${project.pseq }" />
-	</div>
-</form>
-
-<input type="button" id="next" value="다음단계이동" />
-<input type="button" id="pre" value="이전단계이동" />
-
-<div class="project_detail">
-	<form name="pForm" method="post">
-
-
-
-		<input type="button" value="<"> <input type="button" value=">"><br>
-		[Pop-up]<input type="button" value="카드 생성" onclick="cardForm()"><br>
-		
-		<!-- 카드생성 -->
-		<input class="list-input" type="text" name="newCTitle"
-				placeholder="Add Card"
-				onkeypress="enterKey(${project.pseq}, 3)">
-				
-				
-				
-		<div ></div>
-		[Pop-up]<input type="button" value="카드 수정"
-			onclick="location='PmServlet?command=card_update_form'"><br>
-		<input type="button" id="delete" />
-
-		
-		<div class="list">
-			<c:forEach items="${cardList }" var="cardVO">
-				<c:if test="${cardVO.ctype == 1 }">
-					<div id="card${cardVO.cseq }">
-						<button type="button" name="cseq" value="${cardVO.cseq }"
-							class="card">${cardVO.ctitle }</button>
-					</div>
-				</c:if>
-			</c:forEach>
-		</div>
-		<div class="list">
-			<c:forEach items="${cardList }" var="cardVO">
-				<c:if test="${cardVO.ctype == 2 }">
-					<div id="card${cardVO.cseq }">
-						<button type="button" name="cseq" value="${cardVO.cseq }"
-							class="card">${cardVO.ctitle }</button>
-					</div>
-				</c:if>
-			</c:forEach>
-		</div>
-
-		<div class="list">
-			<c:forEach items="${cardList }" var="cardVO">
-				<c:if test="${cardVO.ctype == 3 }">
-					<div id="card${cardVO.cseq }">
-						<button type="button" name="cseq" value="${cardVO.cseq }"
-							class="card">${cardVO.ctitle }</button>
-					</div>
-				</c:if>
-			</c:forEach>
-		</div>
-
-	</form>
 	
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-
-		<!-- Modal content -->
-		<div class="modal-content">
-			<!-- ----------left--------- -->
-			<div class="modal-left">
-				<div class="modal-header">
-					<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
+	
+	
+	<div class="project_detail">
+		<form name="pForm" method="post">
+			<!-- [Pop-up]<input type="button" value="카드 생성" onclick="cardForm()"> -->
+			
+			<!-- 카드생성 -->
+			<div>
+				<input class="list-input" type="text" name="newCTitle"
+					placeholder="Add Card"
+					onkeypress="enterKey(${project.pseq}, 3)">
+			</div>
+					
+			<!-- [Pop-up]<input type="button" value="카드 수정"
+				onclick="location='PmServlet?command=card_update_form'"> -->
+	
+			<div class="detail-list">
+				<div class="list">
+					<c:forEach items="${cardList }" var="cardVO">
+						<c:if test="${cardVO.ctype == 1 }">
+							<div id="card${cardVO.cseq }">
+								<button type="button" name="cseq" value="${cardVO.cseq }"
+									class="card">${cardVO.ctitle }</button>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
-				<div class="modal-body">
-
-					<!-- content goes here -->
-					<form method="post">
-					<input type="hidden" id="mcseq" value="">
-						<div class="form-group">
-							<input type="text" class="form-control" id="title"
-								placeholder="TITLE UPDATE">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" id="date"
-								placeholder="SCHADULE">
-						</div>
-
-					</form>
+				
+				<div class="list">
+					<c:forEach items="${cardList }" var="cardVO">
+						<c:if test="${cardVO.ctype == 2 }">
+							<div id="card${cardVO.cseq }">
+								<button type="button" name="cseq" value="${cardVO.cseq }"
+									class="card">${cardVO.ctitle }</button>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
-				<div class="calendar">
-					<button>calendar</button>
-				</div>
-				<div class="modal-footer">
-					<button id="mSubmit" class="btn btn-default">카드변경</button>
+		
+				<div class="list">
+					<c:forEach items="${cardList }" var="cardVO">
+						<c:if test="${cardVO.ctype == 3 }">
+							<div id="card${cardVO.cseq }">
+								<button type="button" name="cseq" value="${cardVO.cseq }"
+									class="card">${cardVO.ctitle }</button>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</div>
-			
-			<!-- center -->
-			<div class="center-line"></div>
-			 
-			<!-- ----------right---------- -->
-			<div class="modal-right">
-				<span class="close">&times;</span>
-				<div class="test1">
-					<div class="test2">
-						<h3>댓글 제목</h3>
+		</form>
+		
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+	
+			<!-- Modal content -->
+			<div class="modal-content">
+				<!-- ----------left--------- -->
+				<div class="modal-left">
+					<div class="modal-header">
+						<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 					</div>
-					<div class="test3">
-						<h3>댓글</h3>
-
+					<div class="modal-body">
+	
+						<!-- content goes here -->
+						<form method="post">
+						<input type="hidden" id="mcseq" value="">
+							<div class="form-group">
+								<input type="text" class="form-control" id="title"
+									placeholder="TITLE UPDATE">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="date"
+									placeholder="SCHADULE">
+							</div>
+	
+						</form>
+					</div>
+					<div class="calendar">
+						<button>calendar</button>
+					</div>
+					<div class="modal-footer">
+						<button id="mSubmit" class="btn btn-default">카드변경</button>
 					</div>
 				</div>
-				<div class="comment-wrap">
-					<div class="comment-text">
-						<h3>댓글</h3>
-						<input type="text" placeholder="COMMENT" class="cm-text">
-						<button value="comment">CM</button>
-
-						<div class="comment-btn"></div>
+				
+				<!-- center -->
+				<div class="center-line"></div>
+				 
+				<!-- ----------right---------- -->
+				<div class="modal-right">
+					<span class="close">&times;</span>
+					<div class="test1">
+						<div class="test2">
+							<h3>댓글 제목</h3>
+						</div>
+						<div class="test3">
+							<h3>댓글</h3>
+	
+						</div>
+					</div>
+					<div class="comment-wrap">
+						<div class="comment-text">
+							<h3>댓글</h3>
+							<input type="text" placeholder="COMMENT" class="cm-text">
+							<button value="comment">CM</button>
+	
+							<div class="comment-btn"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<input type="button" id="next" value="다음단계이동" />
+	<input type="button" id="pre" value="이전단계이동" />
+	
+	<form method="post" name="deleteForm" class="detail-form">
+		<div>
+			<input type="button" onclick="delete_project()" value="프로젝트 삭제" /> <input
+				type="hidden" name="pseq" value="${project.pseq }" />
+		</div>
+	</form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -468,15 +488,14 @@
 	}
 	
 	function delete_project(){
-		document.phForm.action = "PmServlet?command=project_delete";
-		document.phForm.submit();
+		document.deleteForm.action = "PmServlet?command=project_delete";
+		document.deleteForm.submit();
 	}
 	
 	
 </script>
 
 <style>
-body
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -601,8 +620,6 @@ body {
 .test3 {
 	height: 50%;
 }
-
-
-e>
+</style>
 </body>
 </html>
