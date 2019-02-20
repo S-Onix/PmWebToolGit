@@ -51,7 +51,7 @@
 		</table>
 		<div class="clear"></div>
 		<div id="buttons" style="float: right">
-			<a class="submit a-style"
+			<a class="submit btn"
 				onclick="location.href='PmServlet?command=board_write_form'">글쓰기</a>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
   color: #584E4A;
   border: none;
   background: none;
-  cursor: pointer;
+  c
 }
 
 .a-style::after {
@@ -102,6 +102,24 @@
 }
 .header{
 	background: #114f8f;
+}
+#buttons{
+	padding-top: 10px;
+}
+.btn{
+	padding: 1px 2px 1px 2px;
+	height: 40px;
+	width: 130px;
+	border: 2px solid #369;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: #369;
+	margin: 0 0 0 20px;
+	cursor: pointer;
 }
 table.post-wrap {
 	border-collapse: collapse;
@@ -133,6 +151,7 @@ table.post-wrap td {
 .post-all{
 	padding: 0 15% 0 15%;
 }
+
 
 </style>
 </body>
