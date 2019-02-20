@@ -162,6 +162,7 @@
 
 	<input type="button" id="next" value="다음단계이동" />
 	<input type="button" id="pre" value="이전단계이동" />
+	<input type="button" id="delete" value="카드 삭제"/>
 	
 	<form method="post" name="deleteForm" class="detail-form">
 		<div>
@@ -350,7 +351,7 @@
 					var parentN = $(cardId).parent();
 					$div = $div.replace("color: rgb(255, 0, 0)", "color: black");
 					$(cardId).remove();
-					var tag = "<div id='card" + key + "' >";
+					var tag = "<div id='card" + key + "' class='card-wrap' >";
 					tag += $div;
 					tag += "</div>";
 					$(parentN).prev().append(tag);
@@ -391,7 +392,7 @@
 					$div = $div.replace("color: rgb(255, 0, 0)", "color: black");
 					console.log($div);
 					$(cardId).remove();
-					var tag = "<div id='card" + key + "' >";
+					var tag = "<div id='card" + key + "' class='card-wrap' >";
 					tag += $div;
 					tag += "</div>";
 					$(parentN).next().append(tag);
