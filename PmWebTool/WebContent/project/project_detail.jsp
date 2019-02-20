@@ -13,7 +13,7 @@
 		font-size: 30px;
 	}
 	.list {
-		background-color: red;
+		background-color: #f7f7f7;
 		width: 20%;
 		height: 300px;
 		display: inline-block;
@@ -24,6 +24,19 @@
 	.detail-list {
 		width: 100%;
 		height: 300px;
+	}
+	.card-wrap{
+	    margin: 0 auto;
+	    height: 30px;
+	    width: 60%;
+	    margin-top: 25;
+	}
+	.card{
+		width: 100%;
+	    height: 100%;
+	    border-radius: 0.5em;
+	    background: transparent;
+	    font-size: 15px;
 	}
 </style>
 
@@ -52,7 +65,7 @@
 				<div class="list">
 					<c:forEach items="${cardList }" var="cardVO">
 						<c:if test="${cardVO.ctype == 1 }">
-							<div id="card${cardVO.cseq }">
+							<div id="card${cardVO.cseq }" class="card-wrap">
 								<button type="button" name="cseq" value="${cardVO.cseq }"
 									class="card">${cardVO.ctitle }</button>
 							</div>
@@ -63,7 +76,7 @@
 				<div class="list">
 					<c:forEach items="${cardList }" var="cardVO">
 						<c:if test="${cardVO.ctype == 2 }">
-							<div id="card${cardVO.cseq }">
+							<div id="card${cardVO.cseq }" class="card-wrap">
 								<button type="button" name="cseq" value="${cardVO.cseq }"
 									class="card">${cardVO.ctitle }</button>
 							</div>
@@ -74,7 +87,7 @@
 				<div class="list">
 					<c:forEach items="${cardList }" var="cardVO">
 						<c:if test="${cardVO.ctype == 3 }">
-							<div id="card${cardVO.cseq }">
+							<div id="card${cardVO.cseq }" class="card-wrap">
 								<button type="button" name="cseq" value="${cardVO.cseq }"
 									class="card">${cardVO.ctitle }</button>
 							</div>
