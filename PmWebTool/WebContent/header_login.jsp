@@ -31,11 +31,6 @@
 			<c:choose>
 				<c:when test="${loginUser != null }">
 
-					<div class="search-box">
-						<input class="search-text" type="text" placeholder="search">
-						<a class="search-btn" href=""> <i class="fas fa-search"></i>
-						</a>
-					</div>
 					<div class="header-login-right">
 						<a href="PmServlet?command=project_form"
 							class="pm-link pm-link_text pm-link" data-sm-link-text="Project">
