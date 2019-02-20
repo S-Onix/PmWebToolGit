@@ -18,6 +18,34 @@ function go_write() {
 	}
 }
 </script>
+<style>
+ /* a tag 효과 */
+ 
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:700);
+
+.a-style {
+font-family: 'Ubuntu', sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  color: #584E4A;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.a-style::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width .3s;
+}
+
+.a-style:hover::after {
+  width: 100%;
+}
+</style>
 <article>
 	<form name="formm" method="post" action="PmServlet?command=board_write">
 	<h2>글 쓰기</h2>
@@ -34,8 +62,8 @@ function go_write() {
 		</fieldset>
 		<div class="clear"></div>
 		<div id="buttons" style="float: right">	
-			<input type="button" value="쓰기" class="submit" onclick="go_write()">
-			<input type="button" value="취소" class="cancel" onclick='location.href="PmServlet?command=board_form"'>
+			<a class="a-style" onclick="go_write()">Write</a>
+			<a class="a-style" onclick='location.href="PmServlet?command=board_form"'>cancle</a>
 		</div>
 	</form>
 </article>
