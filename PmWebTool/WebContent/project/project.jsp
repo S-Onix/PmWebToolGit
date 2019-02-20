@@ -20,7 +20,8 @@
 	color: lightgray;
     background: transparent;
     border: 0.3px solid;
-}
+} 
+
 .h1{
 	font-size: 30px;
     color: white;
@@ -63,9 +64,10 @@
 			<ul class="list">
            
 				<c:forEach items="${projectList }" var="projectVO">
-					<li class="list_item"><input class="projectName" type="button"
+					<li class="list_item">
+					<input class="projectName" type="button"
 						onclick='goProjectDetail(${projectVO.pseq})'
-						value="${projectVO.pname }"> <a> <i class="icon-close"></i>
+						value="${projectVO.pname }"><a> <i class="icon-close"></i>
 					</a></li>
 				</c:forEach>
 			 </ul> 
