@@ -26,10 +26,9 @@
 		<br>
 		<c:choose>
 			<c:when test="${checkId == boardVO.mid}">
-				<input type="button" value="수정" class="btn button"
-					onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
-				<input type="button" value="삭제" class="btn button" onClick="go_delete()">
-				<a href="#" class="btn button" onclick="go_delete2()">마구자비</a>
+				<input type="button" value="수정" class="btn button" onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
+				<!-- <input type="button" value="삭제" class="btn button" onClick="go_delete()"> -->
+				<a href="#" class="btn button" onclick="go_delete()">삭제</a>
 				<input type="button" value="목록" class="btn button"
 					onclick="go_list('${tpage}', '${key}')">
 			</c:when>
@@ -48,7 +47,7 @@
 		theForm.submit();
 	}
 	
-	function go_delete(bseq) { 
+/* 	function go_delete(bseq) { 
 		var ret = confirm("삭제하시겠습니까?");
 		if (ret == true){
 			document.frm.action = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
@@ -57,9 +56,9 @@
 		} else {
 			alert("취소되었습니다");
 		}
-	}
+	} */
 	
-	function go_delete2() { 
+	function go_delete() { 
 		var ret = confirm("삭제하시겠습니까?");
 		if (ret == true){
 			location.href = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
@@ -80,10 +79,11 @@
    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
    display: block;
    margin: 20px auto;
-   max-width: 180px;
+   max-width: 80px;
    text-decoration: none;
    border-radius: 4px;
    padding: 20px 30px;
+   text-align: center;
 }
 
 .btn.button {
