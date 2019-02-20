@@ -5,13 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <article>
+<h1 style="padding:7% 15% 0 15%;">프로필</h1>
 <form name="frm" method="post">
 <input type="hidden" name="tpage" value="${tpage}"/>
 <input type="hidden" name="key" value="${key}"/>
 <input type="hidden" name="mid" value="${boardVO.mid}"/>
 <input type="hidden" name="mseq" value="${loginUser.mseq}"/>
 <div class="post-all">
-<h1 style="padding:7% 15% 0 15%;">프로필</h1>
 
 <table class="post-wrap">
 <thead>
