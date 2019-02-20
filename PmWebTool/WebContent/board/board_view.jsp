@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <article>
+<div class="post-all">
 	<form name="frm" method="post">
 	<input type="hidden" name="tpage" value="${tpage}"/>
 	<input type="hidden" name="key" value="${key}"/>
@@ -24,12 +25,12 @@
 			</thead>
 		</table>
 		<br>
+		<div id="buttons">
 		<c:choose>
 			<c:when test="${checkId == boardVO.mid}">
-				<input type="button" value="수정" class="btn button" onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
-				<!-- <input type="button" value="삭제" class="btn button" onClick="go_delete()"> -->
-				<a href="#" class="btn button" onclick="go_delete()">삭제</a>
-				<input type="button" value="목록" class="btn button"
+				<input type="button" value="수정" class="btn" onClick="go_update_form('${boardVO.bseq}', '${tpage}', '${key}')">
+				<input type="button" value="삭제" class="btn" onClick="go_delete()">
+				<input type="button" value="목록" class="btn"
 					onclick="go_list('${tpage}', '${key}')">
 			</c:when>
 			<c:otherwise>
@@ -37,7 +38,9 @@
 					onclick="go_list('${tpage}', '${key}')" >
 			</c:otherwise>
 		</c:choose>
+		</div>
 	</form>
+	</div>
 </article>
 <script id="text/javascript">
 	function go_update_form(bseq, tpage, key) {// 수정화면으로
@@ -47,7 +50,7 @@
 		theForm.submit();
 	}
 	
-/* 	function go_delete(bseq) { 
+ 	function go_delete(bseq) { 
 		var ret = confirm("삭제하시겠습니까?");
 		if (ret == true){
 			document.frm.action = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
@@ -56,9 +59,9 @@
 		} else {
 			alert("취소되었습니다");
 		}
-	} */
+	}
 	
-	function go_delete() { 
+/* 	function go_delete() { 
 		var ret = confirm("삭제하시겠습니까?");
 		if (ret == true){
 			location.href = "PmServlet?command=board_delete&bseq=" + ${boardVO.bseq};
@@ -66,7 +69,7 @@
 		} else {
 			alert("취소되었습니다");
 		}
-	}
+	} */
 	
 	function go_list(tpage, key){
 		document.frm.action = "PmServlet?command=board_form&tpage=" + tpage + "&key=" + key;
@@ -74,26 +77,29 @@
 	}
 </script>
 <style type="text/css">
-.btn {
-   /* 줄어드는 모션 */
-   -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-   display: block;
-   margin: 20px auto;
-   max-width: 80px;
-   text-decoration: none;
-   border-radius: 4px;
-   padding: 20px 30px;
-   text-align: center;
+
+form #buttons {
+	margin: 20px 0 0 0;
 }
 
-.btn.button {
-   color: rgba(30, 22, 54, 0.6);
-   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+form  .btn {
+	height: 30px;
+	width: 120px;
+	border: 2px solid #369;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: #369;
+	margin: 0 0 0 20px;
+	cursor: pointer;
 }
 
-.btn.button:hover {
-   color: rgba(255, 255, 255, 0.85);
-   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+
+.header{
+	background: #114f8f;
 }
 
 table.post-wrap {
@@ -139,5 +145,8 @@ table.post-wrap td {
 .post-a:hover {
 	text-decoration: underline;
 }  
+.post-all{
+	padding: 100 15% 0 30%;
+}
 </style>
 </html>

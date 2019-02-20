@@ -102,6 +102,7 @@ form  .btn {
 	background-color: white;
 	color: #369;
 	margin: 0 0 0 20px;
+	cursor: pointer;
 }
 
 .header{
