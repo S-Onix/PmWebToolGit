@@ -17,6 +17,7 @@ public class ProfileUpdateFormAction implements Action {
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		if (loginUser == null) {
+			url = "PmServlet?command=login_form";
 		} else {
 			try {
 				request.setAttribute("loginUser", loginUser);
