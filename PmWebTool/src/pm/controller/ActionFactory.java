@@ -10,6 +10,8 @@ import pm.controller.action.BoardWriteAction;
 import pm.controller.action.BoardWriteFormAction;
 import pm.controller.action.CardAddAction;
 import pm.controller.action.CardAddFormAction;
+import pm.controller.action.CardCommentAddAction;
+import pm.controller.action.CardCommentDeleteAction;
 import pm.controller.action.CardDeleteAction;
 import pm.controller.action.CardMoveAction;
 import pm.controller.action.CardUpdateAction;
@@ -89,7 +91,11 @@ public class ActionFactory {
 			action = new CardMoveAction();
 		} else if (command.equals("card_delete")) {
 			action = new CardDeleteAction();
-		} else if (command.equals("board_form")) {
+		}else if(command.equals("comment_add")){
+			action = new CardCommentAddAction();
+		}else if(command.equals("comment_delete")){
+			action = new CardCommentDeleteAction();
+		}else if (command.equals("board_form")) {	
 			action = new BoardFormAction();
 		} else if (command.equals("board_write_form")) {
 			action = new BoardWriteFormAction();
