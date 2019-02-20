@@ -50,7 +50,7 @@
    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
    cursor: pointer;
 }
-
+ 
 .btn.button:hover {
    color: rgba(255, 255, 255, 0.85);
    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
