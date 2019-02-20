@@ -10,8 +10,8 @@
 <h1>ID 중복확인</h1>
 <form method=post name=formm style="margin-right:0" action="PmServlet?command=id_check_form">
 ID : <input type=text class="check-id" placeholder="아이디를 입력해주세요" name="mid" size="15">
-       <!--  <a href="#" class="btn button" type="submit">검색</a> -->
-       <input type=submit value="검색" class="btn button"><br>
+        <input type=submit class="bt" value="검색">
+        <br>
         <div style="margin: 0 auto;">
         <c:if test="${message == 1}">
         <script type="text/javascript">
@@ -50,7 +50,7 @@ ID : <input type=text class="check-id" placeholder="아이디를 입력해주세
    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
    display: block;
    margin: 20px auto;
-   max-width: 80px;
+   max-width: 40px;
    text-decoration: none;
    border-radius: 4px;
    padding: 20px 30px;
@@ -67,6 +67,23 @@ ID : <input type=text class="check-id" placeholder="아이디를 입력해주세
    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
 
+.bt{
+    padding-top: 10px;
+	padding: 1px 2px 1px 2px;
+	height: 40px;
+	width: 55px;
+	border: 2px solid grey;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: grey;
+	margin: 0 0 0 20px;
+	cursor: pointer;
+}
+
 .check-id{
     width: 200;
     height: 25;
@@ -78,6 +95,10 @@ font-weight: bold;
 	width: 60%;
     margin: 0 auto;
     margin-top: 50;
+}
+
+form {
+ margin: 20px auto;
 }
 </style>
 </html>
