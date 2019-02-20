@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header_login.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script id="text/javascript">
@@ -32,6 +31,43 @@
 		document.idForm.submit();
 	}
 </script>
+<style>
+
+.btn {
+   /* 줄어드는 모션 */
+   -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+   display: block;
+   margin: 20px auto;
+   max-width: 40px;
+   text-decoration: none;
+   border-radius: 4px;
+   padding: 20px 30px;
+   text-align: center;
+}
+
+.btn.button {
+   color: rgba(30, 22, 54, 0.6);
+   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+   cursor: pointer;
+}
+
+.btn.button:hover {
+   color: rgba(255, 255, 255, 0.85);
+   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+    margin: 0 0 0 35;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+</style>
 <h1>비밀번호 변경</h1>
 <form method="post" name="idForm">
 	<c:choose>
@@ -60,9 +96,11 @@
 
 		</c:otherwise>
 	</c:choose>
-	<br>
-	<input type="button" class="bt" name="change" value="변경" onClick="changePw()">
-	<input type="button" name="cancel" value="취소" onClick="back()">
+	<ul>
+	<li><a class="btn button" onClick="changePw()">변경</a></li>
+	<li><a class="btn button" onClick="back()">취소</a></li>
+	</ul>
+
 </form>
 </body>
 </html>

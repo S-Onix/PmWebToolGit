@@ -39,8 +39,12 @@
 	    font-size: 15px;
 	}
 </style>
-
+<div class="container demo">
+   <div class="content">
+      <div id="large-header" class="large-header">
 <div class="detail-wrap">
+         
+
 	<div id="project_info" class="detail-name" onclick="modifyProjectName()">
 		<span class="pname_input"> ${project.pname }</span>
 	</div>
@@ -197,7 +201,9 @@
 		</div>
 	</form>
 </div>
-
+      </div>
+   </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -659,6 +665,41 @@ body {
 
 .test3 {
 	height: 50%;
+}
+/* backgrownd */
+.large-header {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   background: #111;
+   overflow: hidden;
+   background-size: cover;
+   background-position: center center;
+   z-index: 1;
+}
+.container{
+    width: 100%;
+    /* margin: 0 auto; */
+    height: 100%;
+}
+.demo .large-header {
+   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+}
+
+.demo{
+   text-transform: uppercase;
+   font-size: 4.2em;
+   letter-spacing: 0.1em;
+}
+
+.main-title .thin {
+   font-weight: 200;
+}
+
+@media only screen and (max-width: 768px) {
+   .demo .main-title {
+      font-size: 3em;
+   }
 }
 </style>
 </body>
