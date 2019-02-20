@@ -7,7 +7,7 @@
 <article>
 	<form name="formm" method="post">
 	<input type="hidden" name="mseq" value="${loginUser.mseq}" />
-	<div>
+	<div class="post-all">
 	<h2>프로필 수정</h2>
 		<table class="post-wrap">
 			<tr>
@@ -30,9 +30,12 @@
 		</table>
 	</div>
 	<br>
+	<div id="buttons">
 		<input class="btn" type="button" value="저장" onclick="profile_update()">
 		<input class="btn" type="button" value="취소" onclick="location='PmServlet?command=profile_form'">
+	</div>
 	</form>
+	
 </article>
 <script id="text/javascript">
 	function profile_update() {// 저장
@@ -51,21 +54,25 @@
 </script>
 <style type="text/css">
 form #buttons {
-	margin: 20px 0 0 0;
+	margin: 1px 20% 0 40%;
 }
 
-form .btn {
+form  .btn {
 	height: 30px;
 	width: 120px;
-	border: 2px solid #ccc;
+	border: 2px solid #369;
 	border-radius: 10px;
 	box-shadow: 3px 3px 2px #ccc;
 	font-size: 16px;
 	background-repeat: repeat-x;
 	background-position: center center;
 	background-color: white;
-	color: black;
+	color: #369;
 	margin: 0 0 0 20px;
+}
+
+.header{
+	background: #114f8f;
 }
 
 table.post-wrap {
@@ -111,5 +118,9 @@ table.post-wrap td {
 .post-a:hover {
 	text-decoration: underline;
 }  
+
+.post-all{
+	padding: 100 20% 10 35%;
+}
 </style>
 </html>

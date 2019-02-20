@@ -10,8 +10,9 @@
 <input type="hidden" name="key" value="${key}"/>
 <input type="hidden" name="mid" value="${boardVO.mid}"/>
 <input type="hidden" name="mseq" value="${loginUser.mseq}"/>
-<div>
-<h1>프로필</h1>
+<div class="post-all">
+<h1 style="padding:7% 15% 0 15%;">프로필</h1>
+
 <table class="post-wrap">
 <thead>
 				<tr>
@@ -35,6 +36,7 @@
 	<br><br><br>
  </div>
 </div>
+<div class="post-all">
 <table id="boardList" class="post-wrap">
 			<thead>
 				<tr>
@@ -66,8 +68,10 @@
 				</c:choose>
 			</thead>
 		</table>
+		</div>
 		<br>
 </form>
+
 </article>
 <script id="text/javascript">
 function withdraw() { 
@@ -98,6 +102,10 @@ form  .btn {
 	background-color: white;
 	color: #369;
 	margin: 0 0 0 20px;
+}
+
+.header{
+	background: #114f8f;
 }
 
 table.post-wrap {
@@ -143,5 +151,9 @@ table.post-wrap td {
 .post-a:hover {
 	text-decoration: underline;
 }  
+
+.post-all{
+	padding: 0 15% 0 15%;
+}
 </style>
 </html>
