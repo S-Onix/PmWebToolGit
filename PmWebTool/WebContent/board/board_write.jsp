@@ -23,47 +23,86 @@ function go_write() {
  
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:700);
 
-.a-style {
-font-family: 'Ubuntu', sans-serif;
-  display: inline-block;
-  text-decoration: none;
-  color: #584E4A;
-  border: none;
-  background: none;
-  cursor: pointer;
+.header{
+	background: #114f8f;
+}
+#buttons{
+	padding-top: 10px;
+}
+.btn{
+	padding: 1px 2px 1px 2px;
+	height: 40px;
+	width: 130px;
+	border: 2px solid #369;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 16px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	background-color: white;
+	color: #369;
+	margin: 0 0 0 20px;
+	cursor: pointer;
+}
+.post-all{
+	padding: 5% 15% 1% 15%;
+}
+.driver{
+	width: 80px;
+    height: 5px;
+    background-color: #34679a; 
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+fieldset{
+	border-color: #cdd9e6;
+	font-size: 20px;
+}
+.text{
+	font-size: 17px;
+}
+textarea{
+	height: 150px;
+	width: 90%;
+}
+#title-text{
+	width: 90%;
+}
+.text-wrap{
+	padding: 5px 15px 10px 15px;
+}
+label{
+    padding-left: 15px;
 }
 
-.a-style::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #000;
-  transition: width .3s;
-}
-
-.a-style:hover::after {
-  width: 100%;
-}
 </style>
 <article>
 	<form name="formm" method="post" action="PmServlet?command=board_write">
-	<h2>글 쓰기</h2>
+	<div class="post-all">
+	<div class="h2-wrap">
+	<h2 style="margin: 0 0 3 0;">글 쓰기</h2>
+	</div>
+	<div class="driver">
+		</div>
 		<fieldset>
-			<label>제목</label> 
-			<input type="text" name="subject" size="80">
-			<br><br>
 			<label>작성자</label>
-			<input type="text" value="${loginUser.mid}" name="mid" disabled/>
-			<br><br>
-			<label>내용</label><br>
-			<textarea rows="8" cols="80" name="content"></textarea>
-			<br>
+			<div class="text-wrap">
+			<input type="text" class="text" value="${loginUser.mid}" name="mid" disabled/>
+			</div>
+			<label>제목</label> 
+			<div class="text-wrap">
+			<input type="text" id="title-text" class="text" name="subject" size="80">
+			</div>
+			<label>내용</label>
+			<div class="text-wrap">
+			<textarea rows="8" cols="80" class="text" name="content"></textarea>
+			</div>
 		</fieldset>
 		<div class="clear"></div>
 		<div id="buttons" style="float: right">	
-			<a class="a-style" onclick="go_write()">Write</a>
-			<a class="a-style" onclick='location.href="PmServlet?command=board_form"'>cancle</a>
+			<a class="btn" onclick="go_write()">글쓰기</a>
+			<a class="btn" onclick='location.href="PmServlet?command=board_form"'>취소</a>
 		</div>
+	</div>
 	</form>
 </article>
