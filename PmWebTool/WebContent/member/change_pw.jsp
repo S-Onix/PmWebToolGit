@@ -11,6 +11,9 @@
 	}
 	
 	function changePw() {
+		if (document.idForm.id.value == "") {
+			alert("아이디를 입력해주세요")
+		} else {
  		var newPw = document.getElementById('newPw').value;
 		var checkPw = document.getElementById('checkPw').value;
         if (document.idForm.newPw.value == "") {
@@ -23,6 +26,7 @@
 			alert("변경 완료");
 		} else {
 			alert("비밀번호가 다릅니다");
+		}
 		}
 	}
 
