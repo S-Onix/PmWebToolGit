@@ -85,7 +85,7 @@
   color: #584E4A;
   border: none;
   background: none;
-  c
+  cursor: pointer;
 }
 
 .a-style::after {
