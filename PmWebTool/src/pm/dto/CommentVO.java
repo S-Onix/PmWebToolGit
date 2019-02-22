@@ -1,5 +1,5 @@
 package pm.dto;
-
+ 
 public class CommentVO {
 	private int c_cseq;
 	private int cseq;

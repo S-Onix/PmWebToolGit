@@ -102,6 +102,57 @@ private static CardDAO instance = new CardDAO();
 		}
 		return null;
 	}
+	public ArrayList<Integer> selectAllCseq(int pseq) throws Exception{
+		ArrayList<Integer> result = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select cseq from card where pseq = ?";
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(rs.getInt(1));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		
+		return result;
+	}
+	
+	public int selectLastData() throws Exception {
+		int result = 0;
+		String sql = "select max(cseq) from card";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBAction.getInstance().getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		
+		return result;
+	}
 	
 	//디테일 추가해야함
 	public void updateCard(CardVO card, int flag) throws Exception{

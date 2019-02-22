@@ -12,8 +12,8 @@ import pm.dao.MemberDAO;
 import pm.dto.MemberVO;
 
 public class ProfileUpdateAction implements Action {
+
 	@Override
-	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "PmServlet?command=profile_form";
 		String name = request.getParameter("mname");

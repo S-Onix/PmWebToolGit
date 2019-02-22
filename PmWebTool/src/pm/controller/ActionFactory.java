@@ -12,6 +12,7 @@ import pm.controller.action.CardAddAction;
 import pm.controller.action.CardAddFormAction;
 import pm.controller.action.CardCommentAddAction;
 import pm.controller.action.CardCommentDeleteAction;
+import pm.controller.action.CardCommentListAction;
 import pm.controller.action.CardDeleteAction;
 import pm.controller.action.CardMoveAction;
 import pm.controller.action.CardUpdateAction;
@@ -37,7 +38,7 @@ import pm.controller.action.ProjectFormAction;
 import pm.controller.action.ProjectUpdateAction;
 import pm.controller.action.ProjectUpdateFormAction;
 import pm.controller.action.WithdrawAction;
-
+ 
 public class ActionFactory {
 	private static ActionFactory instance = new ActionFactory();
 
@@ -93,6 +94,8 @@ public class ActionFactory {
 			action = new CardDeleteAction();
 		}else if(command.equals("comment_add")){
 			action = new CardCommentAddAction();
+		}else if(command.equals("comment_list")) {
+			action = new CardCommentListAction();
 		}else if(command.equals("comment_delete")){
 			action = new CardCommentDeleteAction();
 		}else if (command.equals("board_form")) {	

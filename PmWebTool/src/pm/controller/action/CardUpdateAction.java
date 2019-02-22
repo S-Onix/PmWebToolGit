@@ -34,6 +34,8 @@ public class CardUpdateAction implements Action {
 				e.printStackTrace();
 			}
 		}
+		
+		response.getWriter().print("success");
 
 	/*	response.sendRedirect(url);
 

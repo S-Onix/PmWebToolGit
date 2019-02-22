@@ -182,9 +182,9 @@ body {
   </div>
 
   <div class="line-item">
-    
+  
     <div class="line-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
-    
+
     <div class="line-date">
       <p class="f2 heading--sanSerif">이</p>
     </div>
